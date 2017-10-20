@@ -22,12 +22,13 @@ from bokeh.models.widgets import (
 from bokeh.plotting import figure
 
 ### Plot Functions Definitions
-def select_indicador(indicadores_list):
-    select = Select(title="Indicador", value="", options=indicadores_list)
+def select_meta(metas_list):
+    select = Select(title="Meta", value="meta_1", options=metas_list)
     return select
 
-
-
+def select_indicador(indicadores_list):
+    select = Select(title="Indicador", value="indicador_1_1", options=indicadores_list)
+    return select
 
 def mapa(source,color_mapper,plot_width,plot_height):
     mapa_fig = figure(
@@ -35,10 +36,6 @@ def mapa(source,color_mapper,plot_width,plot_height):
         plot_width=plot_width,
         plot_height=plot_height,
     )
-    # my_tile=bokeh.models.tiles.WMTSTileSource(
-    #     url='https://api.mapbox.com/styles/v1/rdferrari/cj78ytz6l51pw2so2o3bj2d09/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoicmRmZXJyYXJpIiwiYSI6ImNpcDQ4Nm12YjAwNnJsZ20zOXdmc29obmcifQ.Shb8a3P1XAV8cPWR1yGDTA'
-    # )
-    # tile=mapa_fig.add_tile(my_tile)
     mapa_fig.grid.grid_line_color = None
     mapa_fig.axis[0].visible=False
     mapa_fig.axis[1].visible=False
@@ -65,24 +62,57 @@ def mapa(source,color_mapper,plot_width,plot_height):
     hover_mapa = mapa_fig.select_one(HoverTool)
     hover_mapa.point_policy = "follow_mouse"
     hover_mapa.tooltips = [
-        ("UF", "@UF"),
+        ("Centro Rede CEDES:", "@nome_universidade"),
         ('Indicador','@indicador_selecionado{0.00}'),
-        # ('Meta Financeira','R$ @meta{0,0.00}'),
-        # ('Realizado','R$ @realizado{0,0.00}'),
     ]
     mapa_fig.toolbar.logo=None
     mapa_fig.axis[0].visible=False
     mapa_fig.toolbar_location='above'
     return mapa_fig
 
-def vbar(source_barras):
+def hbar_indicadores(source,color_mapper,plot_width,plot_height):
+    barras_fig=figure(
+        y_range=bokeh.models.ranges.FactorRange(factors=source.data['UF'][::-1]),
+        plot_height=plot_height,
+        plot_width=plot_width,
+        tools='hover',
+        x_range=Range1d(0.0,1.0),
+        # title='Indicador'
+    )
+
+    barras_fig.hbar(
+        y='UF',
+        right='indicador_selecionado',
+        height=0.5,
+        source=source,
+        fill_color={'field': 'indicador_selecionado', 'transform': color_mapper},
+        line_color=None,
+    )
+
+    hover_barras =barras_fig.select_one(HoverTool)
+    hover_barras.point_policy = "follow_mouse"
+    hover_barras.tooltips = [
+        ("UF", "@UF"),
+        ('Indicador','@indicador_selecionado{0.00}'),
+    ]
+
+    barras_fig.toolbar.logo=None
+    barras_fig.toolbar_location='above'
+    # barras_fig.toolbar_sticky=False
+    barras_fig.grid.grid_line_color = None
+    barras_fig.axis[0].visible=False
+    # barras_fig.axis[1].visible=False
+
+    return barras_fig
+
+def vbar(source_barras,color_mapper,title,plot_width,plot_height):
     barras_fig=figure(
         x_range=bokeh.models.ranges.FactorRange(factors=source_barras.data['fatores']),
-        plot_height=300,
-        # plot_width=plot_width,
+        plot_width=plot_width,
+        plot_height=plot_height,
         tools='xpan, xwheel_zoom,hover',
         y_range=Range1d(0.0,1.0),
-        title='Distribuição do Indicador'
+        title=title
     )
 
     barras_fig.vbar(
@@ -90,7 +120,7 @@ def vbar(source_barras):
         top='valores',
         width=0.5,
         source=source_barras,
-        # fill_color={'field': 'valores', 'transform': color_mapper},
+        fill_color={'field': 'fatores', 'transform': color_mapper},
         line_color=None,
     )
 
@@ -106,14 +136,15 @@ def vbar(source_barras):
     barras_fig.toolbar_sticky=False
     return barras_fig
 
-def vbar_detail(source_barras):
+
+def vbar_detail(source_barras,color_mapper,plot_width,plot_height):
     barras_fig=figure(
         x_range=bokeh.models.ranges.FactorRange(factors=source_barras.data['fatores']),
-        plot_height=300,
-        # plot_width=plot_width,
+        plot_height=plot_height,
+        plot_width=plot_width,
         tools='xpan, xwheel_zoom,hover',
         y_range=Range1d(0.0,1.0),
-        title='Nenhum Estado Selecionado'
+        title='Nenhum Centro Rede-CEDES Selecionado'
     )
 
     barras_fig.vbar(
@@ -121,7 +152,7 @@ def vbar_detail(source_barras):
         top='valores',
         width=0.5,
         source=source_barras,
-        # fill_color={'field': 'valores', 'transform': color_mapper},
+        fill_color={'field': 'valores', 'transform': color_mapper},
         line_color=None,
     )
 
