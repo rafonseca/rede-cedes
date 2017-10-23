@@ -79,12 +79,14 @@ indicadores_df.replace(np.nan,0,inplace=True)
 indicadores_df['x']=lim_uf['x'].apply(np.asarray)
 indicadores_df['y']=lim_uf['y'].apply(np.asarray)
 indicadores_df['nome_universidade']=itens_df['nome_universidade']
+indicadores_df['nome_UF']=itens_df['nome_UF']
 # indicadores_df.sort_index(ascending=False,inplace=True)
 
 metas_list=list(metas_df.columns)
 metas_df.replace(np.nan,0,inplace=True)
 metas_df['x']=indicadores_df['x']
 metas_df['y']=indicadores_df['y']
+metas_df['nome_universidade']=itens_df['nome_universidade']
 # metas_df.sort_index(ascending=False,inplace=True)
 
 import operator, functools
@@ -99,11 +101,13 @@ def get_whole_layout( ):
     indicadores_source.add([0]*len(indicadores_df.index),name='indicador_selecionado')
 
     overview_metas_source=ColumnDataSource()
-    overview_metas_source.add(['0-25','25-50','50-75','75-100'],name='fatores')
+    overview_metas_source.add(['0-25%','25-50%','50-75%','75-100%'],name='fatores')
     overview_metas_source.add([0]*4,name='valores')
+    overview_metas_source.add([0]*4,name='start_angle')
+    overview_metas_source.add([0]*4,name='end_angle')
 
     overview_indicadores_source=ColumnDataSource()
-    overview_indicadores_source.add(['0-25','25-50','50-75','75-100'],name='fatores')
+    overview_indicadores_source.add(['0-25%','25-50%','50-75%','75-100%'],name='fatores')
     overview_indicadores_source.add([0]*4,name='valores')
 
     detail_source=ColumnDataSource()
@@ -132,9 +136,10 @@ def get_whole_layout( ):
     plot2b=my_plots.hbar_indicadores(indicadores_source,indicadores_cm,300,700)
 
 
-    plot3a=my_plots.vbar(overview_metas_source,overview_cm,'Meta Selecionada',500,300)
-    plot3b=my_plots.vbar(overview_indicadores_source,overview_cm,'Indicador Selecionado',500,300)
-    plot4=my_plots.vbar_detail(detail_source,indicadores_cm,1000,300)
+    plot3a=my_plots.pizza_plot(overview_metas_source,overview_cm,'Meta Selecionada',500,300)
+    plot3b=my_plots.pizza_plot(overview_indicadores_source,overview_cm,'Indicador Selecionado',500,300)
+    plot4a=my_plots.table_select(indicadores_source,300,500)
+    plot4b=my_plots.vbar_detail(detail_source,indicadores_cm,700,500)
 
     ### dynamic functions definitions
     def update_metas_source(attr,old,new):
@@ -149,15 +154,33 @@ def get_whole_layout( ):
     def update_overview_indicadores_source(attr,old,new):
         count,div=np.histogram(indicadores_df[new],bins=4,range=(0,1.0))
         count=count/count.sum()
-        update_dict={'valores': count}
+        update_dict={
+            'valores': count,
+            'valores_cumsum': count.cumsum(),
+            'end_angle': count.cumsum()*2*np.pi,
+            'start_angle': np.roll(count.cumsum(),1)*2*np.pi,
+            }
+        print(update_dict)
         overview_indicadores_source.data.update(update_dict)
+        try:
+            plot3b.title.text='Indicador Selecionado: '+ descricao_curta_dict[new]
+        except(KeyError):
+            plot3b.title.text='Indicador Selecionado: '+ new
         return
 
     def update_overview_metas_source(attr,old,new):
         count,div=np.histogram(metas_df[new],bins=4,range=(0,1.0))
         count=count/count.sum()
-        update_dict={'valores': count}
+        update_dict={
+            'valores': count,
+            'end_angle': count.cumsum()*2*np.pi,
+            'start_angle': np.roll(count.cumsum(),1)*2*np.pi,
+            }
         overview_metas_source.data.update(update_dict)
+        try:
+            plot3a.title.text='Meta Selecionada: '+ descricao_curta_dict[new]
+        except(KeyError):
+            plot3a.title.text='Meta Selecionada: '+ new
         return
 
     def update_detail_source(attr,old,new):
@@ -166,13 +189,14 @@ def get_whole_layout( ):
             detail=[0]*len(indicadores_list)
             detail_title='Nenhum Estado Selecionado'
         else:
+            inds_1d=[inds_1d[0]]
             detail=indicadores_df.loc[:,indicadores_list].iloc[inds_1d]
             print(detail)
             detail_title=functools.reduce(operator.concat,detail.index.tolist())
             detail=detail.mean().tolist()
             print(detail)
         update_dict={'valores': detail}
-        plot4.title.text=detail_title
+        plot4b.title.text=itens_df['nome_UF'][detail_title]
         detail_source.data.update(update_dict)
         return
 
@@ -197,7 +221,7 @@ def get_whole_layout( ):
                 [widgetbox(widget2)],
                 [plot2a,plot2b],
                 [plot3a,plot3b],
-                [plot4]
+                [plot4a,plot4b]
             ],
                 sizing_mode='fixed',
     )

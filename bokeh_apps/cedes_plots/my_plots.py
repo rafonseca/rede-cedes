@@ -11,6 +11,7 @@ from bokeh.models import (
     formatters,
     LinearAxis,
     CategoricalAxis,
+    Legend,
     )
 from bokeh.models.widgets import (
     DataTable,
@@ -32,7 +33,7 @@ def select_indicador(indicadores_list):
 
 def mapa(source,color_mapper,plot_width,plot_height):
     mapa_fig = figure(
-        tools="pan,box_zoom,wheel_zoom,undo,reset,hover,tap",
+        tools="hover",
         plot_width=plot_width,
         plot_height=plot_height,
     )
@@ -43,13 +44,13 @@ def mapa(source,color_mapper,plot_width,plot_height):
         'x', 'y', source=source,
         fill_color={'field': 'indicador_selecionado', 'transform': color_mapper},
         fill_alpha=1.0,
-        line_color="white",
+        line_color="gray",
         line_width=0.5,
     )
     mapa_renderer.nonselection_glyph=Patches(
         fill_color={'field': 'indicador_selecionado', 'transform': color_mapper},
         fill_alpha=1.0,
-        line_color="white",
+        line_color="gray",
         line_width=0.5,
     )
     mapa_renderer.selection_glyph=Patches(
@@ -67,20 +68,21 @@ def mapa(source,color_mapper,plot_width,plot_height):
     ]
     mapa_fig.toolbar.logo=None
     mapa_fig.axis[0].visible=False
-    mapa_fig.toolbar_location='above'
+    mapa_fig.toolbar_location=None
     return mapa_fig
 
 def hbar_indicadores(source,color_mapper,plot_width,plot_height):
-    barras_fig=figure(
+    fig=figure(
         y_range=bokeh.models.ranges.FactorRange(factors=source.data['UF'][::-1]),
         plot_height=plot_height,
         plot_width=plot_width,
         tools='hover',
         x_range=Range1d(0.0,1.0),
         # title='Indicador'
+        x_axis_location='above'
     )
 
-    barras_fig.hbar(
+    fig.hbar(
         y='UF',
         right='indicador_selecionado',
         height=0.5,
@@ -89,25 +91,69 @@ def hbar_indicadores(source,color_mapper,plot_width,plot_height):
         line_color=None,
     )
 
-    hover_barras =barras_fig.select_one(HoverTool)
+    hover_barras =fig.select_one(HoverTool)
     hover_barras.point_policy = "follow_mouse"
     hover_barras.tooltips = [
         ("UF", "@UF"),
         ('Indicador','@indicador_selecionado{0.00}'),
     ]
 
-    barras_fig.toolbar.logo=None
-    barras_fig.toolbar_location='above'
-    # barras_fig.toolbar_sticky=False
-    barras_fig.grid.grid_line_color = None
-    barras_fig.axis[0].visible=False
-    # barras_fig.axis[1].visible=False
+    fig.toolbar.logo=None
+    # fig.toolbar_location='above'
+    # fig.toolbar_sticky=False
+    fig.grid.grid_line_color = None
+    fig.toolbar_location=None
+    # fig.x_axis_location='above'
+    # fig.axis[1].visible=False
 
-    return barras_fig
+    return fig
 
-def vbar(source_barras,color_mapper,title,plot_width,plot_height):
-    barras_fig=figure(
-        x_range=bokeh.models.ranges.FactorRange(factors=source_barras.data['fatores']),
+def pizza_plot(source,color_mapper,title,plot_width,plot_height):
+    fig=figure(
+        # x_range=bokeh.models.ranges.FactorRange(factors=source.data['fatores']),
+        plot_width=plot_width,
+        plot_height=plot_height,
+        tools='hover',
+        # y_range=Range1d(0.0,1.0),
+        title=title
+    )
+
+    fig.wedge(
+        # x='fatores',
+        # top='valores',
+        # width=0.5,
+        # inner_radius=0,
+        # outer_radius=1,
+        x=0,
+        y=0,
+        radius=0.4,
+        start_angle='start_angle',
+        end_angle='end_angle',
+        source=source,
+        fill_color={'field': 'fatores', 'transform': color_mapper},
+        line_color='grey',
+        legend='fatores',
+    )
+
+    hover =fig.select_one(HoverTool)
+    hover.point_policy = "follow_mouse"
+    hover.tooltips = [
+        ("Classificação", "@fatores"),
+        ('Porcentagem','@valores{0.00}'),
+    ]
+
+    fig.toolbar.logo=None
+    fig.toolbar_location='above'
+    fig.toolbar_sticky=False
+    fig.grid.grid_line_color = None
+    fig.axis[0].visible=False
+    fig.axis[1].visible=False
+
+    return fig
+
+def vbar(source,color_mapper,title,plot_width,plot_height):
+    fig=figure(
+        x_range=bokeh.models.ranges.FactorRange(factors=source.data['fatores']),
         plot_width=plot_width,
         plot_height=plot_height,
         tools='xpan, xwheel_zoom,hover',
@@ -115,31 +161,46 @@ def vbar(source_barras,color_mapper,title,plot_width,plot_height):
         title=title
     )
 
-    barras_fig.vbar(
+    fig.vbar(
         x='fatores',
         top='valores',
         width=0.5,
-        source=source_barras,
+        source=source,
         fill_color={'field': 'fatores', 'transform': color_mapper},
         line_color=None,
     )
 
-    hover_barras =barras_fig.select_one(HoverTool)
+    hover_barras =fig.select_one(HoverTool)
     hover_barras.point_policy = "follow_mouse"
     hover_barras.tooltips = [
         ("Classificação", "@fatores"),
         ('Porcentagem','@valores{0.00}'),
     ]
 
-    barras_fig.toolbar.logo=None
-    barras_fig.toolbar_location='above'
-    barras_fig.toolbar_sticky=False
-    return barras_fig
+    fig.toolbar.logo=None
+    fig.toolbar_location='above'
+    fig.toolbar_sticky=True
+    return fig
 
 
-def vbar_detail(source_barras,color_mapper,plot_width,plot_height):
-    barras_fig=figure(
-        x_range=bokeh.models.ranges.FactorRange(factors=source_barras.data['fatores']),
+def table_select(source,plot_width,plot_height):
+    columns = TableColumn(field='nome_UF',title='Centro Rede CEDES')
+
+    tabela=DataTable(
+        source=source,
+        columns=[columns],
+        row_headers=False,
+        fit_columns=True,
+        selectable=True,
+        width=plot_width,
+        height=plot_height,
+    )
+    return tabela
+
+
+def vbar_detail(source,color_mapper,plot_width,plot_height):
+    fig=figure(
+        x_range=bokeh.models.ranges.FactorRange(factors=source.data['fatores']),
         plot_height=plot_height,
         plot_width=plot_width,
         tools='xpan, xwheel_zoom,hover',
@@ -147,23 +208,23 @@ def vbar_detail(source_barras,color_mapper,plot_width,plot_height):
         title='Nenhum Centro Rede-CEDES Selecionado'
     )
 
-    barras_fig.vbar(
+    fig.vbar(
         x='fatores',
         top='valores',
         width=0.5,
-        source=source_barras,
+        source=source,
         fill_color={'field': 'valores', 'transform': color_mapper},
         line_color=None,
     )
 
-    hover_barras =barras_fig.select_one(HoverTool)
+    hover_barras =fig.select_one(HoverTool)
     hover_barras.point_policy = "follow_mouse"
     hover_barras.tooltips = [
         ("Índice", "@fatores"),
         ('Valor','@valores{0.00}'),
     ]
 
-    barras_fig.toolbar.logo=None
-    barras_fig.toolbar_location='above'
-    barras_fig.toolbar_sticky=False
-    return barras_fig
+    fig.toolbar.logo=None
+    fig.toolbar_location='above'
+    fig.toolbar_sticky=True
+    return fig
