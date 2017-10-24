@@ -53,9 +53,9 @@ lim_uf['UF']=lim_uf['NM_ESTADO'].apply(get_sigla)
 lim_uf.index=lim_uf['UF']
 lim_uf.sort_index(inplace=True)
 itens_df.sort_index(inplace=True)
-print(lim_uf.index)
-print(itens_df.columns)
-print(itens_df)
+# print(lim_uf.index)
+# print(itens_df.columns)
+# print(itens_df)
 ### Compute indicadores
 indicadores_df=pd.DataFrame(index=itens_df.index)
 metas_df=pd.DataFrame(index=itens_df.index)
