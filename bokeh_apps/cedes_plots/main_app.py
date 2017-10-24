@@ -111,7 +111,7 @@ def get_whole_layout( ):
     overview_indicadores_source.add([0]*4,name='valores')
 
     detail_source=ColumnDataSource()
-    detail_source.add(indicadores_list,name='fatores')
+    detail_source.add([descricao_curta_dict[i] for i in indicadores_list],name='fatores')
     detail_source.add([0]*len(indicadores_list),name='valores')
 
     ### color mappers

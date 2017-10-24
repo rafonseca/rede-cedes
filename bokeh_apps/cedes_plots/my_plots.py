@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import bokeh
 from bokeh import palettes
 from bokeh.models import (
@@ -57,7 +58,7 @@ def mapa(source,color_mapper,plot_width,plot_height):
         fill_color={'field': 'indicador_selecionado', 'transform': color_mapper},
         fill_alpha=1.0,
         line_color="gray",
-        line_width=5.0,
+        line_width=2.0,
         line_alpha=0.8,
     )
     hover_mapa = mapa_fig.select_one(HoverTool)
@@ -113,7 +114,7 @@ def pizza_plot(source,color_mapper,title,plot_width,plot_height):
         # x_range=bokeh.models.ranges.FactorRange(factors=source.data['fatores']),
         plot_width=plot_width,
         plot_height=plot_height,
-        tools='hover',
+        tools='',
         # y_range=Range1d(0.0,1.0),
         title=title
     )
@@ -135,16 +136,16 @@ def pizza_plot(source,color_mapper,title,plot_width,plot_height):
         legend='fatores',
     )
 
-    hover =fig.select_one(HoverTool)
-    hover.point_policy = "follow_mouse"
-    hover.tooltips = [
-        ("Classificação", "@fatores"),
-        ('Porcentagem','@valores{0.00}'),
-    ]
+    # hover =fig.select_one(HoverTool)
+    # hover.point_policy = "follow_mouse"
+    # hover.tooltips = [
+    #     ("Classificação", "@fatores"),
+    #     ('Porcentagem','@valores{0.00}'),
+    # ]
 
     fig.toolbar.logo=None
     fig.toolbar_location='above'
-    fig.toolbar_sticky=False
+    fig.toolbar_sticky=True
     fig.grid.grid_line_color = None
     fig.axis[0].visible=False
     fig.axis[1].visible=False
@@ -216,7 +217,7 @@ def vbar_detail(source,color_mapper,plot_width,plot_height):
         fill_color={'field': 'valores', 'transform': color_mapper},
         line_color=None,
     )
-
+    fig.xaxis.major_label_orientation = np.pi/4
     hover_barras =fig.select_one(HoverTool)
     hover_barras.point_policy = "follow_mouse"
     hover_barras.tooltips = [
