@@ -135,7 +135,7 @@ def pizza_plot(source,color_mapper,title,plot_width,plot_height):
         line_color='grey',
         legend='fatores',
     )
-
+    # 
     # hover =fig.select_one(HoverTool)
     # hover.point_policy = "follow_mouse"
     # hover.tooltips = [
