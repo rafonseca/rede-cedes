@@ -28,4 +28,7 @@ urlpatterns += [
     # url(r'^relatorio/', include('relatorio.urls')),
     # url(r'^dynamic_forms/',include('dynamic_forms.urls', namespace='dynamic_forms')),
     # url(r'^forms/', include('forms_builder.forms.urls')),
+    url(r'^weblog/', include('zinnia.urls')),
+    url(r'^comments/', include('django_comments.urls')),
+    url(r'^accounts/', include('allauth.urls')),
 ]
