@@ -1,97 +1,137 @@
 name: cedes-env
 channels:
-- bokeh
-- conda-forge
-- defaults
+  - bokeh
+  - freecad
+  - defaults
+  - conda-forge
 dependencies:
-- bokeh=0.12.10=py_0
-- xz=5.0.8=0
-- backports=1.0=py35_1
-- backports.functools_lru_cache=1.4=py35_1
-- ca-certificates=2017.7.27.1=0
-- certifi=2017.7.27.1=py35_0
-- click=6.7=py35_0
-- click-plugins=1.0.3=py35_0
-- cligj=0.4.0=py35_0
-- curl=7.54.1=0
-- cycler=0.10.0=py35_0
-- dbus=1.10.22=0
-- descartes=1.1.0=py35_0
-- expat=2.2.1=0
-- fontconfig=2.12.1=4
-- freetype=2.7=1
-- geopandas=0.3.0=py35_0
-- geos=3.5.1=1
-- gettext=0.19.7=1
-- glib=2.51.4=0
-- gst-plugins-base=1.8.0=0
-- gstreamer=1.8.0=2
-- hdf4=4.2.12=0
-- hdf5=1.8.17=11
-- icu=58.1=1
-- jinja2=2.9.6=py35_0
-- jpeg=9b=1
-- kealib=1.4.6=3
-- krb5=1.14.2=0
-- libffi=3.2.1=3
-- libiconv=1.14=4
-- libnetcdf=4.4.1=0
-- libpng=1.6.28=0
-- libpq=9.6.3=0
-- libspatialindex=1.8.5=1
-- libssh2=1.8.0=1
-- libtiff=4.0.6=5
-- libxcb=1.12=1
-- libxml2=2.9.3=6
-- markupsafe=1.0=py35_0
-- matplotlib=2.1.0=py35_0
-- munch=2.2.0=py35_0
-- ncurses=5.9=10
-- openssl=1.0.2l=0
-- pandas=0.20.3=py35_1
-- pcre=8.39=0
-- pip=9.0.1=py35_0
-- psycopg2=2.7.3.1=py35_0
-- pyparsing=2.2.0=py35_0
-- pyproj=1.9.5.1=py35_0
-- pyqt=5.6.0=py35_4
-- pysal=1.14.2=py35_1
-- python=3.5.2=0
-- python-dateutil=2.6.1=py35_0
-- pytz=2017.2=py35_0
-- pyyaml=3.12=py35_1
-- qt=5.6.2=3
-- readline=6.2=0
-- rtree=0.8.3=py35_0
-- setuptools=36.6.0=py35_1
-- shapely=1.6.1=py35_1
-- sip=4.18=py35_1
-- six=1.11.0=py35_1
-- sqlalchemy=1.1.13=py35_0
-- sqlite=3.9.2=0
-- tk=8.5.19=2
-- tornado=4.5.2=py35_0
-- wheel=0.30.0=py_1
-- xerces-c=3.1.4=3
-- xlrd=1.0.0=py35_1
-- xorg-libxau=1.0.8=3
-- xorg-libxdmcp=1.1.2=3
-- yaml=0.1.6=0
-- zlib=1.2.11=0
-- fiona=1.7.0=py35_0
-- futures-compat=1.0=py3_0
-- geotiff=1.4.1=0
-- intel-openmp=2018.0.0=h15fc484_7
-- libgcc-ng=7.2.0=h7cc24e2_2
-- libgdal=2.1.0=0
-- libgfortran=3.0.0=1
-- libgfortran-ng=7.2.0=h9f7466a_2
-- libstdcxx-ng=7.2.0=h7a57d05_2
-- mkl=2018.0.0=hb491cac_4
-- numpy=1.13.3=py35hd829ed6_0
-- proj4=4.9.2=0
-- scipy=0.19.1=py35ha8f041b_3
-- pip:
-  - backports.functools-lru-cache==1.4
+  - bokeh=0.12.10=py_0
+  - xz=5.0.8=0
+  - backports=1.0=py35_1
+  - backports.functools_lru_cache=1.4=py35_1
+  - ca-certificates=2017.7.27.1=0
+  - certifi=2017.7.27.1=py35_0
+  - click=6.7=py35_0
+  - click-plugins=1.0.3=py35_0
+  - cligj=0.4.0=py35_0
+  - curl=7.54.1=0
+  - cycler=0.10.0=py35_0
+  - dbus=1.10.22=0
+  - descartes=1.1.0=py35_0
+  - django=1.11.6=py_0
+  - expat=2.2.1=0
+  - fontconfig=2.12.1=4
+  - freetype=2.7=1
+  - geopandas=0.3.0=py35_0
+  - geos=3.5.1=1
+  - gettext=0.19.7=1
+  - glib=2.51.4=0
+  - gst-plugins-base=1.8.0=0
+  - gstreamer=1.8.0=2
+  - hdf4=4.2.12=0
+  - hdf5=1.8.17=11
+  - icu=58.1=1
+  - jinja2=2.9.6=py35_0
+  - jpeg=9b=1
+  - kealib=1.4.6=3
+  - krb5=1.14.2=0
+  - libffi=3.2.1=3
+  - libiconv=1.14=4
+  - libnetcdf=4.4.1=0
+  - libpng=1.6.28=0
+  - libpq=9.6.3=0
+  - libspatialindex=1.8.5=1
+  - libssh2=1.8.0=1
+  - libtiff=4.0.6=5
+  - libxcb=1.12=1
+  - libxml2=2.9.3=6
+  - markupsafe=1.0=py35_0
+  - matplotlib=2.1.0=py35_0
+  - munch=2.2.0=py35_0
+  - ncurses=5.9=10
+  - openssl=1.0.2l=0
+  - pandas=0.20.3=py35_1
+  - pcre=8.39=0
+  - pip=9.0.1=py35_0
+  - psycopg2=2.7.3.1=py35_0
+  - pyparsing=2.2.0=py35_0
+  - pyproj=1.9.5.1=py35_0
+  - pyqt=5.6.0=py35_4
+  - pysal=1.14.2=py35_1
+  - python=3.5.2=0
+  - python-dateutil=2.6.1=py35_0
+  - pytz=2017.2=py35_0
+  - pyyaml=3.12=py35_1
+  - qt=5.6.2=3
+  - readline=6.2=0
+  - rtree=0.8.3=py35_0
+  - setuptools=36.6.0=py35_1
+  - shapely=1.6.1=py35_1
+  - sip=4.18=py35_1
+  - six=1.11.0=py35_1
+  - sqlalchemy=1.1.13=py35_0
+  - sqlite=3.9.2=0
+  - tk=8.5.19=2
+  - tornado=4.5.2=py35_0
+  - wheel=0.30.0=py_1
+  - xerces-c=3.1.4=3
+  - xlrd=1.0.0=py35_1
+  - xorg-libxau=1.0.8=3
+  - xorg-libxdmcp=1.1.2=3
+  - yaml=0.1.6=0
+  - zlib=1.2.11=0
+  - fiona=1.7.0=py35_0
+  - futures-compat=1.0=py3_0
+  - geotiff=1.4.1=0
+  - intel-openmp=2018.0.0=h15fc484_7
+  - libgcc-ng=7.2.0=h7cc24e2_2
+  - libgdal=2.1.0=0
+  - libgfortran=3.0.0=1
+  - libgfortran-ng=7.2.0=h9f7466a_2
+  - libstdcxx-ng=7.2.0=h7a57d05_2
+  - mkl=2018.0.0=hb491cac_4
+  - numpy=1.13.3=py35hd829ed6_0
+  - proj4=4.9.2=0
+  - scipy=0.19.1=py35ha8f041b_3
+  - pip:
+    - beautifulsoup4==4.6.0
+    - chardet==3.0.4
+    - defusedxml==0.5.0
+    - diff-match-patch==20121119
+    - django-allauth==0.34.0
+    - django-app-namespace-template-loader==0.4.1
+    - django-blog-zinnia==0.19
+    - django-bootstrap-form==3.3
+    - django-contrib-comments==1.8.0
+    - django-dynamic-forms==0.5.3
+    - django-email-extras==0.3.3
+    - django-form-admin==0.4.2
+    - django-forms-builder==0.13.0
+    - django-import-export==0.5.1
+    - django-js-asset==1.0.0
+    - django-mptt==0.9.0
+    - django-tagging==0.4.6
+    - django-xmlrpc==0.1.8
+    - et-xmlfile==1.0.1
+    - future==0.15.0
+    - idna==2.6
+    - jdcal==1.3
+    - mots-vides==2015.5.11
+    - oauthlib==2.0.6
+    - odfpy==1.3.5
+    - openpyxl==2.4.9
+    - pillow==5.0.0
+    - python-gnupg==0.4.1
+    - python3-openid==3.1.0
+    - regex==2018.1.10
+    - requests==2.18.4
+    - requests-oauthlib==0.8.0
+    - sphinx-me==0.3
+    - tablib==0.12.1
+    - unicodecsv==0.14.1
+    - unidecode==0.4.21
+    - urllib3==1.22
+    - xlwt==1.3.0
+    - zinnia-theme-bootstrap==0.5.2
 prefix: /home/rafonseca/anaconda3/envs/cedes-env
 
