@@ -34,7 +34,7 @@ class CentroPesquisaAdmin(admin.ModelAdmin):
 admin.site.register(CentroPesquisa,CentroPesquisaAdmin)
 admin.site.register(Pesquisador)
 admin.site.register(Pesquisa)
-admin.site.register(Meta1)
+admin.site.register(EstruturaFisicaModel)
 admin.site.register(Meta2)
 #admin.site.register(Meta2,Meta2Admin)
 admin.site.register(Evento)

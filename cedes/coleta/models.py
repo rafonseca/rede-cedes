@@ -34,15 +34,15 @@ class CentroPesquisa(models.Model):
         ('SE','SE'),
         ('TO','TO'),
     ]
-    uf = models.CharField(max_length=2,choices=UF_CHOICES)
+    uf = models.CharField(max_length=2,choices=UF_CHOICES,primary_key=True)
     ies = models.CharField(max_length=50,null=True)
     def __str__(self):
-        return "%s, %s" % (self.nome,self.uf)
+        return "%s" % (self.uf)
 
 
 ### Modelos da meta 1
 
-class Meta1(models.Model):
+class EstruturaFisicaModel(models.Model):
     centro = models.OneToOneField(CentroPesquisa,on_delete=models.CASCADE,primary_key=True)
 
     tem_sede = models.BooleanField(default=False)
@@ -59,6 +59,8 @@ class Meta1(models.Model):
     repr_social = models.BooleanField(default=False)
     def __str__(self):
         return "Relatório (Meta 1): %s" % (self.centro.nome)
+    def get_absolute_url(self):
+        return reverse('estrutura-fisica-detail', kwargs={'pk': self.pk})
 
 ### Modelos da Meta 2
 
@@ -87,6 +89,9 @@ class Pesquisa(models.Model):
     linha=models.CharField(max_length=3,choices=LINHA_CHOICES,null=True)
     def __str__(self):
         return "%s" % (self.nome)
+    def get_absolute_url(self):
+        return reverse('pesquisa-detail', kwargs={'pk': self.pk})
+
 
 class Pesquisador(models.Model):
     nome = models.CharField(max_length=200)
