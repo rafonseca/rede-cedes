@@ -1,0 +1,8 @@
+<h1>Pesquisas</h1>
+<ul>
+{% for pesquisa in object_list %}
+    <li><a href="/coleta/pesquisa/{{ pesquisa.pk }}/update/">{{ pesquisa.nome }}</a></li>
+{% empty %}
+    <li>No pesquisas yet.</li>
+{% endfor %}
+</ul>
