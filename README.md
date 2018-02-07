@@ -1,14 +1,4 @@
 # rede-cedes
-Instalar environment usando conda e o arquivo environment.yml segundo as instruções em:
-https://conda.io/docs/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file
+Sistema de gestão, publicização, monitoramento e avaliação da rede cedes
 
-Fazer git pull antes de realizar novas alterações. Caso contrário, no momento de fazer git push, será solicitado um merge. Seguir instruções do shell.
-
-Segui as instruções e deu esse problema. Tentei ontem a tarde outras coisas e não conseguir resolver.
-
-sh-3.2# conda env create -f environment.yml
-Using Anaconda API: https://api.anaconda.org
-Fetching package metadata .................
-
-ResolvePackageNotFound:
-  - xz 5.0.8 0
+A Rede dos Centros de Desenvolvimento do Esporte Recreativo e de Lazer - CEDES é um Programa do Ministério do Esporte, que desde 2003 investe na produção, organização e socialização de informações e conhecimentos relacionados com o Esporte Recreativo e o Lazer brasileiro.  Desde 2016 a rede é formalmente constituída por 27 Centros, um por estado brasileiro mais o Distrito Federal. A Rede CEDES é um política pública inovadora do Ministério do Esporte alinhada com as transformações sociais e culturais do século XXI, que pressupõe a centralidade da informação e do conhecimento como uma das bases que sustentam a formação para a cidadania e o projeto democrático de construção do país. O resultado é a qualificação do direito ao acesso das crianças, jovens e adultos ao Esporte Recreativo e ao Lazer, sobretudo, construindo fundamentos para a sustentação do Programa Esporte e Lazer na Cidade - PELC. As pesquisas da Rede CEDES também contribuem com a produção de informações e conhecimentos do Esporte Educacional em articulação com o Programa Segundo Tempo.
