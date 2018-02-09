@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Rede CEDES</title>
+    <!-- Required meta tags -->
+    <meta name="description" content="Política de gestão, publicização, monitoramento e avaliação da Rede CEDES">
+    <meta name="keywords" content="Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte">
+    <meta name="author" content="Rodrigo Ferrari">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="static/css/base.css">
+  </head>
+  <body>
+    <!-- Base Menu -->
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img src="static/img/logo-rede-cedes.png" height="50" alt="Logo Rede CEDES">
+      </a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dados Abertos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Área Restrita</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <img src="static/img/twitter-logo.svg" height="30" alt="Logo Rede CEDES">
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <img src="static/img/facebook-logo.svg" height="30" alt="Logo Rede CEDES">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Conteúdos -->
+    <div class="content container">
+      <div class="row">
+          <div class="col-12">
+              {% block content %}
+              {% endblock %}
+          </div>
+      </div>
+    </div>
+    <!-- Rodapé Base -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-12" id="logo-rodape">
+            <img src="static/img/logo-rodape.png" height="50" alt="Logo Rede CEDES">
+          </div>
+          <div class="col-12">
+            <p id="text-rodape">O conteúdo publicado no site redecedes.gov.br está licenciado com a Licença Creative Commons.</p>
+            <p id="text-rodape">Desenvolvido por <strong>Renan Fonsceca e Rodrigo Ferrari</strong></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>
