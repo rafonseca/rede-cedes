@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+from. import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
@@ -24,6 +24,7 @@ urlpatterns = [
 from django.conf.urls import include
 
 urlpatterns += [
+    url(r'',views.index),
     url(r'^coleta/', include('coleta.urls')),
     # url(r'^relatorio/', include('relatorio.urls')),
     # url(r'^dynamic_forms/',include('dynamic_forms.urls', namespace='dynamic_forms')),

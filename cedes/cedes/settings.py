@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django_comments',
     'mptt',
     'tagging',
-    'zinnia_bootstrap',
+    #'zinnia_bootstrap',
     'zinnia',
     'allauth',
     'allauth.account',
@@ -148,5 +148,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    # os.path.join(BASE_DIR, "cedes/staticfiles"),
+    os.path.join(BASE_DIR, "cedes/staticfiles/home"),
+]
 # PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 # STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')

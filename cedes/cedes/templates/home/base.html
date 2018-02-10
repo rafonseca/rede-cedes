@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -15,7 +16,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <!-- Base CSS -->
-    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   </head>
   <body>
     <!-- Base Menu -->
@@ -24,7 +25,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="#">
-        <img src="static/img/logo-rede-cedes.png" height="50" alt="Logo Rede CEDES">
+        <img src="{% static 'img/logo-rede-cedes.png' %}" height="50" alt="Logo Rede CEDES">
       </a>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
@@ -45,32 +46,26 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <img src="static/img/twitter-logo.svg" height="30" alt="Logo Rede CEDES">
+              <img src="{% static 'img/twitter-logo.svg' %}" height="30" alt="Logo Rede CEDES">
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
-              <img src="static/img/facebook-logo.svg" height="30" alt="Logo Rede CEDES">
+              <img src="{% static 'img/facebook-logo.svg' %}" height="30" alt="Logo Rede CEDES">
             </a>
           </li>
         </ul>
       </div>
     </nav>
     <!-- Conteúdos -->
-    <div class="content container">
-      <div class="row">
-          <div class="col-12">
-              {% block content %}
-              {% endblock %}
-          </div>
-      </div>
-    </div>
+    {% block content %}
+    {% endblock content %}
     <!-- Rodapé Base -->
     <footer>
       <div class="container">
         <div class="row">
           <div class="col-12" id="logo-rodape">
-            <img src="static/img/logo-rodape.png" height="50" alt="Logo Rede CEDES">
+            <img src="{% static 'img/logo-rodape.png' %}" height="50" alt="Logo Rede CEDES">
           </div>
           <div class="col-12">
             <p id="text-rodape">O conteúdo publicado no site redecedes.gov.br está licenciado com a Licença Creative Commons.</p>
