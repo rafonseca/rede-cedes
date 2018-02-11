@@ -70,7 +70,7 @@ ROOT_URLCONF = 'cedes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./cedes/templates/'],
+        'DIRS': ['./templates/'],
         'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
@@ -149,8 +149,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, "cedes/staticfiles"),
-    os.path.join(BASE_DIR, "cedes/staticfiles/home"),
+    os.path.join(BASE_DIR, "staticfiles"),
+    os.path.join(BASE_DIR, "staticfiles/cedes"),
 ]
 # PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 # STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')

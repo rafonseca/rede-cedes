@@ -2,6 +2,7 @@ from django.conf.urls import url
 from .views import *
 
 urlpatterns = [
+    url(r'^$',index),
     #objetivo estrutura física
     url(r'estrutura/<int:pk>/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),
 

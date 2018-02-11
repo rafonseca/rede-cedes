@@ -4,6 +4,9 @@ from django.views.generic import  ListView, DetailView
 from django.urls import reverse_lazy
 from .models import *
 
+def index(request):
+    return render(request,'coleta/home.html')
+
 class EstruturaFisicaUpdate(UpdateView):
     model = EstruturaFisicaModel
     fields= '__all__'
