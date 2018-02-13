@@ -1,34 +1,48 @@
+/****** Geral *********/
+
+.navbar {
+  box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.3);
+}
+
+.navbar-nav {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  color: #414141;
+}
+
+.navbar-collapse {
+  text-align: center;
+}
+
 h1 {
   font-family: 'Lora', serif;
   font-weight: 700;
-  color: #BA8D00;
   font-size: 50px;
-  padding-top: 100px;
-  padding-bottom: 25px;
+  margin: 100px 0 50px 0;
 }
 
 h2 {
   font-family: 'Lora', serif;
-  font-weight: 700;
-  color: #F4BC0B;
-  font-size: 50px;
-  padding-top: 100px;
-  padding-bottom: 25px;
+  font-weight: 400;
+  font-size: 40px;
 }
 
 h3 {
   font-family: 'Lora', serif;
   font-weight: 400;
-  color: #BA8D00;
+  font-size: 30px;
+}
+
+h4 {
+  font-family: 'Lora', serif;
+  font-weight: 400;
   font-size: 20px;
 }
 
-p {
+p, span, label, input, textarea {
   font-family: 'Montserrat', sans-serif;
   font-weight: 200;
-  color: #414141;
   font-size: 20px;
-  text-align: justify;
 }
 
 footer {
@@ -41,63 +55,121 @@ footer {
   padding-bottom: 50px;
 }
 
-section {
-  margin-top: 100px;
-  padding-bottom: 100px;
+a:link {
+    text-decoration: none;
+    color: #BA8D00;
 }
 
-button {
-  margin-top: 20px;
+a:visited {
+    text-decoration: none;
+    color: #BA8D00;
 }
 
-#logo-rodape {
-  padding-bottom: 40px;
+a:hover {
+    text-decoration: none;
+    color: #414141;
 }
 
-#text-rodape{
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+a:active {
+    text-decoration: none;
+    color: #BA8D00;
+}
+
+ul {
+  list-style-type: none;
+}
+
+input {
+  width: 100%;
+}
+
+.titulo {
+  color: #BA8D00;
+}
+
+.texto {
+  text-align: justify;
+  margin-bottom: 75px;
   color: #414141;
-  font-size: 12px;
-  text-align: center;
 }
 
 #invert {
   background-color: #414141;
+  padding-bottom: 100px;
 }
 
-#text-invert {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
+.titulo-invert {
+  color: #F4BC0B;
+}
+
+.texto-invert {
+  text-align: justify;
+  margin-bottom: 75px;
   color: #fff;
-  font-size: 20px;
-  padding-bottom: 50px;
 }
 
-#bt-amarelo {
-  background-color: #F4BC0B;
-  font-family: 'Lora', serif;
-  font-weight: 400;
-  color: #414141;
-  border: none;
-}
-
-#bt-amarelo-escuro {
-  background-color: #BA8D00;
-  font-family: 'Lora', serif;
-  font-weight: 400;
-  color: #fff;
-  border: none;
-}
-
-
-
-.navbar-nav {
-  font-family: 'Lora', serif;
-  font-weight: 400;
-  color: #414141;
-}
-
-.form-group {
+.card {
+  box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.2);
   text-align: center;
+}
+
+.card-title {
+  color: #BA8D00;
+}
+
+.btn {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+}
+
+.btn-primeiro {
+  margin-top: 25px;
+  background-color: #BA8D00;
+  color: #fff;
+}
+
+.btn-segundo {
+  margin-top: 25px;
+  background-color: #F4BC0B;
+  color: #414141;
+}
+
+.logo-rodape {
+  padding-bottom: 40px;
+}
+
+.text-rodape {
+  font-size: 12px;
+  text-align: center;
+}
+
+/****** Coleta *********/
+
+#admin-form {
+  background-color: #EAEAEA;
+}
+
+.titulo-pesquisa-list {
+  background-color: #F0F0F0;
+  margin-top: 25px;
+  padding: 10px 30px 10px 10px;
+}
+
+.btn-terceiro {
+  background-color: #fff;
+  color: #414141;
+  border: 1px solid #BA8D00;
+  box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.3);
+}
+
+.control-label {
+  text-align: left;
+}
+
+.form {
+  text-align: left;
+}
+
+.bt-voltar {
+  margin-bottom: 20px;
 }

@@ -1,11 +1,10 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Rede CEDES</title>
+    <title>{% block title %}Título da Página{% endblock %}</title>
     <!-- Required meta tags -->
-    <meta name="description" content="Política de gestão, publicização, monitoramento e avaliação da Rede CEDES">
-    <meta name="keywords" content="Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte">
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
+    <meta name="keywords" content="{% block palavraschaves %}{% endblock %}">
     <meta name="author" content="Rodrigo Ferrari">
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -64,12 +63,12 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-12" id="logo-rodape">
+          <div class="col-12 logo-rodape">
             <img src="{% static 'img/logo-rodape.png' %}" height="50" alt="Logo Rede CEDES">
           </div>
           <div class="col-12">
-            <p id="text-rodape">O conteúdo publicado no site redecedes.gov.br está licenciado com a Licença Creative Commons.</p>
-            <p id="text-rodape">Desenvolvido por <strong>Renan Fonsceca e Rodrigo Ferrari</strong></p>
+            <p class="text-rodape">O conteúdo publicado no site redecedes.gov.br está licenciado com a Licença Creative Commons.</p>
+            <p class="text-rodape">Desenvolvido por <strong>Renan Fonsceca e Rodrigo Ferrari</strong></p>
           </div>
         </div>
       </div>
