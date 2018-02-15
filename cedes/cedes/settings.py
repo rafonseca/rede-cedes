@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
                 'zinnia.context_processors.version',  # Optional
+                'django.template.context_processors.media',
             ],
             'loaders': [
                 'app_namespace.Loader',
@@ -143,6 +144,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Zinnia settings
+
+ZINNIA_UPLOAD_TO='zinnia'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -151,6 +155,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
     os.path.join(BASE_DIR, "staticfiles/cedes"),
+    os.path.join(BASE_DIR, "uploads"),
 ]
-# PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-# STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+MEDIA_URL = '/media/'

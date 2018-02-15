@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from. import views
+from . import views, settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
 # Use include() to add URLS from the catalog application
 from django.conf.urls import include
+
 
 urlpatterns += [
     url(r'^coleta/', include('coleta.urls')),
@@ -31,5 +32,9 @@ urlpatterns += [
     url(r'^weblog/', include('zinnia.urls')),
     url(r'^comments/', include('django_comments.urls')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^$',views.index),    
+    url(r'^$',views.index),
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
