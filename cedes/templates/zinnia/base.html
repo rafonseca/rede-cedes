@@ -28,10 +28,10 @@
 <aside id="widget-welcome" class="widget">
   <h3>{% trans "Welcome!" %}</h3>
   <p>
-    {% trans "This simple theme is the default appearance of Zinnia." %}
+    {% trans "Este blog explora a tarefa central de dar visibilidade, apoiar e promover as ações realizadas no âmbito da Rede Cedes." %}
   </p>
   <p>
-    {% trans "Don't hesitate to override the template <strong>zinnia/base.html</strong> to start <a href='http://docs.django-blog-zinnia.com/en/latest/how-to/customize_look_and_feel.html'>customizing your Weblog</a>." %}
+    {% trans "É um instrumento para difusão das atividades financiadas por essa política pública que envolve pesquisadores e grupos de pesquisa de Instituições de Ensino Superior (IES), públicas e privadas, de todo o Brasil. Sua função? Produzir e espalhar conteúdos que ajudem a socializar as pesquisas sobre esporte recreativo e lazer no país. (Conheça os Centros de Desenvolvimento de Pesquisas em Políticas de Esporte e do Lazer no Mapa da Rede Cedes)." %}
   </p>
 </aside>
 <aside id="widget-categories" class="widget">
@@ -40,16 +40,19 @@
   </h3>
   {% get_categories %}
 </aside>
+<!--
 <aside id="widget-authors" class="widget">
   <h3>
     <a href="{% url 'zinnia:author_list' %}">{% trans "Authors" %}</a>
   </h3>
   {% get_authors %}
 </aside>
+
 <aside id="widget-calendar" class="widget">
   <h3>{% trans "Calendar" %}</h3>
   {% get_calendar_entries %}
 </aside>
+
 <aside id="widget-tags" class="widget">
   <h3>
     <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a>
@@ -107,5 +110,6 @@
     </li>
   </ul>
 </aside>
+-->
 {% endif %}
 {% endblock sidebar %}

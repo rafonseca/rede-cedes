@@ -30,15 +30,30 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+  .navbar {
+    box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.3);
+  }
+
+  .navbar-nav {
+    font-family: 'Lora', serif;
+    font-weight: 400;
+    color: #414141;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+
 .zinnia {
   line-height: 1.5;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 75%;
   color-profile: sRGB;
   rendering-intent: auto; }
   .zinnia h1, .zinnia h2, .zinnia h3,
   .zinnia h4, .zinnia h5, .zinnia h6 {
-    font-weight: normal; }
+    font-weight: normal;
+    font-family: 'Lora', serif; }
   .zinnia h1 {
     font-size: 3em;
     line-height: 1;
@@ -248,12 +263,12 @@ table {
   @media (min-width: 768px) {
     .zinnia #header h1 {
       font-size: 4em; } }
-  @media (min-width: 1024px) {
+  /* @media (min-width: 1024px) {
     .zinnia #header h1 {
-      background: transparent url("../img/logo.png") no-repeat scroll left center;
+       background: transparent url("../img/logo.png") no-repeat scroll left center;
       padding-left: 1.5em; }
     .zinnia #header blockquote {
-      margin-left: 6em; } }
+      margin-left: 6em; } } */
 
 .zinnia .slider-container {
   height: auto;
@@ -514,7 +529,15 @@ table {
         display: inline-block; } }
 
 .zinnia #footer {
-  padding-top: 1em; }
+  padding-top: 3em;
+  text-align: center;}
+
+.zinnia #footer .logo-rodape {
+  margin-bottom: 40px; }
+
+.zinnia #footer .text-rodape {
+  font-size: 12px;
+  text-align: center; }
 
 .zinnia #sidebar h3 {
   padding: 0.5em; }
@@ -567,7 +590,7 @@ table {
 .zinnia.default {
   color: #333;
   background-color: #fff;
-  background: transparent url("../img/background.gif") repeat-x scroll left top; }
+/* background: transparent url("../img/background.gif") repeat-x scroll left top; */ }
   .zinnia.default h1, .zinnia.default h2, .zinnia.default h3, .zinnia.default h4, .zinnia.default h5, .zinnia.default h6 {
     color: #333; }
   .zinnia.default a {
@@ -596,7 +619,7 @@ table {
   .zinnia.default .entry-info {
     color: #666; }
   .zinnia.default .entry-content {
-    color: #333; }
+    color: #414141; }
   .zinnia.default .entry-image figcaption {
     color: #666; }
   .zinnia.default .entry-content img {
@@ -833,21 +856,21 @@ table {
     border-top: 1px solid #586e75; }
 
 .zinnia.yellow h1, .zinnia.yellow h2, .zinnia.yellow h3, .zinnia.yellow h4, .zinnia.yellow h5, .zinnia.yellow h6 {
-  color: #b58900; }
+  color: #BA8D00; }
 
 .zinnia.yellow a {
-  color: #b58900; }
+  color: #BA8D00; }
   .zinnia.yellow a:visited {
-    color: #b58900; }
+    color: #BA8D00; }
   .zinnia.yellow a:focus {
-    color: #b58900; }
+    color: #BA8D00; }
   .zinnia.yellow a:hover {
     color: #cf9c00; }
   .zinnia.yellow a:active {
     color: #00e802; }
 
 .zinnia.yellow ol.flex-control-nav li a.active {
-  background: #b58900; }
+  background: #BA8D00; }
 
 .zinnia.yellow .slide-content a {
   color: #ffc203; }
@@ -997,7 +1020,7 @@ table {
   background: #2ba6cb;
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-color: #4fbada;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 -1px rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   padding: 0.5em;
   margin-bottom: 1em; }
