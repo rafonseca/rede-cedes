@@ -1,1 +1,68 @@
-{% extends 'cedes/base.html' %}
+{% extends 'coleta/base-coleta.html' %}
+{% block title %}Rede CEDES - Estado do Centro{% endblock %}
+{% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
+{% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
+{% load static %}
+{% block content %}
+<!-- Conteúdos -->
+<div class="container">
+  <div class="row">
+    <div id="admin-head" class="col-12">
+      <h1 class="titulo">CDPPEL Rede CEDES | {Nome Estado} </h1>
+      <p class="texto">Bem vindo ao sistema de Avaliação e Monitoramento dos cinco objetivos específicos e dezesseis metas do do CDPPEL da Rede CEDES {nome do estado}</p>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-3">
+          <a href="#">
+            <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-estrutura.jpg' %}" alt="Estrutura do CDPPEL">
+              <div class="card-block">
+                <h4 class="card-title">Estrutura e Implantação do CDPPEL</h3>
+              </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <a href="#">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-estudos.jpg' %}" alt="Estudos Científicos">
+            <div class="card-block">
+              <h4 class="card-title">Estudos Científicos</h4>
+            </div>
+            </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <a href="#">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-socializa.jpg' %}" alt="Socialização de Conhecimento">
+            <div class="card-block">
+              <h4 class="card-title">Socialização de Conhecimentos</h4>
+            </div>
+            </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <a href="#">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-formacao.jpg' %}" alt="Formação de Pessoas e Instituições">
+            <div class="card-block">
+              <h4 class="card-title">Formação de Pessoas e Instituições</h4>
+            </div>
+            </a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <a href="#">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-preservacao.jpg' %}" alt="Preservação da Memória">
+            <div class="card-block">
+              <h4 class="card-title">Preservação da Memória</h4>
+            </div>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
