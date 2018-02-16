@@ -154,11 +154,10 @@ ZINNIA_UPLOAD_TO='zinnia'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
-    os.path.join(BASE_DIR, "staticfiles/cedes"),
-    os.path.join(BASE_DIR, "uploads"),
+    # os.path.join(BASE_DIR, "staticfiles/cedes"),
 ]
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATIC_ROOT = os.path.join(PROJECT_DIR, '../static')
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+MEDIA_ROOT = os.path.join(PROJECT_DIR, '../media')
 MEDIA_URL = '/media/'

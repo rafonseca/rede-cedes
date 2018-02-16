@@ -2,9 +2,10 @@ from django.conf.urls import url
 from .views import *
 
 urlpatterns = [
-    url(r'^$',index),
+    url(r'^$',index,name='index'),
     #objetivo estrutura física
-    url(r'estrutura/<int:pk>/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),
+    url(r'estrutura/(?P<pk>[\w][\w])/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),
+    url(r'centromemoria/(?P<pk>\d+)/update/', CentroMemoriaUpdate.as_view(), name='centro-memoria-update'),
 
     #objetivo pesquisa
     url(r'pesquisa/add/', PesquisaCreate.as_view(), name='pesquisa-add'),
