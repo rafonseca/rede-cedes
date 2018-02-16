@@ -146,12 +146,11 @@ class EstruturaFisica(models.Model):
 #         return "Relatório (Meta 2): %s" % (self.centro.nome)
 
 class Pesquisa(models.Model):
-    nome = models.CharField(max_length=400)
-    grupo_pesquisa = models.CharField(max_length=400)
-    # relatorio = models.ForeignKey(Meta2,on_delete=models.SET_NULL,null=True)
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.SET_NULL,null=True)
+    nome = models.CharField(max_length=400,null=False)
+    grupo_pesquisa = models.CharField(max_length=400,null=True)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
 
-    linha=models.CharField(max_length=3,choices=LINHA_CHOICES,null=True)
+    linha=models.CharField(max_length=3,choices=LINHA_CHOICES,null=False)
     def __str__(self):
         return "%s" % (self.nome)
     def get_absolute_url(self):
@@ -180,7 +179,7 @@ class Evento(models.Model):
     publico_alvo=  models.CharField(max_length=1000,null=True)
     descricao= models.CharField(max_length=2000,null=True)
     local= models.CharField(max_length=1000,null=True)
-    coordenador_evento= models.ForeignKey(Pesquisador)
+    coordenador_evento= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
     pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_pesquisador')
     bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_bolsista')
 
@@ -189,8 +188,8 @@ class Publicacao(models.Model):
 
     titulo= models.CharField(max_length=200)
     abrangencia= models.CharField(max_length=2,choices=ABRANGENCIA_CHOICES,null=True)
-    tipo= models.CharField(max_length=2,choices=PUBLICACAO_CHOICES,null=True)
-    autor= models.ForeignKey(Pesquisador)
+    tipo= models.CharField(max_length=2,choices=PUBLICACAO_CHOICES,null=False)
+    autor= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
     referencia_abnt= models.CharField(max_length=200,null=True)
     localizacao_digital=models.URLField(null=True)
 #Modelos da meta 8
@@ -200,7 +199,7 @@ class DifusaoMidiatica(models.Model):
     tipo= models.CharField(max_length=2,choices=DIFUSAO_CHOICES)
     data_inicio=models.DateField(null=True)
     localizacao_digital=models.URLField(null=True)
-    coordenador= models.ForeignKey(Pesquisador)
+    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
     bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='difusao_como_bolsista')
     publico_alvo=  models.CharField(max_length=1000,null=True)
 #Modelos metas 9,10,11
@@ -219,26 +218,26 @@ class AtividadeFormacao(models.Model):
     publico_alvo=  models.CharField(max_length=1000,null=True)
     descricao= models.CharField(max_length=2000,null=True)
     local= models.CharField(max_length=1000,null=True)
-    coordenador_evento= models.ForeignKey(Pesquisador)
+    coordenador_formacao= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
     pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_pesquisador')
     bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_bolsista')
 #Modelos meta 12
 class Orientacao(models.Model):
 
-    titulo= models.CharField(max_length=200)
-    tipo= models.CharField(max_length=3,choices=ORIENTACAO_CHOICES)
+    titulo= models.CharField(max_length=200,null=False)
+    tipo= models.CharField(max_length=3,choices=ORIENTACAO_CHOICES,null=False)
     data_inicio=models.DateField(null=True)
     data_fim=models.DateField(null=True)
-    orientador= models.ForeignKey(Pesquisador,related_name='orientacao_como_orientador')
-    autor= models.ForeignKey(Pesquisador,related_name='orientacao_como_autor')
+    orientador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='orientacao_como_orientador')
+    autor= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='orientacao_como_autor')
     descricao= models.CharField(max_length=2000,null=True)
 #Modelos meta 13
 #intercambio
 class Intercambio(models.Model):
     grupos_estudo= models.CharField(max_length=500,null=True)
     descricao= models.CharField(max_length=2000,null=True)
-    coordenador= models.ForeignKey(Pesquisador,related_name='intercambio_como_coordenador')
-    estudante_bolsista= models.ForeignKey(Pesquisador,related_name='intercambio_como_bolsista')
+    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='intercambio_como_coordenador')
+    estudante_bolsista= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='intercambio_como_bolsista')
     data_inicio=models.DateField(null=True)
     data_fim=models.DateField(null=True)
     local= models.CharField(max_length=200,null=True)
@@ -249,7 +248,7 @@ class Intercambio(models.Model):
 #intervencao politica
 class IntervencaoPolitica(models.Model):
         descricao= models.CharField(max_length=2000,null=True)
-        coordenador= models.ForeignKey(Pesquisador,related_name='in_politica_como_coordenador')
+        coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='in_politica_como_coordenador')
         data_inicio=models.DateField(null=True)
         data_fim=models.DateField(null=True)
         local= models.CharField(max_length=200,null=True)
@@ -264,7 +263,7 @@ class IntervencaoPolitica(models.Model):
 
 class CentroMemoria(models.Model):
         tema= models.CharField(max_length=2000,null=True)
-        coordenador= models.ForeignKey(Pesquisador,related_name='in_memoria_como_coordenador')
+        coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='in_memoria_como_coordenador')
         pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_memoria_como_pesquisador')
         bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_memoria_como_bolsista')
         situacao_implementacao=models.CharField(max_length=2,choices=SIT_MEMORIA_CHOICES)

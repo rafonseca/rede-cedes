@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'import_export',
+    # 'import_export',
     # 'relatorio.apps.RelatorioConfig',
     'coleta.apps.ColetaConfig',
     'django_comments',
@@ -154,7 +154,7 @@ ZINNIA_UPLOAD_TO='zinnia'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "staticfiles"),
-    # os.path.join(BASE_DIR, "staticfiles/cedes"),
+    os.path.join(BASE_DIR, "staticfiles/cedes"),
 ]
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, '../static')
