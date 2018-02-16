@@ -1,63 +1,62 @@
 from django.conf.urls import url
+from django.urls import path
 from .views import *
 
 urlpatterns = [
-    url(r'^$',index,name='index'),
+    path('',index,name='index'),
     #objetivo estrutura física
-    url(r'estrutura/(?P<pk>[\w][\w])/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),
-    url(r'centromemoria/(?P<pk>\d+)/update/', CentroMemoriaUpdate.as_view(), name='centro-memoria-update'),
+    path('estrutura/<pk>/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),
+    path('centromemoria/<pk>/update/', CentroMemoriaUpdate.as_view(), name='centro-memoria-update'),
 
     #objetivo pesquisa
-    url(r'pesquisa/add/', PesquisaCreate.as_view(), name='pesquisa-add'),
-    url(r'pesquisa/(?P<pk>\d+)/update/', PesquisaUpdate.as_view(), name='pesquisa-update'),
-    url(r'pesquisa/(?P<pk>\d+)/delete/', PesquisaDelete.as_view(), name='pesquisa-delete'),
-    url(r'pesquisa/list/', PesquisaList.as_view(), name='pesquisa-list'),
-    url(r'pesquisa/(?P<pk>\d+)/', PesquisaDetail.as_view(template_name='coleta/pesquisa_detail.html'), name='pesquisa-detail'),
+    path('pesquisa/add/', PesquisaCreate.as_view(), name='pesquisa-add'),
+    path('pesquisa/<pk>/update/', PesquisaUpdate.as_view(), name='pesquisa-update'),
+    path('pesquisa/<pk>/delete/', PesquisaDelete.as_view(), name='pesquisa-delete'),
+    path('pesquisa/list/', PesquisaList.as_view(), name='pesquisa-list'),
+    path('pesquisa/<pk>/', PesquisaDetail.as_view(template_name='coleta/pesquisa_detail.html'), name='pesquisa-detail'),
 
     #objetivo divulgação
-    url(r'evento/add/', EventoCreate.as_view(), name='evento-add'),
-    url(r'evento/(?P<pk>\d+)/update/', EventoUpdate.as_view(), name='evento-update'),
-    url(r'evento/(?P<pk>\d+)/delete/', EventoDelete.as_view(), name='evento-delete'),
-    url(r'evento/list/', EventoList.as_view(), name='evento-list'),
-    url(r'evento/(?P<pk>\d+)/', EventoDetail.as_view(), name='evento-detail'),
+    path('evento/add/', EventoCreate.as_view(), name='evento-add'),
+    path('evento/<pk>/update/', EventoUpdate.as_view(), name='evento-update'),
+    path('evento/<pk>/delete/', EventoDelete.as_view(), name='evento-delete'),
+    path('evento/list/', EventoList.as_view(), name='evento-list'),
+    path('evento/<pk>/', EventoDetail.as_view(), name='evento-detail'),
 
-    url(r'publicacao/add/', PublicacaoCreate.as_view(), name='publicacao-add'),
-    url(r'publicacao/(?P<pk>\d+)/update/', PublicacaoUpdate.as_view(), name='publicacao-update'),
-    url(r'publicacao/(?P<pk>\d+)/delete/', PublicacaoDelete.as_view(), name='publicacao-delete'),
-    url(r'publicacao/list/', PublicacaoList.as_view(), name='publicacao-list'),
-    url(r'publicacao/(?P<pk>\d+)/', PublicacaoDetail.as_view(), name='publicacao-detail'),
+    path('publicacao/add/', PublicacaoCreate.as_view(), name='publicacao-add'),
+    path('publicacao/<pk>/update/', PublicacaoUpdate.as_view(), name='publicacao-update'),
+    path('publicacao/<pk>/delete/', PublicacaoDelete.as_view(), name='publicacao-delete'),
+    path('publicacao/list/', PublicacaoList.as_view(), name='publicacao-list'),
+    path('publicacao/<pk>/', PublicacaoDetail.as_view(), name='publicacao-detail'),
 
-    url(r'difusao/add/', DifusaoCreate.as_view(), name='difusao-add'),
-    url(r'difusao/(?P<pk>\d+)/update/', DifusaoUpdate.as_view(), name='difusao-update'),
-    url(r'difusao/(?P<pk>\d+)/delete/', DifusaoDelete.as_view(), name='difusao-delete'),
-    url(r'difusao/list/', DifusaoList.as_view(), name='difusao-list'),
-    url(r'difusao/(?P<pk>\d+)/', DifusaoDetail.as_view(), name='difusao-detail'),
+    path('difusao/add/', DifusaoCreate.as_view(), name='difusao-add'),
+    path('difusao/<pk>/update/', DifusaoUpdate.as_view(), name='difusao-update'),
+    path('difusao/<pk>/delete/', DifusaoDelete.as_view(), name='difusao-delete'),
+    path('difusao/list/', DifusaoList.as_view(), name='difusao-list'),
+    path('difusao/<pk>/', DifusaoDetail.as_view(), name='difusao-detail'),
 
     #objetivo formação
-    url(r'formacao/add/', FormacaoCreate.as_view(), name='formacao-add'),
-    url(r'formacao/(?P<pk>\d+)/update/', FormacaoUpdate.as_view(), name='formacao-update'),
-    url(r'formacao/(?P<pk>\d+)/delete/', FormacaoDelete.as_view(), name='formacao-delete'),
-    url(r'formacao/list/', FormacaoList.as_view(), name='formacao-list'),
-    url(r'formacao/(?P<pk>\d+)/', FormacaoDetail.as_view(template_name='coleta/formacao_detail.html'), name='formacao-detail'),
+    path('formacao/add/', FormacaoCreate.as_view(), name='formacao-add'),
+    path('formacao/<pk>/update/', FormacaoUpdate.as_view(), name='formacao-update'),
+    path('formacao/<pk>/delete/', FormacaoDelete.as_view(), name='formacao-delete'),
+    path('formacao/list/', FormacaoList.as_view(), name='formacao-list'),
+    path('formacao/<pk>/', FormacaoDetail.as_view(template_name='coleta/formacao_detail.html'), name='formacao-detail'),
 
-    url(r'orientacao/add/', OrientacaoCreate.as_view(), name='orientacao-add'),
-    url(r'orientacao/(?P<pk>\d+)/update/', OrientacaoUpdate.as_view(), name='orientacao-update'),
-    url(r'orientacao/(?P<pk>\d+)/delete/', OrientacaoDelete.as_view(), name='orientacao-delete'),
-    url(r'orientacao/list/', OrientacaoList.as_view(), name='orientacao-list'),
-    url(r'orientacao/(?P<pk>\d+)/', OrientacaoDetail.as_view(template_name='coleta/orientacao_detail.html'), name='orientacao-detail'),
+    path('orientacao/add/', OrientacaoCreate.as_view(), name='orientacao-add'),
+    path('orientacao/<pk>/update/', OrientacaoUpdate.as_view(), name='orientacao-update'),
+    path('orientacao/<pk>/delete/', OrientacaoDelete.as_view(), name='orientacao-delete'),
+    path('orientacao/list/', OrientacaoList.as_view(), name='orientacao-list'),
+    path('orientacao/<pk>/', OrientacaoDetail.as_view(template_name='coleta/orientacao_detail.html'), name='orientacao-detail'),
 
-    url(r'intercambio/add/', IntercambioCreate.as_view(), name='intercambio-add'),
-    url(r'intercambio/(?P<pk>\d+)/update/', IntercambioUpdate.as_view(), name='intercambio-update'),
-    url(r'intercambio/(?P<pk>\d+)/delete/', IntercambioDelete.as_view(), name='intercambio-delete'),
-    url(r'intercambio/list/', IntercambioList.as_view(), name='intercambio-list'),
-    url(r'intercambio/(?P<pk>\d+)/', IntercambioDetail.as_view(template_name='coleta/intercambio_detail.html'), name='intercambio-detail'),
+    path('intercambio/add/', IntercambioCreate.as_view(), name='intercambio-add'),
+    path('intercambio/<pk>/update/', IntercambioUpdate.as_view(), name='intercambio-update'),
+    path('intercambio/<pk>/delete/', IntercambioDelete.as_view(), name='intercambio-delete'),
+    path('intercambio/list/', IntercambioList.as_view(), name='intercambio-list'),
+    path('intercambio/<pk>/', IntercambioDetail.as_view(template_name='coleta/intercambio_detail.html'), name='intercambio-detail'),
 
-    url(r'intervencao/add/', IntervencaoCreate.as_view(), name='intervencao-add'),
-    url(r'intervencao/(?P<pk>\d+)/update/', IntervencaoUpdate.as_view(), name='intervencao-update'),
-    url(r'intervencao/(?P<pk>\d+)/delete/', IntervencaoDelete.as_view(), name='intervencao-delete'),
-    url(r'intervencao/list/', IntervencaoList.as_view(), name='intervencao-list'),
-    url(r'intervencao/(?P<pk>\d+)/', IntervencaoDetail.as_view(template_name='coleta/intervencao_detail.html'), name='intervencao-detail'),
-
-
+    path('intervencao/add/', IntervencaoCreate.as_view(), name='intervencao-add'),
+    path('intervencao/<pk>/update/', IntervencaoUpdate.as_view(), name='intervencao-update'),
+    path('intervencao/<pk>/delete/', IntervencaoDelete.as_view(), name='intervencao-delete'),
+    path('intervencao/list/', IntervencaoList.as_view(), name='intervencao-list'),
+    path('intervencao/<pk>/', IntervencaoDetail.as_view(template_name='coleta/intervencao_detail.html'), name='intervencao-detail'),
 
 ]
