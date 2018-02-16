@@ -24,19 +24,11 @@ class CentroPesquisaAdmin(admin.ModelAdmin):
         PesquisaInline,
     ]
 
-# class Meta2Admin(admin.ModelAdmin):
-#     inlines= [
-#         PesquisadorLocalInline,
-#         PesquisadorColaboradorInline,
-#         PesquisaInline,
-#     ]
 
 admin.site.register(CentroPesquisa,CentroPesquisaAdmin)
 admin.site.register(Pesquisador)
 admin.site.register(Pesquisa)
-admin.site.register(EstruturaFisicaModel)
-admin.site.register(Meta2)
-#admin.site.register(Meta2,Meta2Admin)
+admin.site.register(EstruturaFisica)
 admin.site.register(Evento)
 admin.site.register(DifusaoMidiatica)
 
@@ -44,6 +36,7 @@ admin.site.register(AtividadeFormacao)
 admin.site.register(Orientacao)
 admin.site.register(Intercambio)
 admin.site.register(IntervencaoPolitica)
+admin.site.register(CentroMemoria)
 
 
 # from import_export import resources

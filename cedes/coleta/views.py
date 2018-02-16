@@ -8,8 +8,15 @@ def index(request):
     return render(request,'coleta/home.html')
 
 class EstruturaFisicaUpdate(UpdateView):
-    model = EstruturaFisicaModel
+    model = EstruturaFisica
     fields= '__all__'
+    success_url = reverse_lazy('index')
+
+class CentroMemoriaUpdate(UpdateView):
+    model = CentroMemoria
+    fields= '__all__'
+    success_url = reverse_lazy('index')
+
 
 class PesquisaCreate(CreateView):
     model = Pesquisa
