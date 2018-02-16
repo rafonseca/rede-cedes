@@ -5,17 +5,26 @@ from django.urls import reverse_lazy
 from .models import *
 
 def index(request):
-    return render(request,'coleta/home.html')
+    return render(request,'coleta/index_geral.html')
+
+def index_centro(request,centro):
+    # print(request,centro)
+    return render(request,'coleta/index_centro.html',context={'centro':centro,'nome_estado':centro})
+
 
 class EstruturaFisicaUpdate(UpdateView):
     model = EstruturaFisica
     fields= '__all__'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('index-centro')
+    slug_field='centro'
+    slug_url_kwarg='centro'
 
 class CentroMemoriaUpdate(UpdateView):
     model = CentroMemoria
     fields= '__all__'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('index-centro')
+    slug_field='centro'
+    slug_url_kwarg='centro'
 
 
 class PesquisaCreate(CreateView):
