@@ -8,9 +8,8 @@ urlpatterns = [
 
     #objetivo estrutura física
     path('<centro>/estrutura/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),
-    #usar <centro>/estrutura/1/update/
-    path('<centro>/centromemoria/<pk>/update/', CentroMemoriaUpdate.as_view(), name='centro-memoria-update'),
-    #usar <centro>/centromemoria/1/update/
+    path('<centro>/centromemoria/update/', CentroMemoriaUpdate.as_view(), name='centro-memoria-update'),
+
 
     #objetivo pesquisa
     path('<centro>/pesquisa/add/', PesquisaCreate.as_view(), name='pesquisa-add'),

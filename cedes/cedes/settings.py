@@ -38,13 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # 'import_export',
     # 'relatorio.apps.RelatorioConfig',
     'coleta.apps.ColetaConfig',
     'django_comments',
     'mptt',
     'tagging',
-    #'zinnia_bootstrap',
     'zinnia',
     'allauth',
     'allauth.account',
@@ -97,7 +95,7 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
+LOGIN_URL='accounts/login/'
 WSGI_APPLICATION = 'cedes.wsgi.application'
 
 
