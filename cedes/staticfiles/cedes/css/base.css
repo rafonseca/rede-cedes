@@ -83,6 +83,10 @@ input {
   width: 100%;
 }
 
+.titulo-head {
+  color: #BA8D00;
+}
+
 .titulo {
   color: #BA8D00;
 }
@@ -126,6 +130,7 @@ input {
   margin-top: 25px;
   background-color: #BA8D00;
   color: #fff;
+  box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.3);
 }
 
 .btn-segundo {
@@ -141,6 +146,25 @@ input {
 .text-rodape {
   font-size: 12px;
   text-align: center;
+}
+
+/****** Home *********/
+
+.img-header {
+  position: absolute;
+}
+
+.bt-publicacoes {
+  background-color: #fff;
+  position: relative;
+  margin-top: 150px;
+  padding: 30px;
+  max-width: 700px;
+  box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.3);
+}
+
+#conteudo-home {
+  margin-top: 250px;
 }
 
 /****** Coleta *********/
