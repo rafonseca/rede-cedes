@@ -2,24 +2,138 @@
 {% block title %}Rede CEDES{% endblock %}
 {% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
 {% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
+{% block js %}{% endblock js %}
 {% load static %}
 {% block content %}
-  <!-- Conteúdos -->
-  <img src="{% static 'img/head-home.jpg' %}" class="img-fluid" alt="Capas de Livros Rede CEDES">
+<!-- Conteúdos -->
+<!-- Head Home -->
+  <div class="img-header">
+    <img src="{% static 'img/head-home.jpg' %}" class="img-fluid" alt="Capas de Livros Rede CEDES">
+  </div>
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <h1 class="titulo">01 | REDE CEDES teste</h1>
-        <p class="texto">A Rede dos Centros de Desenvolvimento do Esporte Recreativo e de Lazer - CEDES é um Programa do Ministério do Esporte, que desde 2003 investe na produção, organização e socialização de informações e conhecimentos relacionados com o Esporte Recreativo e o Lazer brasileiro.  Desde 2016 a rede é formalmente constituída por 27 Centros, um por estado brasileiro mais o Distrito Federal. Porém, historicamente esta teia é formada por 41 universidades, xxx pesquisadores, xxx bolsistas impactando diretamente na formação direta de milhões de brasileiros, professores, gestores e alunos dos XXXX cursos de bacharelado e licenciatura em Educação Física, XXX, secretarias estaduais e municipais de esporte. A Rede CEDES é um política pública inovadora do Ministério do Esporte alinhada com as transformações sociais e culturais do século XXI, que pressupõe a centralidade da informação e do conhecimento como uma das bases que sustentam a formação para a cidadania e o projeto democrático de construção do país. O resultado é a qualificação do direito ao acesso das crianças, jovens e adultos ao Esporte Recreativo e ao Lazer, sobretudo, construindo fundamentos para a sustentação do Programa Esporte e Lazer na Cidade - PELC. As pesquisas da Rede CEDES também contribuem com a produção de informações e conhecimentos do Esporte Educacional em articulação com o Programa Segundo Tempo. Confira o mapa das Instituições e temas das publicações de livros e artigos da Rede CEDES.</p>
+      <div class="col-12 bt-publicacoes">
+        <h2 class="titulo-head">PUBLICAÇÕES REDE CEDES</h2>
+        <p>
+          Dese 2003, a Rede CEDES é uma política pública que produz e socializa conhecimento para qualificar o direito social brasileiro de acesso ao Esporte Recreativo e Lazer.
+        </p>
+        <div class="dropdown">
+          <button class="btn btn-primeiro dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Livros e Artigos Científicos
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Educação Física Escolar</a>
+            <a class="dropdown-item" href="#">Cultura Afro-brasileira</a>
+            <a class="dropdown-item" href="#">Formação Profissional</a>
+            <a class="dropdown-item" href="#">Sociologia do Esporte</a>
+            <a class="dropdown-item" href="#">Políticas Públicas</a>
+            <a class="dropdown-item" href="#">Cultura Indígena</a>
+            <a class="dropdown-item" href="#">Educação Física</a>
+            <a class="dropdown-item" href="#">Segundo Tempo</a>
+            <a class="dropdown-item" href="#">Mega Eventos</a>
+            <a class="dropdown-item" href="#">Mídia e TICs</a>
+            <a class="dropdown-item" href="#">Aventura</a>
+            <a class="dropdown-item" href="#">História</a>
+            <a class="dropdown-item" href="#">Saúde</a>
+            <a class="dropdown-item" href="#">PELC</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <!-- Blog -->
+<!-- Apresentação Rede CEDES -->
+<section id="apres-home">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="titulo">| REDE CEDES</h1>
+        <p class="texto">
+          A Rede dos Centros de Desenvolvimento do Esporte Recreativo e de Lazer - CEDES é um Programa do Ministério do Esporte, que desde 2003 investe na produção, organização e socialização de informações e conhecimentos relacionados com o Esporte Recreativo e o Lazer brasileiro.  Desde 2016 a rede é formalmente constituída por 27 Centros, um por estado brasileiro mais o Distrito Federal. Porém, historicamente esta teia é formada por um número ainda maior de universidades, pesquisadorese alunos bolsistas, realidade que impacta diretamente a formação de milhões de brasileiros, professores, gestores e alunos, sobretudo, dos cursos de bacharelado e licenciatura em Educação Física; secretarias estaduais e municipais de esporte. A Rede CEDES é um política pública inovadora do Ministério do Esporte alinhada com as transformações sociais e culturais do século XXI, que pressupõe a centralidade da informação e do conhecimento como uma das bases que sustentam a formação para a cidadania e o projeto democrático de construção do país. O resultado é a qualificação do direito ao acesso das crianças, jovens e adultos ao Esporte Recreativo e ao Lazer, especialmente, construindo fundamentos para a sustentação do Programa Esporte e Lazer na Cidade - PELC. As pesquisas da Rede CEDES também contribuem com a produção de informações e conhecimentos do Esporte Educacional em articulação com o Programa Segundo Tempo. Confira o mapa das Instituições e temas das publicações de livros e artigos da Rede CEDES.
+        </p>
+      </div>
+      <!-- Mapas Universidades -->
+      <div class="col-lg-6">
+        <div id='map'>
+        </div>
+        <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoicmRmZXJyYXJpIiwiYSI6ImNpcDQ4Nm12YjAwNnJsZ20zOXdmc29obmcifQ.Shb8a3P1XAV8cPWR1yGDTA';
+        var map = new mapboxgl.Map({
+          container: 'map', // container id
+          style: 'mapbox://styles/rdferrari/cjdaho14a56e92spkkw4clu90', // stylesheet location
+          center: [-57.9778381, -15.6127795], // starting position [lng, lat]
+          zoom: 2.5 // starting zoom
+        });
+
+          // *** create markers
+          var Ministerio = [-47.9123321, -15.7881545];
+
+          // create the popup
+          // var popupMinisterio = new mapboxgl.Popup({offset:[0, -22]})
+              //.setHTML("Rede CEDES é um programa do Ministério do Esporte que objetiva produzir pesquisas nas áreas da gestão do esporte e do lazer; Difundir os resultados dos estudos e pesquisa realizados pela Rede CEDES. <a href=rede-cedes.html><strong>Saiba +</strong></a>");
+
+          // create DOM element for the marker
+          var el = document.createElement('div');
+          el.id = 'marker-Ministerio';
+
+          // create the marker
+          new mapboxgl.Marker(el, {offset:[-22, -22]})
+              .setLngLat(Ministerio)
+              //.setPopup(popupMinisterio) // sets a popup on this marker
+              .addTo(map);
+
+        </script>
+      </div>
+      <!-- Gráfico Publicações x Temas -->
+      <div class="col-lg-6">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+        </script>
+        <div id="dual_x_div" style="height: 400px">
+          <script>
+          google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawStuff);
+
+        function drawStuff() {
+          var data = new google.visualization.arrayToDataTable([
+            ['Temas', 'Publicações'],
+            ['Educação Física Escolar', 80],
+            ['Cultura Afro-brasileira', 24],
+            ['Formação Profissional', 30],
+            ['Sociologia do Esporte', 50],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60],
+            ['Políticas Públicas', 60]
+          ]);
+
+          var options = {
+            width: 600,
+            chart: {
+              title: 'Publicações Rede CEDES',
+              subtitle: 'Organizadas por temas'
+            },
+            bars: 'horizontal', // Required for Material Bar Charts.
+            colors: ['#BA8D00']
+          };
+
+        var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
+        chart.draw(data, options);
+      };
+          </script>
+        </div>
+      </div>
+<!-- Blog -->
+</section>
   <section id="invert">
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h1 class="titulo-invert">02 | BLOG</h1>
+          <h1 class="titulo-invert">| BLOG</h1>
         </div>
       </div>
         <div class="row">
@@ -71,62 +185,4 @@
         </div>
       </div>
   </section>
-  <!-- Dados Abertos -->
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="titulo">03 | DADOS ABERTOS</h1>
-        </div>
-      </div>
-        <div class="row">
-          <div class="col-sm-12">
-              <p class="texto"> Os objetivos da Rede CEDES são: 1) Produzir pesquisas induzidas e semi-induzidas, visando maximizar o acesso ao conhecimento científico e tecnológico nas áreas da gestão do esporte recreativo e do lazer; 2) Difundir os resultados dos estudos e pesquisas realizados pela Rede CEDES. Para isso, a Rede CEDES investe desde 2003 na criação de condições materiais e na qualificação do trabalho dos pesquisadores de Educação Física, sobretudo, em abordagens teórico-metodológicas das ciências humanas. É nesse contexto que o Repositório Institucional Vitor Marinho foi criado para operacionalizar a maximização do acesso a estas pesquisas e difundir seus resultados em formato digital, potencialmente alcançando qualquer pessoa no mundo que tenha acesso à internet. A política de Acesso Aberto da Rede CEDES também é uma iniciativa inovadora de gestão pública transparente e eficiente. Confira alguns dados e faça suas análises!</p>
-          </div>
-        </div>
-    </div>
-    <!-- Área Restrita -->
-    <section id="invert">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="titulo-invert">04 | ÁREA RESTRITA</h1>
-          </div>
-        </div>
-        <div class="row">
-        </div>
-        <div id="formulario-home">
-        <form>
-          <div class="form-group">
-            <label for="formGroupExampleInput"></label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="EMAIL">
-          </div>
-          <div class="form-group">
-            <label for="formGroupExampleInput2"></label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="SENHA">
-            <button type="submit" class="btn btn-segundo btn-block">ENTRAR</button>
-          </div>
-        </form>
-      </div>
-    </section>
-    <!-- Contato -->
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="titulo">05 | Contato</h1>
-          </div>
-        </div>
-        <div id="formulario-home">
-        <form>
-          <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="NOME">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="EMAIL">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" rows="5" placeholder="MENSAGEM"></textarea>
-            <button type="submit" class="btn btn-primeiro btn-block">ENVIAR</button>
-          </div>
-        </form>
-      </div>
 {% endblock %}

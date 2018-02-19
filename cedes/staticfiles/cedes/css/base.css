@@ -8,10 +8,15 @@
   font-family: 'Lora', serif;
   font-weight: 400;
   color: #414141;
+  margin-right: 30px;
 }
 
 .navbar-collapse {
   text-align: center;
+}
+
+.navbar-brand {
+  margin-left: 30px;
 }
 
 h1 {
@@ -23,7 +28,7 @@ h1 {
 
 h2 {
   font-family: 'Lora', serif;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 40px;
 }
 
@@ -163,8 +168,26 @@ input {
   box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.3);
 }
 
-#conteudo-home {
-  margin-top: 250px;
+#apres-home {
+  margin-top: 300px;
+  padding-bottom: 100px;
+}
+
+#map, #map-contato {
+  height: 400px;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.3);
+}
+
+#marker-Ministerio {
+  background-image: url('http://ninetoo.com/map-marker/pulseAmarelo-2.svg');
+  background-size: cover;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: block;
 }
 
 /****** Coleta *********/

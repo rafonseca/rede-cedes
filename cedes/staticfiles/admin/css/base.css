@@ -8,20 +8,20 @@ body {
     margin: 0;
     padding: 0;
     font-size: 14px;
-    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
-    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    color: #414141;
     background: #fff;
 }
 
 /* LINKS */
 
 a:link, a:visited {
-    color: #447e9b;
+    color: #BA8D00;
     text-decoration: none;
 }
 
 a:focus, a:hover {
-    color: #036;
+    color: #414141;
 }
 
 a:focus {
@@ -53,14 +53,15 @@ p {
 }
 
 h1,h2,h3,h4,h5 {
-    font-weight: bold;
+  font-family: 'Lora', serif;
+  font-weight: 700;
 }
 
 h1 {
     margin: 0 0 20px;
     font-weight: 300;
     font-size: 20px;
-    color: #666;
+    color: #414141;
 }
 
 h2 {
@@ -76,7 +77,7 @@ h2.subhead {
 h3 {
     font-size: 14px;
     margin: .8em 0 .3em 0;
-    color: #666;
+    color: #414141;
     font-weight: bold;
 }
 
@@ -89,7 +90,7 @@ h4 {
 h5 {
     font-size: 10px;
     margin: 1.5em 0 .5em 0;
-    color: #666;
+    color: #414141;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -248,7 +249,7 @@ td, th {
     border-bottom: 1px solid #eee;
     vertical-align: top;
     padding: 8px;
-    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 th {
@@ -373,7 +374,7 @@ table thead th.sorted .sortoptions a.sortremove:after {
 
 table thead th.sorted .sortoptions a.sortremove:focus:after,
 table thead th.sorted .sortoptions a.sortremove:hover:after {
-    color: #447e9b;
+    color: #414141;
 }
 
 table thead th.sorted .sortoptions a.sortremove:focus,
@@ -440,7 +441,7 @@ select[multiple] {
 /* FORM BUTTONS */
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
-    background: #79aec8;
+    background: #BA8D00;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -455,7 +456,7 @@ a.button {
 .button:active, input[type=submit]:active, input[type=button]:active,
 .button:focus, input[type=submit]:focus, input[type=button]:focus,
 .button:hover, input[type=submit]:hover, input[type=button]:hover {
-    background: #609ab6;
+    background: #c7a332;
 }
 
 .button[disabled], input[type=submit][disabled], input[type=button][disabled] {
@@ -466,13 +467,13 @@ a.button {
     float: right;
     border: none;
     font-weight: 400;
-    background: #417690;
+    background: #c7a332;
 }
 
 .button.default:active, input[type=submit].default:active,
 .button.default:focus, input[type=submit].default:focus,
 .button.default:hover, input[type=submit].default:hover {
-    background: #205067;
+    background: #BA8D00;
 }
 
 .button[disabled].default,
@@ -513,7 +514,7 @@ input[type=button][disabled].default {
     font-weight: 400;
     font-size: 13px;
     text-align: left;
-    background: #79aec8;
+    background: #BA8D00;
     color: #fff;
 }
 
@@ -637,11 +638,11 @@ div.system-message p.system-message-title {
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    background: #79aec8;
+    background: #c7a332;
     padding: 10px 40px;
     border: none;
     font-size: 14px;
-    color: #c4dce8;
+    color: #fff;
     text-align: left;
 }
 
@@ -650,7 +651,7 @@ div.breadcrumbs a {
 }
 
 div.breadcrumbs a:focus, div.breadcrumbs a:hover {
-    color: #c4dce8;
+    color: #fff;
 }
 
 /* ACTION ICONS */
@@ -722,7 +723,7 @@ a.deletelink:focus, a.deletelink:hover {
 }
 
 .object-tools a:focus, .object-tools a:hover {
-    background-color: #417690;
+    background-color: #c7a332;
 }
 
 .object-tools a:focus{
@@ -817,7 +818,7 @@ table#change-history tbody th {
     width: auto;
     height: 40px;
     padding: 10px 40px;
-    background: #417690;
+    background: #BA8D00;
     line-height: 40px;
     color: #ffc;
     overflow: hidden;
@@ -840,11 +841,11 @@ table#change-history tbody th {
     margin: 0 20px 0 0;
     font-weight: 300;
     font-size: 24px;
-    color: #f5dd5d;
+    color: #fff;
 }
 
 #branding h1, #branding h1 a:link, #branding h1 a:visited {
-    color: #f5dd5d;
+    color: #fff;
 }
 
 #branding h2 {
@@ -852,7 +853,7 @@ table#change-history tbody th {
     font-size: 14px;
     margin: -8px 0 8px 0;
     font-weight: normal;
-    color: #ffc;
+    color: #fff;
 }
 
 #branding a:hover {
@@ -876,8 +877,8 @@ table#change-history tbody th {
 
 #user-tools a:focus, #user-tools a:hover {
     text-decoration: none;
-    border-bottom-color: #79aec8;
-    color: #79aec8;
+    border-bottom-color: #c7a332;
+    color: #fff;
 }
 
 /* SIDEBAR */
