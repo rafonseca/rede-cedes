@@ -95,7 +95,7 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-LOGIN_URL='accounts/login/'
+LOGIN_URL='/accounts/login/'
 WSGI_APPLICATION = 'cedes.wsgi.application'
 
 
