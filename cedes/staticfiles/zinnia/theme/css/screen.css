@@ -53,11 +53,12 @@ table {
   .zinnia h1, .zinnia h2, .zinnia h3,
   .zinnia h4, .zinnia h5, .zinnia h6 {
     font-weight: normal;
-    font-family: 'Lora', serif; }
+    font-family: 'Lora', serif;
+    padding-bottom: 10px; }
   .zinnia h1 {
     font-size: 3em;
     line-height: 1;
-    margin-bottom: 0.50em; }
+    margin-bottom: 1em; }
   .zinnia h2 {
     font-size: 2em;
     margin-bottom: 0.75em; }
@@ -81,7 +82,7 @@ table {
   .zinnia a {
     text-decoration: none; }
     .zinnia a:hover {
-      text-decoration: underline; }
+      text-decoration: none; }
   .zinnia blockquote {
     margin: 1.5em;
     font-style: italic;
@@ -309,9 +310,11 @@ table {
   bottom: 0;
   position: absolute;
   padding: 1em 2em; }
-  .zinnia .slide-content h2, .zinnia .slide-content p {
+
+  /* .zinnia .slide-content h2, .zinnia .slide-content p {
     text-shadow: 1px 1px 0 #000000;
-    background-color: rgba(0, 0, 0, 0.7); }
+    background-color: rgba(0, 0, 0, 0.7); } */
+
   .zinnia .slide-content h2 {
     padding: 0.25em;
     font-weight: bold;
@@ -615,7 +618,8 @@ table {
     border-bottom: 1px dotted #ccc; }
   .zinnia.default h2.entry-title {
     border-bottom: 1px solid #ddd;
-    text-shadow: 1px 1px 0 #ddd; }
+    padding-bottom: 20px;
+  /* text-shadow: 1px 1px 0 #ddd; */ }
   .zinnia.default .entry-info {
     color: #666; }
   .zinnia.default .entry-content {
@@ -636,8 +640,8 @@ table {
     background-color: #ddd; }
   .zinnia.default #header {
     border-bottom: 1px solid #ddd; }
-    .zinnia.default #header h1 {
-      text-shadow: 2px 2px 2px #ccc; }
+    /* .zinnia.default #header h1 {
+      text-shadow: 2px 2px 2px #ccc; } */
     .zinnia.default #header blockquote {
       color: #666; }
   .zinnia.default fieldset {
@@ -814,8 +818,8 @@ table {
     background-color: #586e75; }
   .zinnia.dark #header {
     border-bottom: 1px solid #586e75; }
-    .zinnia.dark #header h1 {
-      text-shadow: 2px 2px 2px #657b83; }
+    /*.zinnia.dark #header h1 {
+     text-shadow: 2px 2px 2px #657b83;  } */
     .zinnia.dark #header blockquote {
       color: #93a1a1; }
   .zinnia.dark fieldset {
@@ -1020,10 +1024,10 @@ table {
   background: #2ba6cb;
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-color: #4fbada;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.1);
+  /* text-shadow: 0 -1px rgba(0, 0, 0, 0.1); */
   border-radius: 3px;
-  padding: 0.5em;
-  margin-bottom: 1em; }
+  padding: 2em;
+  margin-bottom: 2em; }
   .zinnia .info a {
     font-weight: bold;
     color: white; }
@@ -1041,7 +1045,7 @@ table {
   background: #da0000;
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-color: #ff0e0e;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+
   border-radius: 3px;
   padding: 0.5em;
   margin-bottom: 1em; }
@@ -1062,7 +1066,7 @@ table {
   background: #7fae00;
   border: 2px solid rgba(0, 0, 0, 0.1);
   border-color: #a4e100;
-  text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+
   border-radius: 3px;
   padding: 0.5em;
   margin-bottom: 1em; }
