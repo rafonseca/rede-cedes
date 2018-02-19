@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
 # Create your models here.
 NIVEL_GOVERNO_CHOICES=[
@@ -115,8 +116,8 @@ from django.contrib.auth.models import User
 class CentroPesquisa(models.Model):
     nome = models.CharField(max_length=200)
     uf = models.CharField(max_length=2,choices=UF_CHOICES,primary_key=True)
-    ies = models.CharField(max_length=50,null=True)
-    #gestores = User()
+    ies = models.CharField(max_length=50,blank=True)
+    gestores = models.ManyToManyField(User)
     def __str__(self):
         return "%s" % (self.uf)
 
@@ -138,151 +139,152 @@ class EstruturaFisica(models.Model):
 
     #campos não obrigatórios
     telefone = models.CharField(max_length=15,blank=True)
-    def get_absolute_url(self):
-        return reverse('estrutura-fisica-detail', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('estrutura-fisica-detail', kwargs={'pk': self.pk})
 
 ### Modelos da Meta 2
 
 
 class Pesquisa(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    nome = models.CharField(max_length=400,null=False)
-    linha=models.CharField(max_length=3,choices=LINHA_CHOICES,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
+    nome = models.CharField(max_length=400,)
+    linha=models.CharField(max_length=3,choices=LINHA_CHOICES,)
 
     #campos não obrigatórios
-    grupo_pesquisa = models.CharField(max_length=400,null=True)
+    grupo_pesquisa = models.CharField(max_length=400,blank=True)
     def get_absolute_url(self):
-        return reverse('pesquisa-detail', kwargs={'pk': self.pk})
+        return reverse('pesquisa-detail', kwargs={'pk': self.pk,'centro': self.centro})
 
 
 class Pesquisador(models.Model):
-    nome = models.CharField(max_length=200,null=False)
-    titulacao =models.CharField(max_length=2,choices=TITULACAO_CHOICES,null=False)
-
+    nome = models.CharField(max_length=200,)
+    titulacao =models.CharField(max_length=2,choices=TITULACAO_CHOICES,)
     #campos não obrigatórios
-    centro_local = models.ForeignKey(CentroPesquisa,related_name='pesquisador_local',on_delete=models.SET_NULL,null=True)
-    centro_colaborador = models.ForeignKey(CentroPesquisa,related_name='pesquisador_colaborador',on_delete=models.SET_NULL,null=True)
+    centro_local = models.ForeignKey(CentroPesquisa,related_name='pesquisador_local',on_delete=models.SET_NULL,null=True,blank=True)
+    centro_colaborador = models.ForeignKey(CentroPesquisa,related_name='pesquisador_colaborador',on_delete=models.SET_NULL,null=True,blank=True)
+    def __str__(self):
+        return self.nome
 
 # ### Modelos da Meta 3
 
 class Evento(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True,)
     nome = models.CharField(max_length=200)
-    tipo=models.CharField(max_length=2,choices=TIPO_EVENTO_CHOICES,null=False)
-    abrangencia =models.CharField(max_length=2,choices=ABRANGENCIA_CHOICES,null=False)
-    coordenador_evento= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
+    tipo=models.CharField(max_length=2,choices=TIPO_EVENTO_CHOICES,)
+    abrangencia =models.CharField(max_length=2,choices=ABRANGENCIA_CHOICES,)
+    coordenador_evento= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,)
 
     #campos não obrigatórios
-    tema = models.CharField(max_length=200,null=True)
-    data_inicio=models.DateField(null=True)
-    data_fim=models.DateField(null=True)
-    num_participantes= models.IntegerField(null=True)
-    palestrantes= models.CharField(max_length=1000,null=True)
-    publico_alvo=  models.CharField(max_length=1000,null=True)
-    descricao= models.CharField(max_length=2000,null=True)
-    local= models.CharField(max_length=1000,null=True)
-    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_pesquisador',null=True)
-    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_bolsista',null=True)
+    tema = models.CharField(max_length=200,blank=True)
+    data_inicio=models.DateField(null=True,blank=True)
+    data_fim=models.DateField(null=True,blank=True)
+    num_participantes= models.IntegerField(null=True,blank=True)
+    palestrantes= models.CharField(max_length=1000,blank=True)
+    publico_alvo=  models.CharField(max_length=1000,blank=True)
+    descricao= models.CharField(max_length=2000,blank=True)
+    local= models.CharField(max_length=1000,blank=True)
+    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_pesquisador',blank=True)
+    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_bolsista',blank=True)
 
 # ### Modelos de meta 4,5,6,7
 class Publicacao(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    titulo= models.CharField(max_length=200,null=False)
-    tipo= models.CharField(max_length=2,choices=PUBLICACAO_CHOICES,null=False)
-    autor= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
+    titulo= models.CharField(max_length=200,)
+    tipo= models.CharField(max_length=2,choices=PUBLICACAO_CHOICES,)
+    autor= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True)
 
     #campos não obrigatórios
-    abrangencia= models.CharField(max_length=2,choices=ABRANGENCIA_CHOICES,null=True)
-    referencia_abnt= models.CharField(max_length=200,null=True)
-    localizacao_digital=models.URLField(null=True)
+    abrangencia= models.CharField(max_length=2,choices=ABRANGENCIA_CHOICES,blank=True)
+    referencia_abnt= models.CharField(max_length=200,blank=True)
+    localizacao_digital=models.URLField(blank=True)
 #Modelos da meta 8
 class DifusaoMidiatica(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    titulo= models.CharField(max_length=200,null=False)
-    tipo= models.CharField(max_length=2,choices=DIFUSAO_CHOICES,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
+    titulo= models.CharField(max_length=200,)
+    tipo= models.CharField(max_length=2,choices=DIFUSAO_CHOICES,)
 
     #campos não obrigatórios
-    data_inicio=models.DateField(null=True)
-    localizacao_digital=models.URLField(null=True)
-    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
-    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='difusao_como_bolsista',null=True)
-    publico_alvo=  models.CharField(max_length=1000,null=True)
+    data_inicio=models.DateField(blank=True)
+    localizacao_digital=models.URLField(blank=True)
+    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,blank=True)
+    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='difusao_como_bolsista',blank=True)
+    publico_alvo=  models.CharField(max_length=1000,blank=True)
 
 #Modelos metas 9,10,11
 #Meta 9: Realização de atividade de formação de equipe.
 class AtividadeFormacao(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    titulo= models.CharField(max_length=200,null=False)
-    tipo=models.CharField(max_length=5,choices=FORMACAO_CHOICES,null=False)
-    coordenador_formacao= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
+    titulo= models.CharField(max_length=200,)
+    tipo=models.CharField(max_length=5,choices=FORMACAO_CHOICES,)
+    coordenador_formacao= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True)
 
     #campos não obrigatórios
-    tema = models.CharField(max_length=200,null=True)
-    data_inicio=models.DateField(null=True)
-    data_fim=models.DateField(null=True)
-    total_horas= models.IntegerField(null=True)
-    num_participantes= models.IntegerField(null=True)
-    palestrantes= models.CharField(max_length=1000,null=True)
-    publico_alvo=  models.CharField(max_length=1000,null=True)
-    descricao= models.CharField(max_length=2000,null=True)
-    local= models.CharField(max_length=1000,null=True)
-    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_pesquisador',null=True)
-    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_bolsista',null=True)
+    tema = models.CharField(max_length=200,blank=True)
+    data_inicio=models.DateField(null=True,blank=True)
+    data_fim=models.DateField(null=True,blank=True)
+    total_horas= models.IntegerField(null=True,blank=True)
+    num_participantes= models.IntegerField(null=True,blank=True)
+    palestrantes= models.CharField(max_length=1000,blank=True)
+    publico_alvo=  models.CharField(max_length=1000,blank=True)
+    descricao= models.CharField(max_length=2000,blank=True)
+    local= models.CharField(max_length=1000,blank=True)
+    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_pesquisador',blank=True)
+    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_bolsista',blank=True)
 #Modelos meta 12
 class Orientacao(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    titulo= models.CharField(max_length=200,null=False)
-    tipo= models.CharField(max_length=3,choices=ORIENTACAO_CHOICES,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True,)
+    titulo= models.CharField(max_length=200,)
+    tipo= models.CharField(max_length=3,choices=ORIENTACAO_CHOICES,)
 
     #campos não obrigatórios
-    data_inicio=models.DateField(null=True)
-    data_fim=models.DateField(null=True)
-    orientador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='orientacao_como_orientador')
-    autor= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='orientacao_como_autor')
-    descricao= models.CharField(max_length=2000,null=True)
+    data_inicio=models.DateField(null=True,blank=True)
+    data_fim=models.DateField(null=True,blank=True)
+    orientador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='orientacao_como_orientador',blank=True)
+    autor= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='orientacao_como_autor',blank=True)
+    descricao= models.CharField(max_length=2000,blank=True)
 #Modelos meta 13
 #intercambio
 class Intercambio(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='intercambio_como_coordenador')
-    estudante_bolsista= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='intercambio_como_bolsista')
-    data_inicio=models.DateField(null=False)
-    data_fim=models.DateField(null=False)
-    local= models.CharField(max_length=200,null=False)
-    ambito=models.CharField(max_length=2,choices=AMBITO_CHOICES,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
+    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='intercambio_como_coordenador')
+    estudante_bolsista= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='intercambio_como_bolsista')
+    data_inicio=models.DateField(null=True,blank=True)
+    data_fim=models.DateField(null=True,blank=True)
+    local= models.CharField(max_length=200,)
+    ambito=models.CharField(max_length=2,choices=AMBITO_CHOICES,)
 
     #campos não obrigatórios
-    grupos_estudo= models.CharField(max_length=500,null=True)
-    descricao= models.CharField(max_length=2000,null=True)
+    grupos_estudo= models.CharField(max_length=500,blank=True)
+    descricao= models.CharField(max_length=2000,blank=True)
 
 #Modelos meta 14
 #intervencao politica
 class IntervencaoPolitica(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='in_politica_como_coordenador')
-    nivel_governo=models.CharField(max_length=2,choices=NIVEL_GOVERNO_CHOICES,null=False)
-    ambito=models.CharField(max_length=2,choices=AMBITO_CHOICES,null=False)
+    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
+    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='in_politica_como_coordenador')
+    nivel_governo=models.CharField(max_length=2,choices=NIVEL_GOVERNO_CHOICES,)
+    ambito=models.CharField(max_length=2,choices=AMBITO_CHOICES,)
 
     #campos não obrigatórios
-    data_inicio=models.DateField(null=True)
-    data_fim=models.DateField(null=True)
-    local= models.CharField(max_length=200,null=True)
-    descricao= models.CharField(max_length=2000,null=True)
-    publico_alvo=  models.CharField(max_length=1000,null=True)
-    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_politica_como_pesquisador',null=True)
-    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_politica_como_bolsista',null=True)
+    data_inicio=models.DateField(null=True,blank=True)
+    data_fim=models.DateField(null=True,blank=True)
+    local= models.CharField(max_length=200,blank=True)
+    descricao= models.CharField(max_length=2000,blank=True)
+    publico_alvo=  models.CharField(max_length=1000,blank=True)
+    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_politica_como_pesquisador',blank=True)
+    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_politica_como_bolsista',blank=True)
 
 #objetivo 5, meta 15
 #centro de memoria
 class CentroMemoria(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=False)
-    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=False,related_name='in_memoria_como_coordenador')
-    situacao_implementacao=models.CharField(max_length=2,choices=SIT_MEMORIA_CHOICES,null=False)
-    situacao_acervo_fisico=models.CharField(max_length=2,choices=SIT_ACERVO_CHOICES,null=False)
+    centro = models.OneToOneField(CentroPesquisa,on_delete=models.CASCADE,primary_key=True)
+    coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='in_memoria_como_coordenador')
+    situacao_implementacao=models.CharField(max_length=2,choices=SIT_MEMORIA_CHOICES,)
+    situacao_acervo_fisico=models.CharField(max_length=2,choices=SIT_ACERVO_CHOICES,)
 
     #campos não obrigatórios
-    tema= models.CharField(max_length=2000,null=True)
-    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_memoria_como_pesquisador',null=True)
-    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_memoria_como_bolsista',null=True)
-    localizacao_digital=models.URLField(null=True)
-    num_titulos= models.IntegerField(null=True)
+    tema= models.CharField(max_length=2000,blank=True)
+    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_memoria_como_pesquisador',blank=True)
+    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='in_memoria_como_bolsista',blank=True)
+    localizacao_digital=models.URLField(blank=True)
+    num_titulos= models.IntegerField(null=True,blank=True)

@@ -16,7 +16,7 @@ urlpatterns = [
     path('<centro>/pesquisa/<pk>/update/', PesquisaUpdate.as_view(), name='pesquisa-update'),
     path('<centro>/pesquisa/<pk>/delete/', PesquisaDelete.as_view(), name='pesquisa-delete'),
     path('<centro>/pesquisa/list/', PesquisaList.as_view(), name='pesquisa-list'),
-    path('<centro>/pesquisa/<pk>/', PesquisaDetail.as_view(template_name='coleta/pesquisa_detail.html'), name='pesquisa-detail'),
+    path('<centro>/pesquisa/<pk>/', PesquisaDetail.as_view(), name='pesquisa-detail'),
 
     #objetivo divulgação
     path('<centro>/evento/add/', EventoCreate.as_view(), name='evento-add'),
@@ -42,24 +42,24 @@ urlpatterns = [
     path('<centro>/formacao/<pk>/update/', FormacaoUpdate.as_view(), name='formacao-update'),
     path('<centro>/formacao/<pk>/delete/', FormacaoDelete.as_view(), name='formacao-delete'),
     path('<centro>/formacao/list/', FormacaoList.as_view(), name='formacao-list'),
-    path('<centro>/formacao/<pk>/', FormacaoDetail.as_view(template_name='coleta/formacao_detail.html'), name='formacao-detail'),
+    path('<centro>/formacao/<pk>/', FormacaoDetail.as_view(), name='formacao-detail'),
 
     path('<centro>/orientacao/add/', OrientacaoCreate.as_view(), name='orientacao-add'),
     path('<centro>/orientacao/<pk>/update/', OrientacaoUpdate.as_view(), name='orientacao-update'),
     path('<centro>/orientacao/<pk>/delete/', OrientacaoDelete.as_view(), name='orientacao-delete'),
     path('<centro>/orientacao/list/', OrientacaoList.as_view(), name='orientacao-list'),
-    path('<centro>/orientacao/<pk>/', OrientacaoDetail.as_view(template_name='coleta/orientacao_detail.html'), name='orientacao-detail'),
+    path('<centro>/orientacao/<pk>/', OrientacaoDetail.as_view(), name='orientacao-detail'),
 
     path('<centro>/intercambio/add/', IntercambioCreate.as_view(), name='intercambio-add'),
     path('<centro>/intercambio/<pk>/update/', IntercambioUpdate.as_view(), name='intercambio-update'),
     path('<centro>/intercambio/<pk>/delete/', IntercambioDelete.as_view(), name='intercambio-delete'),
     path('<centro>/intercambio/list/', IntercambioList.as_view(), name='intercambio-list'),
-    path('<centro>/intercambio/<pk>/', IntercambioDetail.as_view(template_name='coleta/intercambio_detail.html'), name='intercambio-detail'),
+    path('<centro>/intercambio/<pk>/', IntercambioDetail.as_view(), name='intercambio-detail'),
 
     path('<centro>/intervencao/add/', IntervencaoCreate.as_view(), name='intervencao-add'),
     path('<centro>/intervencao/<pk>/update/', IntervencaoUpdate.as_view(), name='intervencao-update'),
     path('<centro>/intervencao/<pk>/delete/', IntervencaoDelete.as_view(), name='intervencao-delete'),
     path('<centro>/intervencao/list/', IntervencaoList.as_view(), name='intervencao-list'),
-    path('<centro>/intervencao/<pk>/', IntervencaoDetail.as_view(template_name='coleta/intervencao_detail.html'), name='intervencao-detail'),
+    path('<centro>/intervencao/<pk>/', IntervencaoDetail.as_view(), name='intervencao-detail'),
 
 ]

@@ -3,7 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import  ListView, DetailView
 from django.urls import reverse_lazy
 from .models import *
-
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.http import HttpResponseRedirect
 def index(request):
     return render(request,'coleta/index_geral.html')
 
@@ -11,139 +12,157 @@ def index_centro(request,centro):
     # print(request,centro)
     return render(request,'coleta/index_centro.html',context={'centro':centro,'nome_estado':centro})
 
+class ColetaUpdateView(UserPassesTestMixin,UpdateView):
+    slug_field='centro'
+    slug_url_kwarg='centro'
+    def test_func(self):
+        self.success_url = reverse_lazy('index-centro',kwargs={'centro':self.kwargs['centro']})
+        obj=self.get_object()
+        gestores=obj.centro.gestores.all()
+        return self.request.user in gestores
+class ColetaCreateView(UserPassesTestMixin,CreateView):
+    slug_field='centro'
+    slug_url_kwarg='centro'
+    def test_func(self):
+        centro=self.kwargs['centro']
+        obj=CentroPesquisa.objects.get(uf=centro)
+        gestores=obj.gestores.all()
+        return self.request.user in gestores
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        centro=self.kwargs['centro']
+        self.object.centro=CentroPesquisa.objects.get(uf=centro)
+        self.object.save()
+        return HttpResponseRedirect(reverse('pesquisa-list',kwargs={'centro':centro}))
+class ColetaListView(ListView):
+    def get_queryset(self):
+        return super().get_queryset().filter(centro=self.kwargs['centro'])
 
-class EstruturaFisicaUpdate(UpdateView):
+
+class EstruturaFisicaUpdate(ColetaUpdateView):
     model = EstruturaFisica
     fields= '__all__'
-    success_url = reverse_lazy('index-centro')
-    slug_field='centro'
-    slug_url_kwarg='centro'
 
-class CentroMemoriaUpdate(UpdateView):
+class CentroMemoriaUpdate(ColetaUpdateView):
     model = CentroMemoria
     fields= '__all__'
-    success_url = reverse_lazy('index-centro')
-    slug_field='centro'
-    slug_url_kwarg='centro'
 
-
-class PesquisaCreate(CreateView):
+class PesquisaCreate(ColetaCreateView):
+    model = Pesquisa
+    fields = ['nome','linha','grupo_pesquisa']
+class PesquisaUpdate(ColetaUpdateView):
     model = Pesquisa
     fields = '__all__'
-    success_url = reverse_lazy('pesquisa-list')
-class PesquisaUpdate(UpdateView):
-    model = Pesquisa
-    fields = '__all__'
-class PesquisaDelete(DeleteView):
-    model = Pesquisa
-    success_url = reverse_lazy('pesquisa-list')
-class PesquisaList(ListView):
+class PesquisaList(ColetaListView):
     model = Pesquisa
 class PesquisaDetail(DetailView):
     model = Pesquisa
+class PesquisaDelete(DeleteView):
+    model = Pesquisa
+    success_url = reverse_lazy('pesquisa-list')
 
-class EventoCreate(CreateView):
+class EventoCreate(ColetaCreateView):
     model = Evento
     fields = '__all__'
     success_url = reverse_lazy('evento-list')
 class EventoUpdate(UpdateView):
     model = Evento
     fields = '__all__'
-class EventoDelete(DeleteView):
-    model = Evento
     success_url = reverse_lazy('evento-list')
-class EventoList(ListView):
+class EventoList(ColetaListView):
+    model = Evento
+class EventoDelete(DeleteView):
     model = Evento
 class EventoDetail(DetailView):
     model = Evento
 
-class PublicacaoCreate(CreateView):
+class PublicacaoCreate(ColetaCreateView):
     model = Publicacao
     fields = '__all__'
     success_url = reverse_lazy('publicacao-list')
 class PublicacaoUpdate(UpdateView):
     model = Publicacao
     fields = '__all__'
-class PublicacaoDelete(DeleteView):
-    model = Publicacao
-    success_url = reverse_lazy('publicacao-list')
-class PublicacaoList(ListView):
+class PublicacaoList(ColetaListView):
     model = Publicacao
 class PublicacaoDetail(DetailView):
     model = Publicacao
+class PublicacaoDelete(DeleteView):
+    model = Publicacao
+    success_url = reverse_lazy('publicacao-list')
 
-class DifusaoCreate(CreateView):
+class DifusaoCreate(ColetaCreateView):
     model = DifusaoMidiatica
     fields = '__all__'
     success_url = reverse_lazy('difusao-list')
 class DifusaoUpdate(UpdateView):
     model = DifusaoMidiatica
     fields = '__all__'
+class DifusaoList(ColetaListView):
+    model = DifusaoMidiatica
 class DifusaoDelete(DeleteView):
     model = DifusaoMidiatica
     success_url = reverse_lazy('difusao-list')
-class DifusaoList(ListView):
-    model = DifusaoMidiatica
 class DifusaoDetail(DetailView):
     model = DifusaoMidiatica
 
-class FormacaoCreate(CreateView):
+class FormacaoCreate(ColetaCreateView):
     model = AtividadeFormacao
     fields = '__all__'
     success_url = reverse_lazy('formacao-list')
 class FormacaoUpdate(UpdateView):
     model = AtividadeFormacao
     fields = '__all__'
+class FormacaoList(ColetaListView):
+    model = AtividadeFormacao
 class FormacaoDelete(DeleteView):
     model = AtividadeFormacao
     success_url = reverse_lazy('formacao-list')
-class FormacaoList(ListView):
-    model = AtividadeFormacao
 class FormacaoDetail(DetailView):
     model = AtividadeFormacao
 
 
-class OrientacaoCreate(CreateView):
+class OrientacaoCreate(ColetaCreateView):
     model = Orientacao
     fields = '__all__'
     success_url = reverse_lazy('orientacao-list')
 class OrientacaoUpdate(UpdateView):
     model = Orientacao
     fields = '__all__'
+class OrientacaoList(ColetaListView):
+    model = Orientacao
 class OrientacaoDelete(DeleteView):
     model = Orientacao
     success_url = reverse_lazy('orientacao-list')
-class OrientacaoList(ListView):
-    model = Orientacao
 class OrientacaoDetail(DetailView):
     model = Orientacao
 
-class IntercambioCreate(CreateView):
+class IntercambioCreate(ColetaCreateView):
     model = Intercambio
     fields = '__all__'
     success_url = reverse_lazy('intercambio-list')
 class IntercambioUpdate(UpdateView):
     model = Intercambio
     fields = '__all__'
+class IntercambioList(ColetaListView):
+    model = Intercambio
 class IntercambioDelete(DeleteView):
     model = Intercambio
     success_url = reverse_lazy('intercambio-list')
-class IntercambioList(ListView):
-    model = Intercambio
 class IntercambioDetail(DetailView):
     model = Intercambio
 
-class IntervencaoCreate(CreateView):
+class IntervencaoCreate(ColetaCreateView):
     model = IntervencaoPolitica
     fields = '__all__'
     success_url = reverse_lazy('intervencao-list')
 class IntervencaoUpdate(UpdateView):
     model = IntervencaoPolitica
     fields = '__all__'
+class IntervencaoList(ColetaListView):
+    model = IntervencaoPolitica
 class IntervencaoDelete(DeleteView):
     model = IntervencaoPolitica
     success_url = reverse_lazy('intervencao-list')
-class IntervencaoList(ListView):
-    model = IntervencaoPolitica
 class IntervencaoDetail(DetailView):
     model = IntervencaoPolitica
