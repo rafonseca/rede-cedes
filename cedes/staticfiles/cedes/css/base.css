@@ -187,7 +187,13 @@ input {
   width: 44px;
   height: 44px;
   cursor: pointer;
-  display: block;
+  transform: translate(-50%, -50%)
+}
+
+
+
+.text {
+  margin-left: 20px;
 }
 
 /****** Coleta *********/
@@ -219,4 +225,22 @@ input {
 
 .bt-voltar {
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  #apres-home {
+    margin-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #apres-home {
+    margin-top: 10px;
+    padding-bottom: 100px;
+  }
+  #map, #map-contato {
+margin-bottom: 50px;
+  }
+
 }

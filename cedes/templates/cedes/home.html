@@ -22,20 +22,20 @@
             Livros e Artigos Científicos
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Educação Física Escolar</a>
-            <a class="dropdown-item" href="#">Cultura Afro-brasileira</a>
-            <a class="dropdown-item" href="#">Formação Profissional</a>
-            <a class="dropdown-item" href="#">Sociologia do Esporte</a>
-            <a class="dropdown-item" href="#">Políticas Públicas</a>
-            <a class="dropdown-item" href="#">Cultura Indígena</a>
-            <a class="dropdown-item" href="#">Educação Física</a>
-            <a class="dropdown-item" href="#">Segundo Tempo</a>
-            <a class="dropdown-item" href="#">Mega Eventos</a>
-            <a class="dropdown-item" href="#">Mídia e TICs</a>
-            <a class="dropdown-item" href="#">Aventura</a>
-            <a class="dropdown-item" href="#">História</a>
-            <a class="dropdown-item" href="#">Saúde</a>
-            <a class="dropdown-item" href="#">PELC</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Educa%C3%A7%C3%A3o+F%C3%ADsica+Escolar&type=subject" target="_blank">Educação Física Escolar</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Cultura+Afro-brasileira&type=subject" target="_blank">Cultura Afro-brasileira</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Forma%C3%A7%C3%A3o+Profissional&type=subject" target="_blank">Formação Profissional</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Sociologia+do+Esporte&type=subject" target="_blank">Sociologia do Esporte</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Pol%C3%ADticas+P%C3%BAblicas&type=subject" target="_blank">Políticas Públicas</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Cultura+Ind%C3%ADgena&type=subject" target="_blank">Cultura Indígena</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Educa%C3%A7%C3%A3o+F%C3%ADsica&type=subject" target="_blank">Educação Física</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Segundo+Tempo&type=subject" target="_blank">Segundo Tempo</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Mega+Eventos&type=subject" target="_blank">Mega Eventos</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=M%C3%ADdia+e+TICs&type=subject" target="_blank">Mídia e TICs</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Aventura&type=subject" target="_blank">Aventura</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Hist%C3%B3ria&type=subject" target="_blank">História</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=Sa%C3%BAde&type=subject" target="_blank">Saúde</a>
+            <a class="dropdown-item" href="http://vitormarinho.ufsc.br/browse?value=PELC&type=subject" target="_blank">PELC</a>
           </div>
         </div>
       </div>
@@ -64,24 +64,26 @@
           zoom: 2.5 // starting zoom
         });
 
-          // *** create markers
-          var Ministerio = [-47.9123321, -15.7881545];
+        map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['ies-rede-cedes'] // replace this with the name of the layer
+  });
 
-          // create the popup
-          // var popupMinisterio = new mapboxgl.Popup({offset:[0, -22]})
-              //.setHTML("Rede CEDES é um programa do Ministério do Esporte que objetiva produzir pesquisas nas áreas da gestão do esporte e do lazer; Difundir os resultados dos estudos e pesquisa realizados pela Rede CEDES. <a href=rede-cedes.html><strong>Saiba +</strong></a>");
+  if (!features.length) {
+    return;
+  }
 
-          // create DOM element for the marker
-          var el = document.createElement('div');
-          el.id = 'marker-Ministerio';
+  var feature = features[0];
 
-          // create the marker
-          new mapboxgl.Marker(el, {offset:[-22, -22]})
-              .setLngLat(Ministerio)
-              //.setPopup(popupMinisterio) // sets a popup on this marker
-              .addTo(map);
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML(feature.properties.title)
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
 
-        </script>
+      </script>
+
       </div>
       <!-- Gráfico Publicações x Temas -->
       <div class="col-lg-6">
@@ -95,20 +97,20 @@
         function drawStuff() {
           var data = new google.visualization.arrayToDataTable([
             ['Temas', 'Publicações'],
-            ['Educação Física Escolar', 80],
-            ['Cultura Afro-brasileira', 24],
-            ['Formação Profissional', 30],
-            ['Sociologia do Esporte', 50],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60],
-            ['Políticas Públicas', 60]
+            ['Educação Física Escolar', 12],
+            ['Cultura Afro-brasileira', 4],
+            ['Formação Profissional', 10],
+            ['Sociologia do Esporte', 4],
+            ['Políticas Públicas', 118],
+            ['Cultura Indígena', 19],
+            ['Educação Física', 46],
+            ['Segundo Tempo', 1],
+            ['Mega Eventos', 31],
+            ['Mídia e TICs', 46],
+            ['Aventura', 6],
+            ['História', 33],
+            ['Saúde', 21],
+            ['PELC', 11]
           ]);
 
           var options = {
