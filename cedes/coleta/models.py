@@ -160,8 +160,8 @@ class Pesquisador(models.Model):
     nome = models.CharField(max_length=200,)
     titulacao =models.CharField(max_length=2,choices=TITULACAO_CHOICES,)
     #campos não obrigatórios
-    centro_local = models.ForeignKey(CentroPesquisa,related_name='pesquisador_local',on_delete=models.SET_NULL,null=True,blank=True)
-    centro_colaborador = models.ForeignKey(CentroPesquisa,related_name='pesquisador_colaborador',on_delete=models.SET_NULL,null=True,blank=True)
+    centro_local = models.ForeignKey(CentroPesquisa,related_name='pesquisador_local',on_delete=models.SET_NULL,null=True,blank=True) # centro
+    # centro_colaborador = models.ForeignKey(CentroPesquisa,related_name='pesquisador_colaborador',on_delete=models.SET_NULL,null=True,blank=True)
     def __str__(self):
         return self.nome
 

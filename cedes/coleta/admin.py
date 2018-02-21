@@ -8,10 +8,10 @@ class PesquisadorLocalInline(admin.TabularInline):
     fk_name='centro_local'
     extra=3
 
-class PesquisadorColaboradorInline(admin.TabularInline):
-    model=Pesquisador
-    fk_name='centro_colaborador'
-    extra=3
+# class PesquisadorColaboradorInline(admin.TabularInline):
+#     model=Pesquisador
+#     fk_name='centro_colaborador'
+#     extra=3
 
 class PesquisaInline(admin.TabularInline):
     model=Pesquisa
@@ -20,7 +20,7 @@ class PesquisaInline(admin.TabularInline):
 class CentroPesquisaAdmin(admin.ModelAdmin):
     inlines= [
         PesquisadorLocalInline,
-        PesquisadorColaboradorInline,
+        # PesquisadorColaboradorInline,
         PesquisaInline,
     ]
 
