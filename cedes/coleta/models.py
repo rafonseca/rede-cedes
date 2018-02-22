@@ -158,11 +158,11 @@ class Pesquisa(models.Model):
 
 class Pesquisador(models.Model):
     nome = models.CharField(max_length=200,)
-    titulacao =models.CharField(max_length=2,choices=TITULACAO_CHOICES,)
+    titulacao =models.CharField(max_length=2,choices=TITULACAO_CHOICES,blank=True)
     #campos não obrigatórios
 
     centro= models.ForeignKey(CentroPesquisa,on_delete=models.SET_NULL,null=True,blank=True) # centro
-
+    bolsista = models.BooleanField(default=False)
     def __str__(self):
         return self.nome
 
