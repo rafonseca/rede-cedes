@@ -190,7 +190,12 @@ input {
   transform: translate(-50%, -50%)
 }
 
-
+.title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  color: #414141;
+  font-size: 12px;
+}
 
 .text {
   margin-left: 20px;
