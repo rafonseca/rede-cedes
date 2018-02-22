@@ -154,14 +154,19 @@ class Pesquisa(models.Model):
     grupo_pesquisa = models.CharField(max_length=400,blank=True)
     def get_absolute_url(self):
         return reverse('pesquisa-detail', kwargs={'pk': self.pk,'centro': self.centro})
+    def linha_human_readable(self):
+        linha_dict={k:v for k,v in LINHA_CHOICES}
+        return (linha_dict[self.linha])
+
 
 
 class Pesquisador(models.Model):
     nome = models.CharField(max_length=200,)
-    titulacao =models.CharField(max_length=2,choices=TITULACAO_CHOICES,)
+    titulacao =models.CharField(max_length=2,choices=TITULACAO_CHOICES,blank=True)
     #campos não obrigatórios
-    centro_local = models.ForeignKey(CentroPesquisa,related_name='pesquisador_local',on_delete=models.SET_NULL,null=True,blank=True)
-    centro_colaborador = models.ForeignKey(CentroPesquisa,related_name='pesquisador_colaborador',on_delete=models.SET_NULL,null=True,blank=True)
+
+    centro= models.ForeignKey(CentroPesquisa,on_delete=models.SET_NULL,null=True,blank=True) # centro
+    bolsista = models.BooleanField(default=False)
     def __str__(self):
         return self.nome
 

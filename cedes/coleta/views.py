@@ -52,7 +52,7 @@ class PesquisaCreate(ColetaCreateView):
     fields = ['nome','linha','grupo_pesquisa']
 class PesquisaUpdate(ColetaUpdateView):
     model = Pesquisa
-    fields = '__all__'
+    fields = ['nome','linha','grupo_pesquisa']
 class PesquisaList(ColetaListView):
     model = Pesquisa
 class PesquisaDetail(DetailView):
