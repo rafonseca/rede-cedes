@@ -55,9 +55,6 @@ class PesquisaUpdate(ColetaUpdateView):
     fields = ['nome','linha','grupo_pesquisa']
 class PesquisaList(ColetaListView):
     model = Pesquisa
-    def linha_human_readable(self):
-        linha_dict={k:v for k,v in LINHA_CHOICES}
-        return (linha_dict[self.linha])
 class PesquisaDetail(DetailView):
     model = Pesquisa
 class PesquisaDelete(DeleteView):

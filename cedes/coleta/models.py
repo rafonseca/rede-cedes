@@ -154,6 +154,10 @@ class Pesquisa(models.Model):
     grupo_pesquisa = models.CharField(max_length=400,blank=True)
     def get_absolute_url(self):
         return reverse('pesquisa-detail', kwargs={'pk': self.pk,'centro': self.centro})
+    def linha_human_readable(self):
+        linha_dict={k:v for k,v in LINHA_CHOICES}
+        return (linha_dict[self.linha])
+
 
 
 class Pesquisador(models.Model):
