@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="65px" viewBox="0 0 65 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 11</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-604.000000, -795.000000)">
+            <g id="Group-11" transform="translate(604.000000, 795.000000)">
+                <circle id="Oval" fill="#BA8D00" cx="32.5" cy="32.5" r="32.5"></circle>
+                <path d="M33,18.5 L33,47.5" id="Line" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square"></path>
+                <path d="M18.5,33 L47.5,33" id="Line" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>
