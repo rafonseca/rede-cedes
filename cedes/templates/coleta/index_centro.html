@@ -5,62 +5,106 @@
 {% block js %}{% endblock js %}
 {% load static %}
 {% block content %}
+
 <div class="container">
-  <div class="row">
-    <div id="admin-head" class="col-12">
-      <h1 class="titulo">CDPPEL Rede CEDES | {{ nome_estado }} </h1>
-      <p class="texto">Bem vindo ao sistema de Avaliação e Monitoramento dos cinco objetivos específicos e dezesseis metas do do CDPPEL da Rede CEDES {nome do estado}</p>
+  <div id="coleta-head" class="row">
+    <div class="col-lg-6">
+      <h2 class="titulo-coleta">{Nome Universidade Centro}</h2>
+      <p>{ Nome do coordenador do Centro}, bem vindo ao sistema de coleta e atualizações dos dados dos CDPPEL da {nome da Universidade} para monitoramento e avaliação Nacional da Rede CEDES.</p>
     </div>
-    <div class="row">
-      <div class="col-12">
+      <div class="col-lg-3 col-6">
         <div class="card mb-3">
-          <a href="#">
-            <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-estrutura.jpg' %}" alt="Estrutura do CDPPEL">
-              <div class="card-block">
-                <h4 class="card-title">Estrutura e Implantação do CDPPEL</h3>
-              </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card mb-3">
-          <a href="#">
-          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-estudos.jpg' %}" alt="Estudos Científicos">
-            <div class="card-block">
-              <h4 class="card-title">Estudos Científicos</h4>
-            </div>
-            </a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card mb-3">
-          <a href="#">
-          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-socializa.jpg' %}" alt="Socialização de Conhecimento">
-            <div class="card-block">
-              <h4 class="card-title">Socialização de Conhecimentos</h4>
-            </div>
-            </a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card mb-3">
-          <a href="#">
-          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-formacao.jpg' %}" alt="Formação de Pessoas e Instituições">
-            <div class="card-block">
-              <h4 class="card-title">Formação de Pessoas e Instituições</h4>
-            </div>
-            </a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card mb-3">
-          <a href="#">
-          <img class="card-img-top img-fluid" src="{% static 'coleta/cdppel-preservacao.jpg' %}" alt="Preservação da Memória">
-            <div class="card-block">
-              <h4 class="card-title">Preservação da Memória</h4>
-            </div>
-            </a>
+          <img class="img-fluid" src="{% static 'coleta/1-estrutura.svg' %}">
+          <div class="card-block">
+            <h4>Estrutura Física</h4>
+            </p><a href="#">[ Lista ]</a></p>
           </div>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="img-fluid" src="{% static 'coleta/2-pesquisa.svg' %}">
+            <div class="card-block">
+              <h4>Pesquisas</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+  </div>
+      <div class="row">
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/3-evento.svg' %}">
+            <div class="card-block">
+              <h4>Eventos</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/4-publicacao.svg' %}">
+            <div class="card-block">
+              <h4>Publicações</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/5-difusao.svg' %}">
+            <div class="card-block">
+              <h4>Difusões</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/6-formacao.svg' %}">
+            <div class="card-block">
+              <h4>Formações</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/7-orientacao.svg' %}">
+            <div class="card-block">
+              <h4>Orientações</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/8-intercambio.svg' %}">
+            <div class="card-block">
+              <h4>Intercâmbios</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/9-intervencao.svg' %}">
+            <div class="card-block">
+              <h4>Intervenções</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/10-memoria.svg' %}">
+            <div class="card-block">
+              <h4>Centros de Memória</h4>
+              </p><a href="#">[ Lista ]</a>  <a href="#">[ Adicionar ]</a></p>
+            </div>
         </div>
       </div>
     </div>

@@ -44,6 +44,18 @@ h4 {
   font-size: 20px;
 }
 
+h5 {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+h6 {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 12px;
+}
+
 p, span, label, input, textarea {
   font-family: 'Montserrat', sans-serif;
   font-weight: 200;
@@ -119,7 +131,6 @@ input {
 
 .card {
   box-shadow: 2px 2px 2px rgba(68, 68, 68, 0.2);
-  text-align: center;
 }
 
 .card-title {
@@ -231,6 +242,33 @@ input {
 .bt-voltar {
   margin-bottom: 20px;
 }
+
+.titulo-coleta {
+  color: #BA8D00;
+  margin-top: 50px;
+}
+
+#coleta-head {
+  margin-top: 100px;
+}
+
+.bt-add {
+  width: 40px;
+}
+
+#coleta-menu-lateral {
+  padding-bottom: 20px;
+}
+
+.texto-pequeno {
+  font-size: 12px;
+}
+
+#coleta-menu-card {
+  padding: 0 10px 10px 0;
+}
+
+/****** Responsive *********/
 
 @media screen and (max-width: 1024px) {
   #apres-home {
