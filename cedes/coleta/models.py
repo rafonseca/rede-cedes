@@ -17,33 +17,33 @@ ABRANGENCIA_CHOICES=[
     ('in','Internacional'),
     ]
 UF_CHOICES=[
-    ('AC','AC'),
-    ('AL','AL'),
-    ('AP','AP'),
-    ('AM','AM'),
-    ('BA','BA'),
-    ('CE','CE'),
-    ('DF','DF'),
-    ('ES','ES'),
-    ('GO','GO'),
-    ('MA','MA'),
-    ('MT','MT'),
-    ('MS','MS'),
-    ('MG','MG'),
-    ('PA','PA'),
-    ('PB','PB'),
-    ('PR','PR'),
-    ('PE','PE'),
-    ('PI','PI'),
-    ('RJ','RJ'),
-    ('RN','RN'),
-    ('RS','RS'),
-    ('RO','RO'),
-    ('RR','RR'),
-    ('SC','SC'),
-    ('SP','SP'),
-    ('SE','SE'),
-    ('TO','TO'),
+    ('AC','Acre'),
+    ('AL','Alagoas'),
+    ('AP','Amapá'),
+    ('AM','Amazonas'),
+    ('BA','Baía'),
+    ('CE','Ceará'),
+    ('DF','Distrito Federal'),
+    ('ES','Espírito Santo'),
+    ('GO','Goiás'),
+    ('MA','Maranhão'),
+    ('MT','Mato Grosso'),
+    ('MS','Mato Grosso do Sul'),
+    ('MG','MG_atualizar no models.py'),
+    ('PA','PA_atualizar no models.py'),
+    ('PB','PB_atualizar no models.py'),
+    ('PR','PR_atualizar no models.py'),
+    ('PE','PE_atualizar no models.py'),
+    ('PI','PI_atualizar no models.py'),
+    ('RJ','RJ_atualizar no models.py'),
+    ('RN','RN_atualizar no models.py'),
+    ('RS','RS_atualizar no models.py'),
+    ('RO','RO_atualizar no models.py'),
+    ('RR','RR_atualizar no models.py'),
+    ('SC','SC_atualizar no models.py'),
+    ('SP','SP_atualizar no models.py'),
+    ('SE','SE_atualizar no models.py'),
+    ('TO','TO_atualizar no models.py'),
 ]
 LINHA_CHOICES=[
     ('mel','Memória do esporte e do lazer'),
@@ -118,6 +118,10 @@ class CentroPesquisa(models.Model):
     uf = models.CharField(max_length=2,choices=UF_CHOICES,primary_key=True)
     ies = models.CharField(max_length=50,blank=True)
     gestores = models.ManyToManyField(User)
+    def nome_estado(self):
+        uf_dict={uf:nome for uf,nome in UF_CHOICES}
+        return uf_dict[self.uf]
+
     def __str__(self):
         return "%s" % (self.uf)
 

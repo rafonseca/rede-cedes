@@ -10,7 +10,13 @@ def index(request):
 
 def index_centro(request,centro):
     # print(request,centro)
-    return render(request,'coleta/index_centro.html',context={'centro':centro,'nome_estado':centro})
+    centro_object=CentroPesquisa.objects.get(uf=centro)
+    return render(request,'coleta/index_centro.html',
+        context={
+            'centro':centro_onject.uf,
+            'nome_estado':centro_object.nome_estado,
+            'nome_universidade':centro_object.ies,
+            })
 
 class ColetaUpdateView(UserPassesTestMixin,UpdateView):
     slug_field='centro'
