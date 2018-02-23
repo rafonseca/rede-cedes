@@ -16,7 +16,8 @@ class ColetaUpdateView(UserPassesTestMixin,UpdateView):
     slug_field='centro'
     slug_url_kwarg='centro'
     def test_func(self):
-        self.success_url = reverse_lazy('index-centro',kwargs={'centro':self.kwargs['centro']})
+        # self.success_url = reverse_lazy('index-centro',kwargs={'centro':self.kwargs['centro']})
+        self.redirect_field_name=None
         obj=self.get_object()
         gestores=obj.centro.gestores.all()
         return self.request.user in gestores

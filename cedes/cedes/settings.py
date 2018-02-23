@@ -96,6 +96,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 LOGIN_URL='/accounts/login/'
+LOGIN_REDIRECT_URL='/'
 WSGI_APPLICATION = 'cedes.wsgi.application'
 
 
