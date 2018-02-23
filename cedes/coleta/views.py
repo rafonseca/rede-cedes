@@ -11,11 +11,18 @@ def index(request):
 def index_centro(request,centro):
     # print(request,centro)
     centro_object=CentroPesquisa.objects.get(uf=centro)
+    lista1=['1a','1b','1c']
+    lista2=['2a','2b','2c']
+    lista3=['3a','3b','3c']
+    lista_de_listas=[lista1,lista2,lista3]
+
     return render(request,'coleta/index_centro.html',
         context={
-            'centro':centro_onject.uf,
+            'centro':centro_object.uf,
             'nome_estado':centro_object.nome_estado,
             'nome_universidade':centro_object.ies,
+            'jogo_facil':lista1,
+            'jogo_dificil':lista_de_listas
             })
 
 class ColetaUpdateView(UserPassesTestMixin,UpdateView):
