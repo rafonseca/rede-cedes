@@ -55,11 +55,33 @@ class ColetaListView(ListView):
 
 class EstruturaFisicaUpdate(ColetaUpdateView):
     model = EstruturaFisica
-    fields= '__all__'
+    fields= [
+            'centro',
+            'tem_sede',
+            'tem_banner',
+            'tem_internet',
+            'equip_inf',
+            'moveis',
+            'coordenador',
+            'coord_adj',
+            'apoio_tecnico',
+            'bolsistas',
+            'repr_pesquisadores',
+            'repr_social',
+            ]
 
 class CentroMemoriaUpdate(ColetaUpdateView):
     model = CentroMemoria
-    fields= '__all__'
+    fields= [
+            'coordenador',
+            'situacao_implementacao',
+            'situacao_acervo_fisico',
+            'tema',
+            'pesquisadores_envolvidos',
+            'bolsistas_envolvidos',
+            'localizacao_digital',
+            'num_titulos',
+            ]
 
 class PesquisaCreate(ColetaCreateView):
     model = Pesquisa
@@ -77,11 +99,41 @@ class PesquisaDelete(DeleteView):
 
 class EventoCreate(ColetaCreateView):
     model = Evento
-    fields = '__all__'
+    fields = [
+        'nome',
+        'tipo',
+        'abrangencia',
+        'coordenador_evento',
+        'tema',
+        'data_inicio',
+        'data_fim',
+        'num_participantes',
+        'palestrantes',
+        'publico_alvo',
+        'descricao',
+        'local',
+        'pesquisadores_envolvidos',
+        'bolsistas_envolvidos',
+    ]
     success_url = reverse_lazy('evento-list')
 class EventoUpdate(UpdateView):
     model = Evento
-    fields = '__all__'
+    fields = [
+        'nome',
+        'tipo',
+        'abrangencia',
+        'coordenador_evento',
+        'tema',
+        'data_inicio',
+        'data_fim',
+        'num_participantes',
+        'palestrantes',
+        'publico_alvo',
+        'descricao',
+        'local',
+        'pesquisadores_envolvidos',
+        'bolsistas_envolvidos',
+    ]
     success_url = reverse_lazy('evento-list')
 class EventoList(ColetaListView):
     model = Evento
@@ -92,11 +144,25 @@ class EventoDetail(DetailView):
 
 class PublicacaoCreate(ColetaCreateView):
     model = Publicacao
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'autor',
+        'abrangencia',
+        'referencia_abnt',
+        'localizacao_digital',
+    ]
     success_url = reverse_lazy('publicacao-list')
 class PublicacaoUpdate(UpdateView):
     model = Publicacao
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'autor',
+        'abrangencia',
+        'referencia_abnt',
+        'localizacao_digital',
+    ]
 class PublicacaoList(ColetaListView):
     model = Publicacao
 class PublicacaoDetail(DetailView):
@@ -107,11 +173,27 @@ class PublicacaoDelete(DeleteView):
 
 class DifusaoCreate(ColetaCreateView):
     model = DifusaoMidiatica
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'data_inicio',
+        'localizacao_digital',
+        'coordenador',
+        'bolsistas_envolvidos',
+        'publico_alvo',
+    ]
     success_url = reverse_lazy('difusao-list')
 class DifusaoUpdate(UpdateView):
     model = DifusaoMidiatica
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'data_inicio',
+        'localizacao_digital',
+        'coordenador',
+        'bolsistas_envolvidos',
+        'publico_alvo',
+    ]
 class DifusaoList(ColetaListView):
     model = DifusaoMidiatica
 class DifusaoDelete(DeleteView):
@@ -122,11 +204,41 @@ class DifusaoDetail(DetailView):
 
 class FormacaoCreate(ColetaCreateView):
     model = AtividadeFormacao
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'coordenador_formacao',
+        'tema',
+        'data_inicio',
+        'data_fim',
+        'total_horas',
+        'num_participantes',
+        'palestrantes',
+        'publico_alvo',
+        'descricao',
+        'local',
+        'pesquisadores_envolvidos',
+        'bolsistas_envolvidos',
+    ]
     success_url = reverse_lazy('formacao-list')
 class FormacaoUpdate(UpdateView):
     model = AtividadeFormacao
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'coordenador_formacao',
+        'tema',
+        'data_inicio',
+        'data_fim',
+        'total_horas',
+        'num_participantes',
+        'palestrantes',
+        'publico_alvo',
+        'descricao',
+        'local',
+        'pesquisadores_envolvidos',
+        'bolsistas_envolvidos',
+    ]
 class FormacaoList(ColetaListView):
     model = AtividadeFormacao
 class FormacaoDelete(DeleteView):
@@ -138,11 +250,27 @@ class FormacaoDetail(DetailView):
 
 class OrientacaoCreate(ColetaCreateView):
     model = Orientacao
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'data_inicio',
+        'data_fim',
+        'orientador',
+        'autor',
+        'descricao',
+    ]
     success_url = reverse_lazy('orientacao-list')
 class OrientacaoUpdate(UpdateView):
     model = Orientacao
-    fields = '__all__'
+    fields = [
+        'titulo',
+        'tipo',
+        'data_inicio',
+        'data_fim',
+        'orientador',
+        'autor',
+        'descricao',
+    ]
 class OrientacaoList(ColetaListView):
     model = Orientacao
 class OrientacaoDelete(DeleteView):
@@ -153,11 +281,29 @@ class OrientacaoDetail(DetailView):
 
 class IntercambioCreate(ColetaCreateView):
     model = Intercambio
-    fields = '__all__'
+    fields = [
+        'coordenador',
+        'estudante_bolsista',
+        'data_inicio',
+        'data_fim',
+        'local',
+        'ambito',
+        'grupos_estudo',
+        'descricao',
+    ]
     success_url = reverse_lazy('intercambio-list')
 class IntercambioUpdate(UpdateView):
     model = Intercambio
-    fields = '__all__'
+    fields = [
+        'coordenador',
+        'estudante_bolsista',
+        'data_inicio',
+        'data_fim',
+        'local',
+        'ambito',
+        'grupos_estudo',
+        'descricao',
+    ]
 class IntercambioList(ColetaListView):
     model = Intercambio
 class IntercambioDelete(DeleteView):
@@ -168,11 +314,33 @@ class IntercambioDetail(DetailView):
 
 class IntervencaoCreate(ColetaCreateView):
     model = IntervencaoPolitica
-    fields = '__all__'
+    fields = [
+        'coordenador',
+        'nivel_governo',
+        'ambito',
+        'data_inicio',
+        'data_fim',
+        'local',
+        'descricao',
+        'publico_alvo',
+        'pesquisadores_envolvidos',
+        'bolsistas_envolvidos',
+    ]
     success_url = reverse_lazy('intervencao-list')
 class IntervencaoUpdate(UpdateView):
     model = IntervencaoPolitica
-    fields = '__all__'
+    fields = [
+        'coordenador',
+        'nivel_governo',
+        'ambito',
+        'data_inicio',
+        'data_fim',
+        'local',
+        'descricao',
+        'publico_alvo',
+        'pesquisadores_envolvidos',
+        'bolsistas_envolvidos',
+    ]
 class IntervencaoList(ColetaListView):
     model = IntervencaoPolitica
 class IntervencaoDelete(DeleteView):
