@@ -1,21 +1,14 @@
-{% extends 'cedes/base.html' %}
-{% block title %}Rede CEDES - Adicionar Pesquisas{% endblock %}
+{% extends 'coleta/base-coleta-2.html' %}
+{% block title %}Rede CEDES - Pesquisas{% endblock %}
 {% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
 {% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
 {% load static %}
-{% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h1 class="titulo">ADICIONE PESQUISAS</h1>
-      <a href="/coleta/pesquisa/list/" class="btn btn-sm btn-terceiro bt-voltar">VOLTAR PARA LISTA DE PESQUISAS</a>
-    </div>
-  </div>
-</div>
+{% block title-coleta %}ADICIONE UMA ORIENTAÇÃO{% endblock %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
+
+{% block content %}
+
+    <div class="col-lg-8">
       <div class="card mb-3">
           <div class="card-block">
             <form role="form" class="form" method="{% block form_method %}post{% endblock %}" enctype="multipart/form-data">
@@ -23,8 +16,6 @@
 {% csrf_token %}
 {# Only add visible fields #}
 {% for field in form.visible_fields %}
-              <div class="row">
-                <div class="col-12">
                   <div class="form-group">
                     <label class="control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
 
@@ -40,8 +31,6 @@
 {% endif %}
 
                 </div>
-              </div>
-            </div>
 
 {% endfor %}
 {% for field in form.hidden_fields %}{{field}}{% endfor %}
@@ -53,6 +42,4 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 {% endblock %}
