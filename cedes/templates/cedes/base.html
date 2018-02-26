@@ -76,7 +76,8 @@
             </div>
             <!-- Mapas ME -->
             <div class="col-lg-6">
-              <div id='map-contato'>
+              <img src="{% static 'img/contato-brasilia.jpg' %}" class="img-fluid" alt="Brasília">
+              <!--<div id='map-contato'>
               </div>
               <script>
               mapboxgl.accessToken = 'pk.eyJ1IjoicmRmZXJyYXJpIiwiYSI6ImNpcDQ4Nm12YjAwNnJsZ20zOXdmc29obmcifQ.Shb8a3P1XAV8cPWR1yGDTA';
@@ -84,11 +85,53 @@
                 container: 'map-contato', // container id
                 style: 'mapbox://styles/rdferrari/cjdaho14a56e92spkkw4clu90', // stylesheet location
                 center: [-47.9124508, -15.7876598], // starting position [lng, lat]
-                zoom: 14 // starting zoom
+                zoom: 15, // starting zoom
+                pitch: 45,
+                bearing: -17.6,
+                hash: true
               });
 
+              // The 'building' layer in the mapbox-streets vector source contains building-height
+              // data from OpenStreetMap.
+              map.on('load', function() {
+                  // Insert the layer beneath any symbol layer.
+                  var layers = map.getStyle().layers;
 
-              </script>
+                  var labelLayerId;
+                  for (var i = 0; i < layers.length; i++) {
+                      if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                          labelLayerId = layers[i].id;
+                          break;
+                      }
+                  }
+
+                  map.addLayer({
+                      'id': '3d-buildings',
+                      'source': 'composite',
+                      'source-layer': 'building',
+                      'filter': ['==', 'extrude', 'true'],
+                      'type': 'fill-extrusion',
+                      'minzoom': 15,
+                      'paint': {
+                          'fill-extrusion-color': '#aaa',
+
+                          // use an 'interpolate' expression to add a smooth transition effect to the
+                          // buildings as the user zooms in
+                          'fill-extrusion-height': [
+                              "interpolate", ["linear"], ["zoom"],
+                              15, 0,
+                              15.05, ["get", "height"]
+                          ],
+                          'fill-extrusion-base': [
+                              "interpolate", ["linear"], ["zoom"],
+                              15, 0,
+                              15.05, ["get", "min_height"]
+                          ],
+                          'fill-extrusion-opacity': .6
+                      }
+                  }, labelLayerId);
+              });
+              </script>-->
             </div>
             <!-- Contato -->
             <div class="col-lg-6">

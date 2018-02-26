@@ -14,7 +14,7 @@
 
     <div class="card mb-3">
       <div class="card-block">
-          <a href="/<centro>/pesquisa/<pk>/update/"><h4 class="card-title">{{ pesquisa.nome }}</h4></a>
+          <a href="coleta/<centro>/pesquisa/<pk>/update/"><h4 class="card-title">{{ pesquisa.nome }}</h4></a>
           <p>{{ pesquisa.linha_human_readable }}</p>
           <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/update/">[ Editar ]</a>
           <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
@@ -23,7 +23,7 @@
 
       {% empty %}
 
-              <li>No pesquisas yet.</li>
+              <li>Não há pesquisas.</li>
 
       {% endfor %}
     </div>
