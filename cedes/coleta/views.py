@@ -56,7 +56,6 @@ class ColetaListView(ListView):
 class EstruturaFisicaUpdate(ColetaUpdateView):
     model = EstruturaFisica
     fields= [
-            'centro',
             'tem_sede',
             'tem_banner',
             'tem_internet',
