@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import  ListView, DetailView
+from django.views.generic.edit import (
+    CreateView, UpdateView, DeleteView)
+from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 from .models import *
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
+
+
 def index(request):
     return render(request,'coleta/index_geral.html')
 
@@ -82,9 +85,12 @@ class CentroMemoriaUpdate(ColetaUpdateView):
             'num_titulos',
             ]
 
+
 class PesquisaCreate(ColetaCreateView):
     model = Pesquisa
     fields = ['nome','linha','grupo_pesquisa']
+
+
 class PesquisaUpdate(ColetaUpdateView):
     model = Pesquisa
     fields = ['nome','linha','grupo_pesquisa']
