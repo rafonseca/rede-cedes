@@ -1,21 +1,128 @@
-{% extends "account/base.html" %}
+{% extends 'coleta/base-coleta.html' %}
+{% block title %}Rede CEDES{% endblock %}
+{% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
+{% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
+{% block js %}{% endblock js %}
+{% load static %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Out" %}</h1>
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+<div class="container">
+  <div id="coleta-head" class="row">
+    <div id="logout-fundo" class="col-lg-6">
+      <h2 class="titulo">SAIR</h2>
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+      <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+      <form method="post" action="{% url 'account_logout' %}">
+      {% csrf_token %}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+      {% endif %}
+        <button class="btn btn-primeiro" type="submit">{% trans 'Sign Out' %}</button>
+      </form>
+    </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="img-fluid" src="{% static 'coleta/1-estrutura.svg' %}">
+          <div class="card-block">
+            <h4>Estrutura Física</h4>
+          </p><a href="/coleta/{{centro}}/estrutura/update/">[ Atualizar ]</a></p>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="img-fluid" src="{% static 'coleta/2-pesquisa.svg' %}">
+            <div class="card-block">
+              <h4>Pesquisas</h4>
+            </p><a href="/coleta/{{centro}}/pesquisa/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/pesquisa/add/">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+  </div>
+      <div class="row">
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/3-evento.svg' %}">
+            <div class="card-block">
+              <h4>Eventos</h4>
+            </p><a href="/coleta/{{centro}}/evento/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/evento/add/">[ Adicionar ]</a></p>
+            </div>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/4-publicacao.svg' %}">
+            <div class="card-block">
+              <h4>Publicações</h4>
+              </p><a href="/coleta/{{centro}}/publicacao/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/publicacao/add/">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/5-difusao.svg' %}">
+            <div class="card-block">
+              <h4>Difusões</h4>
+              </p><a href="/coleta/{{centro}}/difusao/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/difusao/add/">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/6-formacao.svg' %}">
+            <div class="card-block">
+              <h4>Formações</h4>
+              </p><a href="/coleta/{{centro}}/formacao/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/formacao/add/">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/7-orientacao.svg' %}">
+            <div class="card-block">
+              <h4>Orientações</h4>
+              </p><a href="/coleta/{{centro}}/orientacao/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/orientacao/add/">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/8-intercambio.svg' %}">
+            <div class="card-block">
+              <h4>Intercâmbios</h4>
+              </p><a href="/coleta/{{centro}}/intercambio/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/intercambio/add/">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/9-intervencao.svg' %}">
+            <div class="card-block">
+              <h4>Intervenções</h4>
+              </p><a href="/coleta/{{centro}}/intervencao/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/intervencao/add/">[ Adicionar ]</a></p>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="card mb-3 rounded-0">
+          <img class="card-img-top img-fluid" src="{% static 'coleta/10-memoria.svg' %}">
+            <div class="card-block">
+              <h4>Centros de Memória</h4>
+            </p><a href="/coleta/{{centro}}/centromemoria/update/">[ Atualizar ]</a></p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 {% endblock %}

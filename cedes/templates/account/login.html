@@ -1,4 +1,9 @@
-{% extends "account/base.html" %}
+{% extends 'cedes/base.html' %}
+{% block title %}Rede CEDES{% endblock %}
+{% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
+{% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
+{% block js %}{% endblock js %}
+{% load static %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -7,7 +12,13 @@
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div class="container log-account">
+  <div class="row">
+<div class="col-lg-6 log-account">
+  <div class="card rounded-0">
+    <div class="card-block">
+
+<h2 class="titulo">ENTRAR</h2>
 
 {% get_providers as socialaccount_providers %}
 
@@ -40,7 +51,16 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+  <button class="primaryAction btn btn-primeiro btn-block" type="submit">{% trans "Sign In" %}</button>
 </form>
+
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
 
 {% endblock %}
