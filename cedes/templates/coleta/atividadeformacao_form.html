@@ -1,0 +1,49 @@
+{% extends 'coleta/base-coleta-2.html' %}
+{% block title %}Rede CEDES - Pesquisas{% endblock %}
+{% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
+{% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
+{% load static %}
+{% block title-coleta %}ADICIONE UMA FORMAÇÃO{% endblock %}
+
+
+{% block content %}
+
+    <div class="col-lg-8">
+      <div class="card mb-3">
+          <div class="card-block">
+            <form role="form" class="form" method="{% block form_method %}post{% endblock %}" enctype="multipart/form-data">
+
+{% csrf_token %}
+{# Only add visible fields #}
+{% for field in form.visible_fields %}
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label class="control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+
+{{ field }}
+{% if field.errors %}
+
+                <div class="control-label" for="inputError">
+
+{{ field.errors.as_text }}
+
+                </div>
+
+{% endif %}
+
+                </div>
+              </div>
+            </div>
+
+{% endfor %}
+{% for field in form.hidden_fields %}{{field}}{% endfor %}
+
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-primeiro btn-block">SALVAR</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+{% endblock %}
