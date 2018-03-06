@@ -3,7 +3,7 @@
 {% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
 {% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
 {% load static %}
-{% block title-coleta %}LISTA DE INTERCÂMBIO{% endblock %}
+{% block title-coleta %}LISTA DE INTERVENÇÕES{% endblock %}
 
 
 {% block content %}
@@ -14,11 +14,10 @@
 
 {% for pesquisa in object_list %}
 
-            <div class="card-block">
-              <a href="/coleta/{{ pesquisa.centro }}/intercambio/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.coordenador }}</h4></a>
-              <p>{{ pesquisa.local }}</p>
-              <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/intercambio/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-              <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/intercambio/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
+              <a href="/coleta/pesquisa/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.coordenador }}</h4></a>
+              <p>{{ pesquisa.nivel_governo }}</p>
+              <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+              <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
             </div>
 
         </div>
@@ -29,7 +28,5 @@
               <p>Não há pesquisas</p>
 
       {% endfor %}
-
-    </div>
 
 {% endblock %}

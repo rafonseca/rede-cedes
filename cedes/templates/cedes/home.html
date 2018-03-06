@@ -8,7 +8,7 @@
 <!-- Conteúdos -->
 <!-- Head Home -->
   <div class="img-header">
-    <img src="{% static 'img/head-home.jpg' %}" class="img-fluid" alt="Capas de Livros Rede CEDES">
+    <img src="{% static 'img/head-home-s.jpg' %}" class="img-fluid" alt="Capas de Livros Rede CEDES">
   </div>
   <div class="container">
     <div class="row">
@@ -130,6 +130,67 @@
           </script>
         </div>
       </div>
+
+
+    <div class="row">
+      <div class="col-12 chart-investimeto">
+        <p>R$ 11 482 935 aprovados para investimentos no Edital de 2015</p>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+        </script>
+        <div id="dual_x_div-2" style="height: 600px">
+          <script>
+          google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawStuff);
+
+        function drawStuff() {
+          var data = new google.visualization.arrayToDataTable([
+            ['Entidade Parceira', 'Valor do Projeto em R$'],
+            ['Universidade Federal do Acre - UFAC', 422603],
+            ['Universidade Federal do Amapá - UNIFAP', 164626],
+            ['Universidade Federal do Amazonas - UFAM', 206831],
+            ['Universidade Federal do Pará - UFPA', 384605],
+            ['Universidade Federal de Rondônia - UNIR', 213336],
+            ['Instituto Federal de Educação, C&T de Roraima - IFRR', 186045],
+            ['Universidade Federal do Tocantins - UFT', 318585],
+            ['Universidade Federal de Alagoas - UFAL', 293570],
+            ['Universidade Federal da Bahia - UFBA', 632829],
+            ['Instituto Federal de Educação C&T do Ceará - IFCE', 340267],
+            ['Fundação Universidade Federal do Maranhão - UFMA', 228937],
+            ['Universidade Estadual da Paraíba – UEPB', 447920],
+            ['Universidade Federal de Pernambuco - UFPE', 944278],
+            ['Universidade Federal do Vale do São Francisco - UNIVASF', 530496],
+            ['Universidade Federal do Rio Grande do Norte - UFRN', 759885],
+            ['Universidade Federal de Sergipe - UFS', 780156],
+            ['Universidade de Brasília - UNB', 333240],
+            ['Universidade Federal de Goiás - UFG', 227559],
+            ['Universidade do Estado do Mato Grosso - UNEMAT', 548622],
+            ['Universidade Federal do Mato Grosso do Sul', 228911],
+            ['Universidade Federal do Espírito Santo - UFES', 150514],
+            ['Universidade Federal de Minas Gerais - UFMG', 701798],
+            ['Universidade Federal do Rio de Janeiro - UFRJ', 393660],
+            ['Universidade Federal de São Paulo - UNIFESP', 230674],
+            ['Universidade Federal do Paraná - UFPR', 989998],
+            ['Universidade Federal do Rio Grande do Sul - UFRGS', 633341],
+            ['Universidade Federal de Santa Catariana - UFSC', 192639]
+          ]);
+
+          var options = {
+            width: 1000,
+            chart: {
+              subtitle: 'CDPPEL - Rede CEDES'
+            },
+            bars: 'horizontal', // Required for Material Bar Charts.
+            colors: ['#BA8D00']
+          };
+
+        var chart = new google.charts.Bar(document.getElementById('dual_x_div-2'));
+        chart.draw(data, options);
+      };
+          </script>
+        </div>
+      </div>
+      </div>
+
 <!-- Blog -->
 </section>
   <section id="invert">

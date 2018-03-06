@@ -43,7 +43,7 @@
             <a class="nav-link" href="/coleta/">Centros</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/">Sair</a>
+            <a class="nav-link" href="/accounts/logout/">Sair</a>
           </li>
           <!-- Menus Extras
           <li class="nav-item">
@@ -68,13 +68,14 @@
       <div class="row">
         <div class="col-12">
           <h2 class="titulo-coleta">{% block title-coleta %}{% endblock %}</h2>
-        </p>{nome universidade} <a href="/coleta/{{centro}}/">[ Voltar ]</a></p>
+        </p><a href="/coleta/{{centro}}/">[ Voltar ]</a></p>
         </div>
 
     <!-- Conteúdos -->
     {% block content %}
     {% endblock content %}
     <!-- Rodapé Base -->
+
 
     <div class="col-lg-4">
       <div id="coleta-menu-lateral" class="row">
@@ -83,7 +84,7 @@
           <img class="img-fluid" src="{% static 'coleta/1-estrutura.svg' %}">
           <div class="card-block">
             <h5>Estrutura Física</h5>
-          </p><a class="texto-pequeno" href="/coleta/{{centro}}/estrutura/update/">[ Atualizar ]</a></p>
+          </p><a class="texto-pequeno" href="/coleta/{{centro}}/estrutura/update/">Atualizar</a></p>
           </div>
         </div>
       </div>
@@ -101,7 +102,7 @@
           <img class="img-fluid" src="{% static 'coleta/3-evento.svg' %}">
             <div class="card-block">
               <h5>Eventos</h5>
-              </p><a class="texto-pequeno" href="/coleta/{{centro}}/eventos/list/">[ Lista ]</a>  <a class="texto-pequeno" href="/coleta/{{centro}}/eventos/add/">[ Adicionar ]</a></p>
+              </p><a class="texto-pequeno" href="/coleta/{{centro}}/evento/list/">[ Lista ]</a>  <a class="texto-pequeno" href="/coleta/{{centro}}/evento/add/">[ Adicionar ]</a></p>
             </div>
         </div>
       </div>
@@ -169,8 +170,11 @@
         </div>
       </div>
 
-</div>
-      </div>
+    </div>
+  </div>
+
+
+
     </div>
     </div>
 
@@ -180,66 +184,9 @@
           <div class="col-12">
             <h1 class="titulo">| CONTATO REDE CEDES</h1>
           </div>
-          <!-- Mapas ME -->
           <div class="col-lg-6">
             <img src="{% static 'img/contato-brasilia.jpg' %}" class="img-fluid" alt="Brasília">
-            <!--<div id='map-contato'>
-            </div>
-            <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoicmRmZXJyYXJpIiwiYSI6ImNpcDQ4Nm12YjAwNnJsZ20zOXdmc29obmcifQ.Shb8a3P1XAV8cPWR1yGDTA';
-            var map = new mapboxgl.Map({
-              container: 'map-contato', // container id
-              style: 'mapbox://styles/rdferrari/cjdaho14a56e92spkkw4clu90', // stylesheet location
-              center: [-47.9124508, -15.7876598], // starting position [lng, lat]
-              zoom: 15, // starting zoom
-              pitch: 45,
-              bearing: -17.6,
-              hash: true
-            });
-
-            // The 'building' layer in the mapbox-streets vector source contains building-height
-            // data from OpenStreetMap.
-            map.on('load', function() {
-                // Insert the layer beneath any symbol layer.
-                var layers = map.getStyle().layers;
-
-                var labelLayerId;
-                for (var i = 0; i < layers.length; i++) {
-                    if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-                        labelLayerId = layers[i].id;
-                        break;
-                    }
-                }
-
-                map.addLayer({
-                    'id': '3d-buildings',
-                    'source': 'composite',
-                    'source-layer': 'building',
-                    'filter': ['==', 'extrude', 'true'],
-                    'type': 'fill-extrusion',
-                    'minzoom': 15,
-                    'paint': {
-                        'fill-extrusion-color': '#aaa',
-
-                        // use an 'interpolate' expression to add a smooth transition effect to the
-                        // buildings as the user zooms in
-                        'fill-extrusion-height': [
-                            "interpolate", ["linear"], ["zoom"],
-                            15, 0,
-                            15.05, ["get", "height"]
-                        ],
-                        'fill-extrusion-base': [
-                            "interpolate", ["linear"], ["zoom"],
-                            15, 0,
-                            15.05, ["get", "min_height"]
-                        ],
-                        'fill-extrusion-opacity': .6
-                    }
-                }, labelLayerId);
-            });
-            </script>-->
           </div>
-          <!-- Contato -->
           <div class="col-lg-6">
             <h3 class="titulo">Endereço Ministério do Esporte</h3>
             <p>SHCS 04 Centro Empresarial Capital Financial Center 83 - Brasília, DF, 70297-400.</p>

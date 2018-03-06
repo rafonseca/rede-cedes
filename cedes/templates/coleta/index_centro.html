@@ -10,7 +10,7 @@
   <div id="coleta-head" class="row">
     <div class="col-lg-6">
       <h2 class="titulo-coleta">{{nome_universidade}}</h2>
-      <p>{{ request.user.first_name }}, bem vindo ao sistema de coleta e atualizações dos dados dos CDPPEL da {nome da Universidade} para monitoramento e avaliação Nacional da Rede CEDES.</p>
+      <p>{{ request.user.first_name }}, bem vindo ao sistema de coleta e atualizações dos dados dos CDPPEL da {{nome_universidade}} para monitoramento e avaliação Nacional da Rede CEDES.</p>
     </div>
       <div class="col-lg-3 col-6">
         <div class="card mb-3">
@@ -38,7 +38,7 @@
           <img class="card-img-top img-fluid" src="{% static 'coleta/3-evento.svg' %}">
             <div class="card-block">
               <h4>Eventos</h4>
-            </p><a href="/coleta/{{centro}}/eventos/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/eventos/add/">[ Adicionar ]</a></p>
+            </p><a href="/coleta/{{centro}}/evento/list/">[ Lista ]</a>  <a href="/coleta/{{centro}}/evento/add/">[ Adicionar ]</a></p>
             </div>
 
         </div>

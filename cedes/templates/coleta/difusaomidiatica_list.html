@@ -14,17 +14,18 @@
 
 {% for pesquisa in object_list %}
 
-              <a href="/coleta/{{ pesquisa.centro }}/publicacao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
-              <p>{{ pesquisa.autor }}</p>
-              <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/publicacao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-              <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/publicacao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
+              <a href="/coleta/pesquisa/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
+              <p>{{ pesquisa.tipo }}</p>
+              <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+              <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
+            </div>
+
         </div>
       </div>
-    </div>
 
-    {% empty %}
+      {% empty %}
 
-            <p>Não há publicações</p>
+              <p>Não há pesquisas.</p>
 
       {% endfor %}
 

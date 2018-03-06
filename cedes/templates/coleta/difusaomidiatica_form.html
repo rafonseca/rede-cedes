@@ -3,7 +3,7 @@
 {% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
 {% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
 {% load static %}
-{% block title-coleta %}ADICIONE UMA PUBLICAÇÃO{% endblock %}
+{% block title-coleta %}ADICIONAR DIFUSÃO{% endblock %}
 
 
 {% block content %}
@@ -17,29 +17,31 @@
 {# Only add visible fields #}
 {% for field in form.visible_fields %}
 
-                <div class="form-group">
-                  <label class="control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+              <div class="form-group">
+                <label class="control-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+
 {{ field }}
 {% if field.errors %}
 
-                  <div class="control-label" for="inputError">
+                <div class="control-label" for="inputError">
 
 {{ field.errors.as_text }}
 
-                  </div>
+                </div>
 
 {% endif %}
+
                 </div>
 
-{% endfor %}
-{% for field in form.hidden_fields %}{{field}}{% endfor %}
+                {% endfor %}
+                {% for field in form.hidden_fields %}{{field}}{% endfor %}
 
-                <div class="col-md-12">
-                  <button type="submit" class="btn btn-primeiro btn-block">SALVAR</button>
-                </div>
-            </form>
-          </div>
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-primeiro btn-block">SALVAR</button>
+                  </div>
+                </form>
+              </div>
+            </div>       
         </div>
-      </div>
 
 {% endblock %}

@@ -212,6 +212,14 @@ input {
   margin-left: 20px;
 }
 
+.log-account {
+  padding-top: 50px;
+}
+
+.chart-investimeto {
+  margin-top: 50px;
+}
+
 /****** Coleta *********/
 
 #admin-form {
@@ -268,6 +276,10 @@ input {
   padding: 0 10px 10px 0;
 }
 
+#logout-fundo {
+  margin: 0 0 20px 0;
+  padding: 50px;
+}
 
 /****** Responsive *********/
 
