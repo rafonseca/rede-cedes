@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 
 
 def index(request):
-    return render(request,'coleta/index_geral.html')
+    return render(request, 'coleta/index_geral.html')
 
 
 def index_centro(request, centro):
@@ -42,6 +42,19 @@ class ColetaUpdateView(UserPassesTestMixin, UpdateView):
         gestores = obj.centro.gestores.all()
         return self.request.user in gestores
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(
+            ColetaUpdateView, self).get_context_data(*args, **kwargs)
+        centro = self.kwargs['centro']
+        centro_object = CentroPesquisa.objects.get(uf=centro)
+        extra_context = {
+            'centro': centro_object.uf,
+            'nome_estado': centro_object.nome_estado,
+            'nome_universidade': centro_object.ies,
+            }
+        context.update(extra_context)
+        return context
+
 
 class ColetaCreateView(UserPassesTestMixin, CreateView):
     slug_field = 'centro'
@@ -61,10 +74,36 @@ class ColetaCreateView(UserPassesTestMixin, CreateView):
         return HttpResponseRedirect(reverse('pesquisa-list',
                                             kwargs={'centro': centro}))
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(
+            ColetaCreateView, self).get_context_data(*args, **kwargs)
+        centro = self.kwargs['centro']
+        centro_object = CentroPesquisa.objects.get(uf=centro)
+        extra_context = {
+            'centro': centro_object.uf,
+            'nome_estado': centro_object.nome_estado,
+            'nome_universidade': centro_object.ies,
+            }
+        context.update(extra_context)
+        return context
+
 
 class ColetaListView(ListView):
     def get_queryset(self):
         return super().get_queryset().filter(centro=self.kwargs['centro'])
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(
+            ColetaListView, self).get_context_data(*args, **kwargs)
+        centro = self.kwargs['centro']
+        centro_object = CentroPesquisa.objects.get(uf=centro)
+        extra_context = {
+            'centro': centro_object.uf,
+            'nome_estado': centro_object.nome_estado,
+            'nome_universidade': centro_object.ies,
+            }
+        context.update(extra_context)
+        return context
 
 
 class EstruturaFisicaUpdate(ColetaUpdateView):
