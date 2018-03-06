@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,19 +19,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4bav&4fs80_zf^l8a_j!zo1i-8qd(%+r$*fzch0io-(yg_!raj'
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['198.199.77.36']
-if DEBUG:
-    ALLOWED_HOSTS += ['127.0.0.1']
+RUNNING_DEVSERVER = (len(sys.argv) > 1 and sys.argv[1] == 'runserver')
+if RUNNING_DEVSERVER:
+    DEBUG = True
+    SECRET_KEY = '4bav&4fs80_zf^l8a_j!zo1i-8qd(%+r$*fzch0io-(yg_!raj'
+    ALLOWED_HOSTS = ['127.0.0.1']
+else:
+    DEBUG = False
+    with open('./secret_key.txt') as f:
+        SECRET_KEY = f.read().strip()
+    ALLOWED_HOSTS = ['198.199.77.36']
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
