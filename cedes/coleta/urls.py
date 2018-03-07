@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     path('',index,name='index-geral'),
-    path('<centro>/',index_centro,name='index-centro'),
+    path('<centro>/',CentroPesquisaDetail.as_view(),name='index-centro'),
 
     #objetivo estrutura física
     path('<centro>/estrutura/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),

@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
 from django.views.generic import ListView, DetailView
+from django.views import View
 from django.urls import reverse_lazy
 from .models import *
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
 
 
@@ -12,22 +14,19 @@ def index(request):
     return render(request, 'coleta/index_geral.html')
 
 
-def index_centro(request, centro):
-    # print(request,centro)
-    centro_object = CentroPesquisa.objects.get(uf=centro)
-    lista1 = ['1a', '1b', '1c']
-    lista2 = ['2a', '2b', '2c']
-    lista3 = ['3a', '3b', '3c']
-    lista_de_listas = [lista1, lista2, lista3]
+class CentroPesquisaDetail(UserPassesTestMixin, DetailView):
+    model = CentroPesquisa
+    slug_field = 'uf'
+    slug_url_kwarg = 'centro'
+    template_name = 'coleta/index_centro.html'
 
-    return render(request, 'coleta/index_centro.html',
-                  context={
-                      'centro': centro_object.uf,
-                      'nome_estado': centro_object.nome_estado,
-                      'nome_universidade': centro_object.ies,
-                      'jogo_facil': lista1,
-                      'jogo_dificil': lista_de_listas,
-                      })
+    def test_func(self):
+        # self.success_url = reverse_lazy('index-centro',
+        # kwargs={'centro':self.kwargs['centro']})
+        self.redirect_field_name = None
+        obj = self.get_object()
+        gestores = obj.gestores.all()
+        return self.request.user in gestores
 
 
 class ColetaUpdateView(UserPassesTestMixin, UpdateView):
