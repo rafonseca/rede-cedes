@@ -15,7 +15,7 @@
 {% for pesquisa in object_list %}
 
               <a href="/coleta/{{ pesquisa.centro }}/evento/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.nome }}</h4></a>
-              <p>{{ pesquisa.tipo }}</p>
+              <p>{{ pesquisa.tipo_human_readable }}</p>
               <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/evento/{{ pesquisa.pk }}/update/">[ Editar ]</a>
               <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/evento/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
             </div>

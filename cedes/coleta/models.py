@@ -174,26 +174,34 @@ class Pesquisador(models.Model):
     def __str__(self):
         return self.nome
 
+
 # ### Modelos da Meta 3
-
 class Evento(models.Model):
-    centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True,)
+    centro = models.ForeignKey(
+        CentroPesquisa, on_delete=models.CASCADE, null=True,)
     nome = models.CharField(max_length=200)
-    tipo=models.CharField(max_length=2,choices=TIPO_EVENTO_CHOICES,)
-    abrangencia =models.CharField(max_length=2,choices=ABRANGENCIA_CHOICES,)
-    coordenador_evento= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,)
+    tipo = models.CharField(max_length=2, choices=TIPO_EVENTO_CHOICES,)
+    abrangencia = models.CharField(max_length=2, choices=ABRANGENCIA_CHOICES,)
+    coordenador_evento = models.ForeignKey(
+        Pesquisador, on_delete=models.CASCADE, null=True,)
 
-    #campos não obrigatórios
-    tema = models.CharField(max_length=200,blank=True)
-    data_inicio=models.DateField(null=True,blank=True)
-    data_fim=models.DateField(null=True,blank=True)
-    num_participantes= models.IntegerField(null=True,blank=True)
-    palestrantes= models.CharField(max_length=1000,blank=True)
-    publico_alvo=  models.CharField(max_length=1000,blank=True)
-    descricao= models.CharField(max_length=2000,blank=True)
-    local= models.CharField(max_length=1000,blank=True)
-    pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_pesquisador',blank=True)
-    bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='evento_como_bolsista',blank=True)
+    # campos não obrigatórios
+    tema = models.CharField(max_length=200, blank=True)
+    data_inicio = models.DateField(null=True, blank=True)
+    data_fim = models.DateField(null=True, blank=True)
+    num_participantes = models.IntegerField(null=True, blank=True)
+    palestrantes = models.CharField(max_length=1000, blank=True)
+    publico_alvo = models.CharField(max_length=1000, blank=True)
+    descricao = models.CharField(max_length=2000, blank=True)
+    local = models.CharField(max_length=1000, blank=True)
+    pesquisadores_envolvidos = models.ManyToManyField(
+        Pesquisador, related_name='evento_como_pesquisador', blank=True)
+    bolsistas_envolvidos = models.ManyToManyField(
+        Pesquisador, related_name='evento_como_bolsista', blank=True)
+
+    def tipo_human_readable(self):
+        tipo_dict = {k: v for k, v in TIPO_EVENTO_CHOICES}
+        return (tipo_dict[self.tipo])
 
 # ### Modelos de meta 4,5,6,7
 class Publicacao(models.Model):
