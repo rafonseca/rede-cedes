@@ -9,7 +9,8 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
 from django.forms.models import modelform_factory
-from django.contrib.admin import widgets
+from .labels import *
+
 
 def index(request):
     return render(request, 'coleta/index_geral.html')
@@ -122,7 +123,7 @@ class EstruturaFisicaUpdate(ColetaUpdateView):
             'repr_social',
             ]
 
-from django.forms.widgets import CheckboxSelectMultiple
+
 class CentroMemoriaUpdate(ColetaUpdateView):
     model = CentroMemoria
     # fields =
@@ -139,8 +140,9 @@ class CentroMemoriaUpdate(ColetaUpdateView):
                 'num_titulos',
                 ],
         widgets={
-            'pesquisadores_envolvidos': widgets.FilteredSelectMultiple(verbose_name='what?',is_stacked=True)
-        }
+            # 'pesquisadores_envolvidos': floppyforms.forms.SelectMultiple()
+        },
+        labels=labels_CentroMemoria
         )
 
 
