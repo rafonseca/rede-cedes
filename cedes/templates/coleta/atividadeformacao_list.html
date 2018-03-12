@@ -1,5 +1,5 @@
 {% extends 'coleta/base-coleta-2.html' %}
-{% block title %}Rede CEDES - Pesquisas{% endblock %}
+{% block title %}Rede CEDES - Coleta Formações{% endblock %}
 {% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
 {% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
 {% load static %}
@@ -8,25 +8,25 @@
 
 {% block content %}
 
-    <div class="col-lg-8">
-      <div class="card mb-3">
-          <div class="card-block">
+<div class="col-lg-8">
 
 {% for pesquisa in object_list %}
 
-              <a href="/coleta/pesquisa/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
-              <p>{{ pesquisa.tipo }}</p>
-              <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-              <a class="texto-pequeno" href="/coleta/pesquisa/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
-            </div>
-
-        </div>
+<div class="card mb-3">
+    <div class="card-block">
+        <a href="/coleta/{{ pesquisa.centro }}/formacao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
+        <p>{{ pesquisa.tipo }}</p>
+        <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/formacao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+        <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/formacao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
       </div>
+    </div>
 
-      {% empty %}
+{% empty %}
 
-              <p>Não há pesquisas</p>
+  <p>Não há atividades de formação cadastradas. Deseja <a href="/coleta/{{ pesquisa.centro }}/formacao/add/">adicionar</a> uma?</p>
 
-      {% endfor %}
+{% endfor %}
+
+</div>
 
 {% endblock %}
