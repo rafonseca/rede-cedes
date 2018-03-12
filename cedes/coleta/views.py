@@ -8,7 +8,8 @@ from .models import *
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
-
+from django.forms.models import modelform_factory
+from django.contrib.admin import widgets
 
 def index(request):
     return render(request, 'coleta/index_geral.html')
@@ -21,9 +22,9 @@ class CentroPesquisaDetail(UserPassesTestMixin, DetailView):
     template_name = 'coleta/index_centro.html'
 
     def test_func(self):
-        # self.success_url = reverse_lazy('index-centro',
+        self.success_url = reverse_lazy('index-centro',)
         # kwargs={'centro':self.kwargs['centro']})
-        self.redirect_field_name = None
+        # self.redirect_field_name = None
         obj = self.get_object()
         gestores = obj.gestores.all()
         return self.request.user in gestores
@@ -121,19 +122,26 @@ class EstruturaFisicaUpdate(ColetaUpdateView):
             'repr_social',
             ]
 
-
+from django.forms.widgets import CheckboxSelectMultiple
 class CentroMemoriaUpdate(ColetaUpdateView):
     model = CentroMemoria
-    fields = [
-            'coordenador',
-            'situacao_implementacao',
-            'situacao_acervo_fisico',
-            'tema',
-            'pesquisadores_envolvidos',
-            'bolsistas_envolvidos',
-            'localizacao_digital',
-            'num_titulos',
-            ]
+    # fields =
+    form_class = modelform_factory(
+        model,
+        fields=[
+                'coordenador',
+                'situacao_implementacao',
+                'situacao_acervo_fisico',
+                'tema',
+                'pesquisadores_envolvidos',
+                'bolsistas_envolvidos',
+                'localizacao_digital',
+                'num_titulos',
+                ],
+        widgets={
+            'pesquisadores_envolvidos': widgets.FilteredSelectMultiple(verbose_name='what?',is_stacked=True)
+        }
+        )
 
 
 class PesquisaCreate(ColetaCreateView):
