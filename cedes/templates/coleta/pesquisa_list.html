@@ -8,24 +8,25 @@
 
 {% block content %}
 
-    <div class="col-lg-8">
+<div class="col-lg-8">
 
 {% for pesquisa in object_list %}
 
-    <div class="card mb-3">
-      <div class="card-block">
-          <a href="/coleta/{{ pesquisa.centro }}/pesquisa/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.nome }}</h4></a>
-          <p>{{ pesquisa.linha_human_readable }}</p>
-          <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/pesquisa/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-          <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/pesquisa/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
-      </div>
+  <div class="card mb-3">
+    <div class="card-block">
+      <a href="/coleta/{{ pesquisa.centro }}/pesquisa/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.nome }}</h4></a>
+      <p>{{ pesquisa.linha_human_readable }}</p>
+      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/pesquisa/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/pesquisa/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
     </div>
+  </div>
 
-      {% empty %}
+{% empty %}
 
-              <li>Não há pesquisas.</li>
+  <p>Não há pesquisas cadastradas. Deseja <a href="/coleta/{{pesquisa.centro}}/pesquisa/add/">adicionar</a> uma?</p>
 
-      {% endfor %}
-    </div>
+{% endfor %}
+
+</div>
 
 {% endblock %}
