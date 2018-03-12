@@ -21,16 +21,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
-RUNNING_DEVSERVER = (len(sys.argv) > 1 and sys.argv[1] == 'runserver')
-if RUNNING_DEVSERVER:
-    DEBUG = True
-    SECRET_KEY = '4bav&4fs80_zf^l8a_j!zo1i-8qd(%+r$*fzch0io-(yg_!raj'
-    ALLOWED_HOSTS = ['127.0.0.1']
-else:
-    DEBUG = False
+
+try:
     with open('./secret_key.txt') as f:
         SECRET_KEY = f.read().strip()
     ALLOWED_HOSTS = ['198.199.77.36']
+    DEBUG = False
+except FileNotFoundError:
+    SECRET_KEY = '4bav&4fs80_zf^l8a_j!zo1i-8qd(%+r$*fzch0io-(yg_!raj'
+    ALLOWED_HOSTS = ['127.0.0.1']
+    DEBUG = True
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -98,10 +99,13 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 LOGIN_URL='/accounts/login/'
 LOGIN_REDIRECT_URL='/'
 WSGI_APPLICATION = 'cedes.wsgi.application'
 
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
