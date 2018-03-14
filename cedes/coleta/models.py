@@ -161,6 +161,8 @@ class Pesquisa(models.Model):
     def linha_human_readable(self):
         linha_dict={k:v for k,v in LINHA_CHOICES}
         return (linha_dict[self.linha])
+    def __str__(self):
+        return self.nome
 
 
 
@@ -203,6 +205,9 @@ class Evento(models.Model):
         tipo_dict = {k: v for k, v in TIPO_EVENTO_CHOICES}
         return (tipo_dict[self.tipo])
 
+    def __str__(self):
+        return self.nome
+
 # ### Modelos de meta 4,5,6,7
 class Publicacao(models.Model):
     centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
@@ -214,6 +219,11 @@ class Publicacao(models.Model):
     abrangencia= models.CharField(max_length=2,choices=ABRANGENCIA_CHOICES,blank=True)
     referencia_abnt= models.CharField(max_length=200,blank=True)
     localizacao_digital=models.URLField(blank=True)
+
+    def __str__(self):
+        return self.titulo
+
+
 #Modelos da meta 8
 class DifusaoMidiatica(models.Model):
     centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True)
@@ -226,6 +236,8 @@ class DifusaoMidiatica(models.Model):
     coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,blank=True)
     bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='difusao_como_bolsista',blank=True)
     publico_alvo=  models.CharField(max_length=1000,blank=True)
+    def __str__(self):
+        return self.titulo
 
 #Modelos metas 9,10,11
 #Meta 9: Realização de atividade de formação de equipe.
@@ -247,6 +259,9 @@ class AtividadeFormacao(models.Model):
     local= models.CharField(max_length=1000,blank=True)
     pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_pesquisador',blank=True)
     bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_bolsista',blank=True)
+    def __str__(self):
+        return self.titulo
+
 #Modelos meta 12
 class Orientacao(models.Model):
     centro = models.ForeignKey(CentroPesquisa,on_delete=models.CASCADE,null=True,)
@@ -259,6 +274,8 @@ class Orientacao(models.Model):
     orientador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='orientacao_como_orientador',blank=True)
     autor= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,related_name='orientacao_como_autor',blank=True)
     descricao= models.CharField(max_length=2000,blank=True)
+    def __str__(self):
+        return self.titulo
 #Modelos meta 13
 #intercambio
 class Intercambio(models.Model):
@@ -273,6 +290,8 @@ class Intercambio(models.Model):
     #campos não obrigatórios
     grupos_estudo= models.CharField(max_length=500,blank=True)
     descricao= models.CharField(max_length=2000,blank=True)
+    def __str__(self):
+        return "Intercâmbio: " + self.estudante_bolsista
 
 #Modelos meta 14
 #intervencao politica
