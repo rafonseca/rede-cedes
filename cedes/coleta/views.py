@@ -72,8 +72,9 @@ class ColetaCreateView(UserPassesTestMixin, CreateView):
         centro = self.kwargs['centro']
         self.object.centro = CentroPesquisa.objects.get(uf=centro)
         self.object.save()
-        return HttpResponseRedirect(reverse('pesquisa-list',
-                                            kwargs={'centro': centro}))
+        return HttpResponseRedirect(self.get_success_url())
+        # return HttpResponseRedirect(reverse('pesquisa-list',
+        #                                     kwargs={'centro': centro}))
 
     def get_context_data(self, *args, **kwargs):
         context = super(
