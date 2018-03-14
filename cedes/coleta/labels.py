@@ -1,12 +1,12 @@
 labels_CentroMemoria = {
-    'coordenador': 'coordenador',
-    'situacao_implementacao': 'situacao_implementacao',
-    'situacao_acervo_fisico': 'situacao_acervo_fisico',
+    'coordenador': 'Coordenador:',
+    'situacao_implementacao': 'Situacao de implementação:',
+    'situacao_acervo_fisico': 'Situacao do acervo físico:',
     'tema': 'Tema do Centro de Memória',
-    'pesquisadores_envolvidos': 'pesquisadores_envolvidos',
-    'bolsistas_envolvidos': 'bolsistas_envolvidos',
-    'localizacao_digital': 'localizacao_digital',
-    'num_titulos': 'num_titulos',
+    'pesquisadores_envolvidos': 'Pesquisadores envolvidos:',
+    'bolsistas_envolvidos': 'Bolsistas envolvidos:',
+    'localizacao_digital': 'Localizacao digital:',
+    'num_titulos': 'Número de títulos:',
 }
 
 labels_EstruturaFisica = {
