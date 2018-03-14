@@ -110,24 +110,34 @@ class ColetaListView(ListView):
 
 class EstruturaFisicaUpdate(ColetaUpdateView):
     model = EstruturaFisica
-    fields = [
-            'tem_sede',
-            'tem_banner',
-            'tem_internet',
-            'equip_inf',
-            'moveis',
-            'coordenador',
-            'coord_adj',
-            'apoio_tecnico',
-            'bolsistas',
-            'repr_pesquisadores',
-            'repr_social',
-            ]
+
+    form_class = modelform_factory(
+        model,
+        fields=[
+                'tem_sede',
+                'tem_banner',
+                'tem_internet',
+                'equip_inf',
+                'moveis',
+                'coordenador',
+                'coord_adj',
+                'apoio_tecnico',
+                'bolsistas',
+                'repr_pesquisadores',
+                'repr_social',
+                ],
+        widgets={
+        },
+        labels=labels_EstruturaFisica
+        )
+
+
+    def get_success_url(self):
+        return reverse_lazy('index-centro')
 
 
 class CentroMemoriaUpdate(ColetaUpdateView):
     model = CentroMemoria
-    # fields =
     form_class = modelform_factory(
         model,
         fields=[
@@ -145,17 +155,36 @@ class CentroMemoriaUpdate(ColetaUpdateView):
         },
         labels=labels_CentroMemoria
         )
+    def get_success_url(self):
+        return reverse_lazy('index-centro')
 
 
 class PesquisaCreate(ColetaCreateView):
     model = Pesquisa
-    fields = ['nome', 'linha', 'grupo_pesquisa']
+    form_class = modelform_factory(
+        model,
+        fields=['nome', 'linha', 'grupo_pesquisa'],
+        widgets={
+        },
+        labels=labels_Pesquisa
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('pesquisa-list', kwargs=dict(centro=self.object.centro))
 
 
 class PesquisaUpdate(ColetaUpdateView):
     model = Pesquisa
-    fields = ['nome', 'linha', 'grupo_pesquisa']
+    form_class = modelform_factory(
+        model,
+        fields=['nome', 'linha', 'grupo_pesquisa'],
+        widgets={
+        },
+        labels=labels_Pesquisa
+        )
 
+    def get_success_url(self):
+        return reverse_lazy('pesquisa-list', kwargs=dict(centro=self.object.centro))
 
 class PesquisaList(ColetaListView):
     model = Pesquisa
@@ -167,49 +196,67 @@ class PesquisaDetail(DetailView):
 
 class PesquisaDelete(DeleteView):
     model = Pesquisa
-    success_url = reverse_lazy('pesquisa-list')
+
+    def get_success_url(self):
+        return reverse_lazy('pesquisa-list', kwargs=dict(centro=self.object.centro))
 
 
 class EventoCreate(ColetaCreateView):
     model = Evento
-    fields = [
-        'nome',
-        'tipo',
-        'abrangencia',
-        'coordenador_evento',
-        'tema',
-        'data_inicio',
-        'data_fim',
-        'num_participantes',
-        'palestrantes',
-        'publico_alvo',
-        'descricao',
-        'local',
-        'pesquisadores_envolvidos',
-        'bolsistas_envolvidos',
-    ]
-    success_url = reverse_lazy('evento-list')
+    form_class = modelform_factory(
+        model,
+        fields=[
+            'nome',
+            'tipo',
+            'abrangencia',
+            'coordenador_evento',
+            'tema',
+            'data_inicio',
+            'data_fim',
+            'num_participantes',
+            'palestrantes',
+            'publico_alvo',
+            'descricao',
+            'local',
+            'pesquisadores_envolvidos',
+            'bolsistas_envolvidos',
+        ],
+        widgets={
+        },
+        labels=labels_Evento
+        )
+    def get_success_url(self):
+        return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
 
 
 class EventoUpdate(UpdateView):
     model = Evento
-    fields = [
-        'nome',
-        'tipo',
-        'abrangencia',
-        'coordenador_evento',
-        'tema',
-        'data_inicio',
-        'data_fim',
-        'num_participantes',
-        'palestrantes',
-        'publico_alvo',
-        'descricao',
-        'local',
-        'pesquisadores_envolvidos',
-        'bolsistas_envolvidos',
-    ]
-    success_url = reverse_lazy('evento-list')
+    form_class = modelform_factory(
+        model,
+        fields=[
+            'nome',
+            'tipo',
+            'abrangencia',
+            'coordenador_evento',
+            'tema',
+            'data_inicio',
+            'data_fim',
+            'num_participantes',
+            'palestrantes',
+            'publico_alvo',
+            'descricao',
+            'local',
+            'pesquisadores_envolvidos',
+            'bolsistas_envolvidos',
+        ],
+        widgets={
+        },
+        labels=labels_Evento
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
+
 
 
 class EventoList(ColetaListView):
@@ -218,6 +265,8 @@ class EventoList(ColetaListView):
 
 class EventoDelete(DeleteView):
     model = Evento
+    def get_success_url(self):
+        return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
 
 
 class EventoDetail(DetailView):
@@ -226,28 +275,43 @@ class EventoDetail(DetailView):
 
 class PublicacaoCreate(ColetaCreateView):
     model = Publicacao
-    fields = [
-        'titulo',
-        'tipo',
-        'autor',
-        'abrangencia',
-        'referencia_abnt',
-        'localizacao_digital',
-    ]
-    success_url = reverse_lazy('publicacao-list')
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'titulo',
+            'tipo',
+            'autor',
+            'abrangencia',
+            'referencia_abnt',
+            'localizacao_digital',
+        ],
+        widgets={
+        },
+        labels=labels_Publicacao
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('publicacao-list', kwargs=dict(centro=self.object.centro))
 
 
 class PublicacaoUpdate(UpdateView):
     model = Publicacao
-    fields = [
-        'titulo',
-        'tipo',
-        'autor',
-        'abrangencia',
-        'referencia_abnt',
-        'localizacao_digital',
-    ]
-
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'titulo',
+            'tipo',
+            'autor',
+            'abrangencia',
+            'referencia_abnt',
+            'localizacao_digital',
+        ],
+        widgets={
+        },
+        labels=labels_Publicacao
+        )
+    def get_success_url(self):
+        return reverse_lazy('publicacao-list', kwargs=dict(centro=self.object.centro))
 
 class PublicacaoList(ColetaListView):
     model = Publicacao
@@ -259,34 +323,53 @@ class PublicacaoDetail(DetailView):
 
 class PublicacaoDelete(DeleteView):
     model = Publicacao
-    success_url = reverse_lazy('publicacao-list')
+    def get_success_url(self):
+        return reverse_lazy('publicacao-list', kwargs=dict(centro=self.object.centro))
 
 
 class DifusaoCreate(ColetaCreateView):
     model = DifusaoMidiatica
-    fields = [
-        'titulo',
-        'tipo',
-        'data_inicio',
-        'localizacao_digital',
-        'coordenador',
-        'bolsistas_envolvidos',
-        'publico_alvo',
-    ]
-    success_url = reverse_lazy('difusao-list')
+    form_class = modelform_factory(
+        model,
+        fields=[
+            'titulo',
+            'tipo',
+            'data_inicio',
+            'localizacao_digital',
+            'coordenador',
+            'bolsistas_envolvidos',
+            'publico_alvo',
+        ],
+        widgets={
+        },
+        labels=labels_DifusaoMidiatica
+        )
+
+
+    def get_success_url(self):
+        return reverse_lazy('difusao-list', kwargs=dict(centro=self.object.centro))
 
 
 class DifusaoUpdate(UpdateView):
     model = DifusaoMidiatica
-    fields = [
-        'titulo',
-        'tipo',
-        'data_inicio',
-        'localizacao_digital',
-        'coordenador',
-        'bolsistas_envolvidos',
-        'publico_alvo',
-    ]
+    form_class = modelform_factory(
+        model,
+        fields=[
+            'titulo',
+            'tipo',
+            'data_inicio',
+            'localizacao_digital',
+            'coordenador',
+            'bolsistas_envolvidos',
+            'publico_alvo',
+        ],
+        widgets={
+        },
+        labels=labels_DifusaoMidiatica
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('difusao-list', kwargs=dict(centro=self.object.centro))
 
 
 class DifusaoList(ColetaListView):
@@ -295,7 +378,9 @@ class DifusaoList(ColetaListView):
 
 class DifusaoDelete(DeleteView):
     model = DifusaoMidiatica
-    success_url = reverse_lazy('difusao-list')
+
+    def get_success_url(self):
+        return reverse_lazy('difusao-list', kwargs=dict(centro=self.object.centro))
 
 
 class DifusaoDetail(DetailView):
@@ -304,43 +389,61 @@ class DifusaoDetail(DetailView):
 
 class FormacaoCreate(ColetaCreateView):
     model = AtividadeFormacao
-    fields = [
-        'titulo',
-        'tipo',
-        'coordenador_formacao',
-        'tema',
-        'data_inicio',
-        'data_fim',
-        'total_horas',
-        'num_participantes',
-        'palestrantes',
-        'publico_alvo',
-        'descricao',
-        'local',
-        'pesquisadores_envolvidos',
-        'bolsistas_envolvidos',
-    ]
-    success_url = reverse_lazy('formacao-list')
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'titulo',
+            'tipo',
+            'coordenador_formacao',
+            'tema',
+            'data_inicio',
+            'data_fim',
+            'total_horas',
+            'num_participantes',
+            'palestrantes',
+            'publico_alvo',
+            'descricao',
+            'local',
+            'pesquisadores_envolvidos',
+            'bolsistas_envolvidos',
+        ],
+        widgets={
+        },
+        labels=labels_AtividadeFormacao
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('formacao-list', kwargs=dict(centro=self.object.centro))
 
 
 class FormacaoUpdate(UpdateView):
     model = AtividadeFormacao
-    fields = [
-        'titulo',
-        'tipo',
-        'coordenador_formacao',
-        'tema',
-        'data_inicio',
-        'data_fim',
-        'total_horas',
-        'num_participantes',
-        'palestrantes',
-        'publico_alvo',
-        'descricao',
-        'local',
-        'pesquisadores_envolvidos',
-        'bolsistas_envolvidos',
-    ]
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'titulo',
+            'tipo',
+            'coordenador_formacao',
+            'tema',
+            'data_inicio',
+            'data_fim',
+            'total_horas',
+            'num_participantes',
+            'palestrantes',
+            'publico_alvo',
+            'descricao',
+            'local',
+            'pesquisadores_envolvidos',
+            'bolsistas_envolvidos',
+        ],
+        widgets={
+        },
+        labels=labels_AtividadeFormacao
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('formacao-list', kwargs=dict(centro=self.object.centro))
+
 
 
 class FormacaoList(ColetaListView):
@@ -349,7 +452,9 @@ class FormacaoList(ColetaListView):
 
 class FormacaoDelete(DeleteView):
     model = AtividadeFormacao
-    success_url = reverse_lazy('formacao-list')
+
+    def get_success_url(self):
+        return reverse_lazy('formacao-list', kwargs=dict(centro=self.object.centro))
 
 
 class FormacaoDetail(DetailView):
@@ -358,29 +463,46 @@ class FormacaoDetail(DetailView):
 
 class OrientacaoCreate(ColetaCreateView):
     model = Orientacao
-    fields = [
-        'titulo',
-        'tipo',
-        'data_inicio',
-        'data_fim',
-        'orientador',
-        'autor',
-        'descricao',
-    ]
-    success_url = reverse_lazy('orientacao-list')
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'titulo',
+            'tipo',
+            'data_inicio',
+            'data_fim',
+            'orientador',
+            'autor',
+            'descricao',
+        ],
+        widgets={
+        },
+        labels=labels_Orientacao
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('orientacao-list', kwargs=dict(centro=self.object.centro))
 
 
 class OrientacaoUpdate(UpdateView):
     model = Orientacao
-    fields = [
-        'titulo',
-        'tipo',
-        'data_inicio',
-        'data_fim',
-        'orientador',
-        'autor',
-        'descricao',
-    ]
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'titulo',
+            'tipo',
+            'data_inicio',
+            'data_fim',
+            'orientador',
+            'autor',
+            'descricao',
+        ],
+        widgets={
+        },
+        labels=labels_Orientacao
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('orientacao-list', kwargs=dict(centro=self.object.centro))
 
 
 class OrientacaoList(ColetaListView):
@@ -389,7 +511,9 @@ class OrientacaoList(ColetaListView):
 
 class OrientacaoDelete(DeleteView):
     model = Orientacao
-    success_url = reverse_lazy('orientacao-list')
+
+    def get_success_url(self):
+        return reverse_lazy('orientacao-list', kwargs=dict(centro=self.object.centro))
 
 
 class OrientacaoDetail(DetailView):
@@ -398,31 +522,48 @@ class OrientacaoDetail(DetailView):
 
 class IntercambioCreate(ColetaCreateView):
     model = Intercambio
-    fields = [
-        'coordenador',
-        'estudante_bolsista',
-        'data_inicio',
-        'data_fim',
-        'local',
-        'ambito',
-        'grupos_estudo',
-        'descricao',
-    ]
-    success_url = reverse_lazy('intercambio-list')
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'coordenador',
+            'estudante_bolsista',
+            'data_inicio',
+            'data_fim',
+            'local',
+            'ambito',
+            'grupos_estudo',
+            'descricao',
+        ],
+        widgets={
+        },
+        labels=labels_Intercambio
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('intercambio-list', kwargs=dict(centro=self.object.centro))
 
 
 class IntercambioUpdate(UpdateView):
     model = Intercambio
-    fields = [
-        'coordenador',
-        'estudante_bolsista',
-        'data_inicio',
-        'data_fim',
-        'local',
-        'ambito',
-        'grupos_estudo',
-        'descricao',
-    ]
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'coordenador',
+            'estudante_bolsista',
+            'data_inicio',
+            'data_fim',
+            'local',
+            'ambito',
+            'grupos_estudo',
+            'descricao',
+        ],
+        widgets={
+        },
+        labels=labels_Intercambio
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('intercambio-list', kwargs=dict(centro=self.object.centro))
 
 
 class IntercambioList(ColetaListView):
@@ -431,7 +572,9 @@ class IntercambioList(ColetaListView):
 
 class IntercambioDelete(DeleteView):
     model = Intercambio
-    success_url = reverse_lazy('intercambio-list')
+
+    def get_success_url(self):
+        return reverse_lazy('intercambio-list', kwargs=dict(centro=self.object.centro))
 
 
 class IntercambioDetail(DetailView):
@@ -440,35 +583,52 @@ class IntercambioDetail(DetailView):
 
 class IntervencaoCreate(ColetaCreateView):
     model = IntervencaoPolitica
-    fields = [
-        'coordenador',
-        'nivel_governo',
-        'ambito',
-        'data_inicio',
-        'data_fim',
-        'local',
-        'descricao',
-        'publico_alvo',
-        'pesquisadores_envolvidos',
-        'bolsistas_envolvidos',
-    ]
-    success_url = reverse_lazy('intervencao-list')
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'coordenador',
+            'nivel_governo',
+            'ambito',
+            'data_inicio',
+            'data_fim',
+            'local',
+            'descricao',
+            'publico_alvo',
+            'pesquisadores_envolvidos',
+            'bolsistas_envolvidos',
+        ],
+        widgets={
+        },
+        labels=labels_IntervencaoPolitica
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('intervencao-list', kwargs=dict(centro=self.object.centro))
 
 
 class IntervencaoUpdate(UpdateView):
     model = IntervencaoPolitica
-    fields = [
-        'coordenador',
-        'nivel_governo',
-        'ambito',
-        'data_inicio',
-        'data_fim',
-        'local',
-        'descricao',
-        'publico_alvo',
-        'pesquisadores_envolvidos',
-        'bolsistas_envolvidos',
-    ]
+    form_class = modelform_factory(
+        model,
+        fields = [
+            'coordenador',
+            'nivel_governo',
+            'ambito',
+            'data_inicio',
+            'data_fim',
+            'local',
+            'descricao',
+            'publico_alvo',
+            'pesquisadores_envolvidos',
+            'bolsistas_envolvidos',
+        ],
+        widgets={
+        },
+        labels=labels_IntervencaoPolitica
+        )
+
+    def get_success_url(self):
+        return reverse_lazy('intervencao-list', kwargs=dict(centro=self.object.centro))
 
 
 class IntervencaoList(ColetaListView):
@@ -477,7 +637,9 @@ class IntervencaoList(ColetaListView):
 
 class IntervencaoDelete(DeleteView):
     model = IntervencaoPolitica
-    success_url = reverse_lazy('intervencao-list')
+
+    def get_success_url(self):
+        return reverse_lazy('intervencao-list', kwargs=dict(centro=self.object.centro))
 
 
 class IntervencaoDetail(DetailView):
