@@ -42,21 +42,26 @@
           <li class="nav-item">
             <a class="nav-link" href="/coleta/">Centros</a>
           </li>
+{% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="/accounts/login/">Entrar</a>
+            <a class="nav-link" href="/accounts/logout/">Sair</a>
           </li>
+{% endif %}
           <!-- Menus Extras
           <li class="nav-item">
             <a class="nav-link" href="#">Contato</a>
+            {% if user.is_authenticated %}
+                <h6>{{ user.get_username }}</h6>
+            {% endif %}
           </li>
           -->
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="https://twitter.com/blogredecedes">
               <img src="{% static 'img/twitter-logo.svg' %}" height="30" alt="Logo Rede CEDES">
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="https://www.facebook.com/Blog-da-Rede-Cedes-139034593526150">
               <img src="{% static 'img/facebook-logo.svg' %}" height="30" alt="Logo Rede CEDES">
             </a>
           </li>

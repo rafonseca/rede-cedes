@@ -53,9 +53,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/coleta/">Centros</a>
           </li>
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="/admin/">Entrar</a>
+            <a class="nav-link" href="/accounts/logout/">Sair</a>
           </li>
+          {% endif %}
           <!-- Menus Extras
           <li class="nav-item">
             <a class="nav-link" href="#">Contato</a>
