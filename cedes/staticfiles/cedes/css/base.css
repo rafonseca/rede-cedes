@@ -220,6 +220,14 @@ input {
   margin-top: 50px;
 }
 
+#mc-embedded-subscribe {
+  background-color: #BA8D00 !important;
+}
+
+#mc-embedded-subscribe:hover {
+  background-color: #414141 !important;
+}
+
 /****** Coleta *********/
 
 #admin-form {
