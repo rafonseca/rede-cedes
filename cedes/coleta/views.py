@@ -9,7 +9,29 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
 from django.forms.models import modelform_factory
+from django import forms
 from .labels import *
+# from django.contrib.admin.widgets import AdminDateWidget
+from django.db import models
+
+
+def make_custom_datefield(f, **kwargs):
+    print(kwargs)
+    if isinstance(f, models.DateField):
+        return forms.DateField(widget=forms.SelectDateWidget())
+    elif kwargs['label'] == 'pesquisadores_envolvidos':
+        print('pesquisador')
+        return forms.ModelMultipleChoiceField(
+            queryset=Pesquisador.objects.filter(bolsista=False).all(),
+            widget=forms.CheckboxSelectMultiple()
+        )
+    elif kwargs['label'] == 'bolsistas_envolvidos':
+        print('bolsista')
+        return forms.ModelMultipleChoiceField(
+            queryset=Pesquisador.objects.filter(bolsista=True).all()
+        )
+    else:
+        return f.formfield()
 
 
 def index(request):
@@ -221,9 +243,8 @@ class EventoCreate(ColetaCreateView):
             'pesquisadores_envolvidos',
             'bolsistas_envolvidos',
         ],
-        widgets={
-        },
-        labels=labels_Evento
+        labels=labels_Evento,
+        formfield_callback = make_custom_datefield,
         )
     def get_success_url(self):
         return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
