@@ -1,4 +1,24 @@
-<form action="" method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm" />
-</form>
+{% extends 'coleta/base-coleta-2.html' %}
+{% block title %}Rede CEDES - INTERVENÇÃO{% endblock %}
+{% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
+{% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
+{% load static %}
+{% block title-coleta %}EXCLUIR INTERVENÇÃO{% endblock %}
+
+
+{% block content %}
+
+<div class="col-lg-8">
+  <div class="card mb-3">
+    <div class="card-block">
+
+      <form action="" method="post">{% csrf_token %}
+        <p>Confirme a exclusão de "{{ object }}"?</p>
+        <input class="btn btn-primeiro btn-block" type="submit" value="EXCLUIR" />
+      </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
