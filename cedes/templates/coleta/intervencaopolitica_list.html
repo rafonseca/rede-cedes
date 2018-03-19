@@ -14,16 +14,16 @@
 
   <div class="card mb-3">
     <div class="card-block">
-      <a href="/coleta/intervencao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.coordenador }}</h4></a>
+      <a href="/coleta/{{ centro }}/intervencao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.coordenador }}</h4></a>
       <p>{{ pesquisa.nivel_governo }}</p>
-      <a class="texto-pequeno" href="/coleta/intervencao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-      <a class="texto-pequeno" href="/coleta/intervencao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/intervencao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/intervencao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
     </div>
   </div>
 
 {% empty %}
 
-  <p>Não há intervenções cadastradas. Deseja <a href="/coleta/{{pesquisa.centro}}/intervencao/add/">adicionar</a> uma?</p>
+  <p>Não há intervenções cadastradas. Deseja <a href="/coleta/{{centro}}/intervencao/add/">adicionar</a> uma?</p>
 
 {% endfor %}
 

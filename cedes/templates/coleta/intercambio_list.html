@@ -14,16 +14,16 @@
 
   <div class="card mb-3">
     <div class="card-block">
-      <a href="/coleta/{{ pesquisa.centro }}/intercambio/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.coordenador }}</h4></a>
+      <a href="/coleta/{{ centro }}/intercambio/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.coordenador }}</h4></a>
       <p>{{ pesquisa.local }}</p>
-      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/intercambio/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/intercambio/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/intercambio/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/intercambio/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
     </div>
   </div>
 
 {% empty %}
 
-  <p>Não há intercâmbios cadastradas. Deseja <a href="/coleta/{{pesquisa.centro}}/intercambio/add/">adicionar</a> um?</p>
+  <p>Não há intercâmbios cadastradas. Deseja <a href="/coleta/{{centro}}/intercambio/add/">adicionar</a> um?</p>
 
 {% endfor %}
 

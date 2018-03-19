@@ -14,16 +14,16 @@
 
   <div class="card mb-3">
     <div class="card-block">
-      <a href="/coleta/difusao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
+      <a href="/coleta/{{ centro }}/difusao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
       <p>{{ pesquisa.tipo }}</p>
-      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/difusao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/difusao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/difusao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/difusao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
     </div>
   </div>
 
 {% empty %}
 
-  <p>Não há difusões cadastradas. Deseja <a href="/coleta/{{ pesquisa.centro }}/difusao//add/">adicionar</a> uma?</p>
+  <p>Não há difusões cadastradas. Deseja <a href="/coleta/{{ centro }}/difusao/add/">adicionar</a> uma?</p>
 
 {% endfor %}
 

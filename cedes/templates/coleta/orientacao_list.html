@@ -14,16 +14,16 @@
 
   <div class="card mb-3">
     <div class="card-block">
-      <a href="/coleta/{{ pesquisa.centro }}/orientacao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
+      <a href="/coleta/{{ centro }}/orientacao/{{ pesquisa.pk }}/update/"><h4 class="card-title">{{ pesquisa.titulo }}</h4></a>
       <p>Orientador: {{ pesquisa.orientador }} | Autor: {{ pesquisa.autor }}</p>
-      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/orientacao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
-      <a class="texto-pequeno" href="/coleta/{{ pesquisa.centro }}/orientacao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/orientacao/{{ pesquisa.pk }}/update/">[ Editar ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/orientacao/{{ pesquisa.pk }}/delete/">[ Excluir ]</a>
     </div>
   </div>
 
 {% empty %}
 
-  <p>Não há orientações cadastradas. Deseja <a href="/coleta/{{pesquisa.centro}}/orientacao/add/">adicionar</a> uma?</p>
+  <p>Não há orientações cadastradas. Deseja <a href="/coleta/{{centro}}/orientacao/add/">adicionar</a> uma?</p>
 
 {% endfor %}
 
