@@ -250,7 +250,7 @@ class EventoCreate(ColetaCreateView):
         return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
 
 
-class EventoUpdate(UpdateView):
+class EventoUpdate(ColetaUpdateView):
     model = Evento
     form_class = modelform_factory(
         model,
@@ -315,7 +315,7 @@ class PublicacaoCreate(ColetaCreateView):
         return reverse_lazy('publicacao-list', kwargs=dict(centro=self.object.centro))
 
 
-class PublicacaoUpdate(UpdateView):
+class PublicacaoUpdate(ColetaUpdateView):
     model = Publicacao
     form_class = modelform_factory(
         model,
@@ -371,7 +371,7 @@ class DifusaoCreate(ColetaCreateView):
         return reverse_lazy('difusao-list', kwargs=dict(centro=self.object.centro))
 
 
-class DifusaoUpdate(UpdateView):
+class DifusaoUpdate(ColetaUpdateView):
     model = DifusaoMidiatica
     form_class = modelform_factory(
         model,
@@ -437,7 +437,7 @@ class FormacaoCreate(ColetaCreateView):
         return reverse_lazy('formacao-list', kwargs=dict(centro=self.object.centro))
 
 
-class FormacaoUpdate(UpdateView):
+class FormacaoUpdate(ColetaUpdateView):
     model = AtividadeFormacao
     form_class = modelform_factory(
         model,
@@ -504,7 +504,7 @@ class OrientacaoCreate(ColetaCreateView):
         return reverse_lazy('orientacao-list', kwargs=dict(centro=self.object.centro))
 
 
-class OrientacaoUpdate(UpdateView):
+class OrientacaoUpdate(ColetaUpdateView):
     model = Orientacao
     form_class = modelform_factory(
         model,
@@ -564,7 +564,7 @@ class IntercambioCreate(ColetaCreateView):
         return reverse_lazy('intercambio-list', kwargs=dict(centro=self.object.centro))
 
 
-class IntercambioUpdate(UpdateView):
+class IntercambioUpdate(ColetaUpdateView):
     model = Intercambio
     form_class = modelform_factory(
         model,
@@ -627,7 +627,7 @@ class IntervencaoCreate(ColetaCreateView):
         return reverse_lazy('intervencao-list', kwargs=dict(centro=self.object.centro))
 
 
-class IntervencaoUpdate(UpdateView):
+class IntervencaoUpdate(ColetaUpdateView):
     model = IntervencaoPolitica
     form_class = modelform_factory(
         model,
