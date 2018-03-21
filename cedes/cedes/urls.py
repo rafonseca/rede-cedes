@@ -12,7 +12,8 @@ urlpatterns = [
     path('comments/', include('django_comments.urls')),
     path('accounts/', include('allauth.urls')),
     # path('accounts/login/', auth_views.LoginView.as_view()),
-    path('',views.index),
+    path('', views.index),
+    path('select2/', include('django_select2.urls')),
 ]
 
 if settings.DEBUG:

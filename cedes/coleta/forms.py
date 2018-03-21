@@ -3,12 +3,7 @@ from django import forms
 from .labels import *
 from .models import *
 
-def make_custom_datefield(f, **kwargs):
-    print(kwargs)
-    if isinstance(f, models.DateField):
-        return forms.DateField(widget=forms.SelectDateWidget())
-    else:
-        return f.formfield()
+from django_select2 import forms as forms2
 
 class ColetaFormMixin(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -23,8 +18,15 @@ class ColetaFormMixin(forms.ModelForm):
                 Pesquisador.objects.filter(centro=centro)\
                 .filter(bolsista=True)
         for k, v in self.fields.items():
+            print(k,v.widget)
             if isinstance(v, forms.fields.DateField):
                 v.widget = forms.SelectDateWidget(years=range(1980,2020))
+            # if isinstance(v.widget, forms.widgets.SelectMultiple):
+            #     print('hey')
+            #     v.widget = forms2.Select2MultipleWidget
+
+
+
 
 class EstruturaFisicaForm(ColetaFormMixin):
     class Meta:
@@ -84,6 +86,10 @@ class EventoForm(ColetaFormMixin):
             'pesquisadores_envolvidos',
             'bolsistas_envolvidos',
         ]
+        widgets = {
+            'pesquisadores_envolvidos': forms2.Select2MultipleWidget,
+            'bolsistas_envolvidos': forms2.Select2MultipleWidget,
+        }
         model = Evento
         labels = labels_Evento
 
