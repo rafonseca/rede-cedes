@@ -5,33 +5,15 @@ from django.views.generic import ListView, DetailView
 from django.views import View
 from django.urls import reverse_lazy
 from .models import *
+from .forms import *
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseRedirect
-from django.forms.models import modelform_factory
-from django import forms
-from .labels import *
 # from django.contrib.admin.widgets import AdminDateWidget
 from django.db import models
 
 
-def make_custom_datefield(f, **kwargs):
-    print(kwargs)
-    if isinstance(f, models.DateField):
-        return forms.DateField(widget=forms.SelectDateWidget())
-    elif kwargs['label'] == 'pesquisadores_envolvidos':
-        print('pesquisador')
-        return forms.ModelMultipleChoiceField(
-            queryset=Pesquisador.objects.filter(bolsista=False).all(),
-            widget=forms.CheckboxSelectMultiple()
-        )
-    elif kwargs['label'] == 'bolsistas_envolvidos':
-        print('bolsista')
-        return forms.ModelMultipleChoiceField(
-            queryset=Pesquisador.objects.filter(bolsista=True).all()
-        )
-    else:
-        return f.formfield()
+
 
 
 def index(request):
@@ -78,6 +60,12 @@ class ColetaUpdateView(UserPassesTestMixin, UpdateView):
         context.update(extra_context)
         return context
 
+    def get_form_kwargs(self, *args, **kwargs):
+        form_kwargs = super(
+            ColetaUpdateView, self).get_form_kwargs(*args, **kwargs)
+        form_kwargs['centro'] = self.kwargs['centro']
+        return form_kwargs
+
 
 class ColetaCreateView(UserPassesTestMixin, CreateView):
     slug_field = 'centro'
@@ -111,6 +99,12 @@ class ColetaCreateView(UserPassesTestMixin, CreateView):
         context.update(extra_context)
         return context
 
+    def get_form_kwargs(self, *args, **kwargs):
+        form_kwargs = super(
+            ColetaCreateView, self).get_form_kwargs(*args, **kwargs)
+        form_kwargs['centro'] = self.kwargs['centro']
+        return form_kwargs
+
 
 class ColetaListView(ListView):
     def get_queryset(self):
@@ -132,27 +126,7 @@ class ColetaListView(ListView):
 
 class EstruturaFisicaUpdate(ColetaUpdateView):
     model = EstruturaFisica
-
-    form_class = modelform_factory(
-        model,
-        fields=[
-                'tem_sede',
-                'tem_banner',
-                'tem_internet',
-                'equip_inf',
-                'moveis',
-                'coordenador',
-                'coord_adj',
-                'apoio_tecnico',
-                'bolsistas',
-                'repr_pesquisadores',
-                'repr_social',
-                ],
-        widgets={
-        },
-        labels=labels_EstruturaFisica
-        )
-
+    form_class = EstruturaFisicaForm
 
     def get_success_url(self):
         return reverse_lazy('index-centro')
@@ -160,36 +134,15 @@ class EstruturaFisicaUpdate(ColetaUpdateView):
 
 class CentroMemoriaUpdate(ColetaUpdateView):
     model = CentroMemoria
-    form_class = modelform_factory(
-        model,
-        fields=[
-                'coordenador',
-                'situacao_implementacao',
-                'situacao_acervo_fisico',
-                'tema',
-                'pesquisadores_envolvidos',
-                'bolsistas_envolvidos',
-                'localizacao_digital',
-                'num_titulos',
-                ],
-        widgets={
-            # 'pesquisadores_envolvidos': floppyforms.forms.SelectMultiple()
-        },
-        labels=labels_CentroMemoria
-        )
+    form_class = CentroMemoriaForm
+
     def get_success_url(self):
         return reverse_lazy('index-centro')
 
 
 class PesquisaCreate(ColetaCreateView):
     model = Pesquisa
-    form_class = modelform_factory(
-        model,
-        fields=['nome', 'linha', 'grupo_pesquisa'],
-        widgets={
-        },
-        labels=labels_Pesquisa
-        )
+    form_class = PesquisaForm
 
     def get_success_url(self):
         return reverse_lazy('pesquisa-list', kwargs=dict(centro=self.object.centro))
@@ -197,13 +150,7 @@ class PesquisaCreate(ColetaCreateView):
 
 class PesquisaUpdate(ColetaUpdateView):
     model = Pesquisa
-    form_class = modelform_factory(
-        model,
-        fields=['nome', 'linha', 'grupo_pesquisa'],
-        widgets={
-        },
-        labels=labels_Pesquisa
-        )
+    form_class = PesquisaForm
 
     def get_success_url(self):
         return reverse_lazy('pesquisa-list', kwargs=dict(centro=self.object.centro))
@@ -223,61 +170,21 @@ class PesquisaDelete(DeleteView):
         return reverse_lazy('pesquisa-list', kwargs=dict(centro=self.object.centro))
 
 
+
 class EventoCreate(ColetaCreateView):
     model = Evento
-    form_class = modelform_factory(
-        model,
-        fields=[
-            'nome',
-            'tipo',
-            'abrangencia',
-            'coordenador_evento',
-            'tema',
-            'data_inicio',
-            'data_fim',
-            'num_participantes',
-            'palestrantes',
-            'publico_alvo',
-            'descricao',
-            'local',
-            'pesquisadores_envolvidos',
-            'bolsistas_envolvidos',
-        ],
-        labels=labels_Evento,
-        formfield_callback = make_custom_datefield,
-        )
+    form_class = EventoForm
+
     def get_success_url(self):
         return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
 
 
 class EventoUpdate(ColetaUpdateView):
     model = Evento
-    form_class = modelform_factory(
-        model,
-        fields=[
-            'nome',
-            'tipo',
-            'abrangencia',
-            'coordenador_evento',
-            'tema',
-            'data_inicio',
-            'data_fim',
-            'num_participantes',
-            'palestrantes',
-            'publico_alvo',
-            'descricao',
-            'local',
-            'pesquisadores_envolvidos',
-            'bolsistas_envolvidos',
-        ],
-        widgets={
-        },
-        labels=labels_Evento
-        )
+    form_class = EventoForm
 
     def get_success_url(self):
         return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
-
 
 
 class EventoList(ColetaListView):
@@ -286,8 +193,10 @@ class EventoList(ColetaListView):
 
 class EventoDelete(DeleteView):
     model = Evento
+
     def get_success_url(self):
-        return reverse_lazy('evento-list', kwargs=dict(centro=self.object.centro))
+        return reverse_lazy(
+            'evento-list', kwargs=dict(centro=self.object.centro))
 
 
 class EventoDetail(DetailView):
@@ -296,20 +205,7 @@ class EventoDetail(DetailView):
 
 class PublicacaoCreate(ColetaCreateView):
     model = Publicacao
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'titulo',
-            'tipo',
-            'autor',
-            'abrangencia',
-            'referencia_abnt',
-            'localizacao_digital',
-        ],
-        widgets={
-        },
-        labels=labels_Publicacao
-        )
+    form_class = PublicacaoForm
 
     def get_success_url(self):
         return reverse_lazy('publicacao-list', kwargs=dict(centro=self.object.centro))
@@ -317,20 +213,7 @@ class PublicacaoCreate(ColetaCreateView):
 
 class PublicacaoUpdate(ColetaUpdateView):
     model = Publicacao
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'titulo',
-            'tipo',
-            'autor',
-            'abrangencia',
-            'referencia_abnt',
-            'localizacao_digital',
-        ],
-        widgets={
-        },
-        labels=labels_Publicacao
-        )
+    form_class = PublicacaoForm
     def get_success_url(self):
         return reverse_lazy('publicacao-list', kwargs=dict(centro=self.object.centro))
 
@@ -350,44 +233,16 @@ class PublicacaoDelete(DeleteView):
 
 class DifusaoCreate(ColetaCreateView):
     model = DifusaoMidiatica
-    form_class = modelform_factory(
-        model,
-        fields=[
-            'titulo',
-            'tipo',
-            'data_inicio',
-            'localizacao_digital',
-            'coordenador',
-            'bolsistas_envolvidos',
-            'publico_alvo',
-        ],
-        widgets={
-        },
-        labels=labels_DifusaoMidiatica
-        )
-
+    form_class = DifusaoForm
 
     def get_success_url(self):
-        return reverse_lazy('difusao-list', kwargs=dict(centro=self.object.centro))
+        return reverse_lazy(
+            'difusao-list', kwargs=dict(centro=self.object.centro))
 
 
 class DifusaoUpdate(ColetaUpdateView):
     model = DifusaoMidiatica
-    form_class = modelform_factory(
-        model,
-        fields=[
-            'titulo',
-            'tipo',
-            'data_inicio',
-            'localizacao_digital',
-            'coordenador',
-            'bolsistas_envolvidos',
-            'publico_alvo',
-        ],
-        widgets={
-        },
-        labels=labels_DifusaoMidiatica
-        )
+    form_class = DifusaoForm
 
     def get_success_url(self):
         return reverse_lazy('difusao-list', kwargs=dict(centro=self.object.centro))
@@ -410,28 +265,7 @@ class DifusaoDetail(DetailView):
 
 class FormacaoCreate(ColetaCreateView):
     model = AtividadeFormacao
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'titulo',
-            'tipo',
-            'coordenador_formacao',
-            'tema',
-            'data_inicio',
-            'data_fim',
-            'total_horas',
-            'num_participantes',
-            'palestrantes',
-            'publico_alvo',
-            'descricao',
-            'local',
-            'pesquisadores_envolvidos',
-            'bolsistas_envolvidos',
-        ],
-        widgets={
-        },
-        labels=labels_AtividadeFormacao
-        )
+    form_class = FormacaoForm
 
     def get_success_url(self):
         return reverse_lazy('formacao-list', kwargs=dict(centro=self.object.centro))
@@ -439,28 +273,7 @@ class FormacaoCreate(ColetaCreateView):
 
 class FormacaoUpdate(ColetaUpdateView):
     model = AtividadeFormacao
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'titulo',
-            'tipo',
-            'coordenador_formacao',
-            'tema',
-            'data_inicio',
-            'data_fim',
-            'total_horas',
-            'num_participantes',
-            'palestrantes',
-            'publico_alvo',
-            'descricao',
-            'local',
-            'pesquisadores_envolvidos',
-            'bolsistas_envolvidos',
-        ],
-        widgets={
-        },
-        labels=labels_AtividadeFormacao
-        )
+    form_class = FormacaoForm
 
     def get_success_url(self):
         return reverse_lazy('formacao-list', kwargs=dict(centro=self.object.centro))
@@ -484,21 +297,7 @@ class FormacaoDetail(DetailView):
 
 class OrientacaoCreate(ColetaCreateView):
     model = Orientacao
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'titulo',
-            'tipo',
-            'data_inicio',
-            'data_fim',
-            'orientador',
-            'autor',
-            'descricao',
-        ],
-        widgets={
-        },
-        labels=labels_Orientacao
-        )
+    form_class = OrientacaoForm
 
     def get_success_url(self):
         return reverse_lazy('orientacao-list', kwargs=dict(centro=self.object.centro))
@@ -506,21 +305,7 @@ class OrientacaoCreate(ColetaCreateView):
 
 class OrientacaoUpdate(ColetaUpdateView):
     model = Orientacao
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'titulo',
-            'tipo',
-            'data_inicio',
-            'data_fim',
-            'orientador',
-            'autor',
-            'descricao',
-        ],
-        widgets={
-        },
-        labels=labels_Orientacao
-        )
+    form_class = OrientacaoForm
 
     def get_success_url(self):
         return reverse_lazy('orientacao-list', kwargs=dict(centro=self.object.centro))
@@ -543,22 +328,7 @@ class OrientacaoDetail(DetailView):
 
 class IntercambioCreate(ColetaCreateView):
     model = Intercambio
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'coordenador',
-            'estudante_bolsista',
-            'data_inicio',
-            'data_fim',
-            'local',
-            'ambito',
-            'grupos_estudo',
-            'descricao',
-        ],
-        widgets={
-        },
-        labels=labels_Intercambio
-        )
+    form_class = IntercambioForm
 
     def get_success_url(self):
         return reverse_lazy('intercambio-list', kwargs=dict(centro=self.object.centro))
@@ -566,22 +336,7 @@ class IntercambioCreate(ColetaCreateView):
 
 class IntercambioUpdate(ColetaUpdateView):
     model = Intercambio
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'coordenador',
-            'estudante_bolsista',
-            'data_inicio',
-            'data_fim',
-            'local',
-            'ambito',
-            'grupos_estudo',
-            'descricao',
-        ],
-        widgets={
-        },
-        labels=labels_Intercambio
-        )
+    form_class = IntercambioForm
 
     def get_success_url(self):
         return reverse_lazy('intercambio-list', kwargs=dict(centro=self.object.centro))
@@ -604,24 +359,7 @@ class IntercambioDetail(DetailView):
 
 class IntervencaoCreate(ColetaCreateView):
     model = IntervencaoPolitica
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'coordenador',
-            'nivel_governo',
-            'ambito',
-            'data_inicio',
-            'data_fim',
-            'local',
-            'descricao',
-            'publico_alvo',
-            'pesquisadores_envolvidos',
-            'bolsistas_envolvidos',
-        ],
-        widgets={
-        },
-        labels=labels_IntervencaoPolitica
-        )
+    form_class = IntervencaoForm
 
     def get_success_url(self):
         return reverse_lazy('intervencao-list', kwargs=dict(centro=self.object.centro))
@@ -629,24 +367,7 @@ class IntervencaoCreate(ColetaCreateView):
 
 class IntervencaoUpdate(ColetaUpdateView):
     model = IntervencaoPolitica
-    form_class = modelform_factory(
-        model,
-        fields = [
-            'coordenador',
-            'nivel_governo',
-            'ambito',
-            'data_inicio',
-            'data_fim',
-            'local',
-            'descricao',
-            'publico_alvo',
-            'pesquisadores_envolvidos',
-            'bolsistas_envolvidos',
-        ],
-        widgets={
-        },
-        labels=labels_IntervencaoPolitica
-        )
+    form_class = IntervencaoForm
 
     def get_success_url(self):
         return reverse_lazy('intervencao-list', kwargs=dict(centro=self.object.centro))
