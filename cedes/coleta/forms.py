@@ -61,6 +61,10 @@ class CentroMemoriaForm(ColetaFormMixin):
                 'num_titulos',
                 ]
         labels = labels_CentroMemoria
+        widgets = {
+            'pesquisadores_envolvidos': forms2.Select2MultipleWidget,
+            'bolsistas_envolvidos': forms2.Select2MultipleWidget,
+        }
 
 class PesquisaForm(ColetaFormMixin):
     class Meta:
@@ -120,6 +124,9 @@ class DifusaoForm(ColetaFormMixin):
             'publico_alvo',
         ]
         labels = labels_DifusaoMidiatica
+        widgets = {
+            'bolsistas_envolvidos': forms2.Select2MultipleWidget,
+        }
 
 
 class FormacaoForm(ColetaFormMixin):
@@ -142,6 +149,10 @@ class FormacaoForm(ColetaFormMixin):
             'bolsistas_envolvidos',
         ]
         labels = labels_AtividadeFormacao
+        widgets = {
+            'pesquisadores_envolvidos': forms2.Select2MultipleWidget,
+            'bolsistas_envolvidos': forms2.Select2MultipleWidget,
+        }
 
 
 class OrientacaoForm(ColetaFormMixin):
@@ -191,3 +202,7 @@ class IntervencaoForm(ColetaFormMixin):
             'bolsistas_envolvidos',
         ]
         labels = labels_IntervencaoPolitica
+        widgets = {
+            'pesquisadores_envolvidos': forms2.Select2MultipleWidget,
+            'bolsistas_envolvidos': forms2.Select2MultipleWidget,
+        }
