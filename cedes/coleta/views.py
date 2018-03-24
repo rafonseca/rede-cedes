@@ -129,7 +129,10 @@ class EstruturaFisicaUpdate(ColetaUpdateView):
     form_class = EstruturaFisicaForm
 
     def get_success_url(self):
-        return reverse_lazy('index-centro')
+        return reverse_lazy(
+            'index-centro',
+            kwargs=dict(centro=self.object.centro)
+            )
 
 
 class CentroMemoriaUpdate(ColetaUpdateView):
@@ -137,7 +140,10 @@ class CentroMemoriaUpdate(ColetaUpdateView):
     form_class = CentroMemoriaForm
 
     def get_success_url(self):
-        return reverse_lazy('index-centro')
+        return reverse_lazy(
+            'index-centro',
+            kwargs=dict(centro=self.object.centro)
+            )
 
 
 class PesquisaCreate(ColetaCreateView):
