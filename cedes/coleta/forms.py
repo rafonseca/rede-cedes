@@ -2,28 +2,33 @@ from django.forms.models import modelform_factory
 from django import forms
 from .labels import *
 from .models import *
-
 from django_select2 import forms as forms2
+
 
 class ColetaFormMixin(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         centro = kwargs.pop('centro')
         super(ColetaFormMixin, self).__init__(*args, **kwargs)
-        if 'pesquisadores_envolvidos' in self.fields:
-            self.fields['pesquisadores_envolvidos'].queryset =\
-                Pesquisador.objects.filter(centro=centro)\
-                .filter(bolsista=False)
-        if 'bolsistas_envolvidos' in self.fields:
-            self.fields['bolsistas_envolvidos'].queryset =\
-                Pesquisador.objects.filter(centro=centro)\
-                .filter(bolsista=True)
+        # general widgets configuration
         for k, v in self.fields.items():
-            print(k,v.widget)
+            print(k, v)
             if isinstance(v, forms.fields.DateField):
-                v.widget = forms.SelectDateWidget(years=range(1980,2020))
-            # if isinstance(v.widget, forms.widgets.SelectMultiple):
-            #     print('hey')
-            #     v.widget = forms2.Select2MultipleWidget
+                v.widget = forms.SelectDateWidget(
+                    years=range(2015, 2020))
+            if k == 'bolsistas_envolvidos':
+                v.queryset = Pesquisador.objects.filter(
+                    centro=centro).filter(bolsista=True).order_by('nome')
+            if k == 'pesquisadores_envolvidos':
+                v.queryset = Pesquisador.objects.filter(
+                    centro=centro).filter(bolsista=False).order_by('nome')
+            isPesquisadorField = 'coordenador' in k
+            isPesquisadorField |= k in [
+                'autor', 'orientador', 'estudante_bolsista']
+            if isPesquisadorField and \
+                    isinstance(v, forms.ModelChoiceField):
+                v.queryset = Pesquisador.objects.filter(
+                    centro=centro).order_by('nome')
+
 
 
 
