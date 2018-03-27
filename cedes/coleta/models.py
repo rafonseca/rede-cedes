@@ -220,6 +220,11 @@ class Publicacao(models.Model):
     referencia_abnt= models.CharField(max_length=200,blank=True)
     localizacao_digital=models.URLField(blank=True)
 
+    def tipo_human_readable(self):
+        tipo_dict = {k: v for k, v in PUBLICACAO_CHOICES}
+        return (tipo_dict[self.tipo])
+
+
     def __str__(self):
         return self.titulo
 
@@ -236,6 +241,11 @@ class DifusaoMidiatica(models.Model):
     coordenador= models.ForeignKey(Pesquisador,on_delete=models.CASCADE,null=True,blank=True)
     bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='difusao_como_bolsista',blank=True)
     publico_alvo=  models.CharField(max_length=1000,blank=True)
+
+    def tipo_human_readable(self):
+        tipo_dict = {k: v for k, v in DIFUSAO_CHOICES}
+        return (tipo_dict[self.tipo])
+
     def __str__(self):
         return self.titulo
 
@@ -259,6 +269,11 @@ class AtividadeFormacao(models.Model):
     local= models.CharField(max_length=1000,blank=True)
     pesquisadores_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_pesquisador',blank=True)
     bolsistas_envolvidos= models.ManyToManyField(Pesquisador,related_name='at_formacao_como_bolsista',blank=True)
+
+    def tipo_human_readable(self):
+        tipo_dict = {k: v for k, v in FORMACAO_CHOICES}
+        return (tipo_dict[self.tipo])
+
     def __str__(self):
         return self.titulo
 
@@ -276,6 +291,12 @@ class Orientacao(models.Model):
     descricao= models.CharField(max_length=2000,blank=True)
     def __str__(self):
         return self.titulo
+    def tipo_human_readable(self):
+        tipo_dict = {k: v for k, v in ORIENTACAO_CHOICES}
+        return (tipo_dict[self.tipo])
+
+
+
 #Modelos meta 13
 #intercambio
 class Intercambio(models.Model):
