@@ -164,7 +164,6 @@ class PesquisaUpdate(ColetaUpdateView):
 class PesquisaList(ColetaListView):
     model = Pesquisa
 
-
 class PesquisaDetail(DetailView):
     model = Pesquisa
 
@@ -193,7 +192,7 @@ class PesquisadorUpdate(ColetaUpdateView):
 
 class PesquisadorList(ColetaListView):
     model = Pesquisador
-
+    queryset = Pesquisador.objects.all().order_by('nome')
 
 class PesquisadorDetail(DetailView):
     model = Pesquisador
