@@ -77,6 +77,15 @@ class PesquisaForm(ColetaFormMixin):
         labels = labels_Pesquisa
         model = Pesquisa
 
+
+class PesquisadorForm(ColetaFormMixin):
+    class Meta:
+        fields = ['nome', 'titulacao', 'bolsista']
+        labels = labels_Pesquisador
+        model = Pesquisador
+
+
+
 class EventoForm(ColetaFormMixin):
     class Meta:
         fields = [

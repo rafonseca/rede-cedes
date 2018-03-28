@@ -29,6 +29,12 @@ labels_Pesquisa = {
     'grupo_pesquisa': 'Grupo de pesquisa'
     }
 
+labels_Pesquisador = {
+    'nome': 'Nome',
+    'titulacao': 'Titulação',
+    'bolsista': 'Bolsista?'
+}
+
 labels_Evento = {
     'nome': 'Nome do evento',
     'tipo': 'Tipo do evento',

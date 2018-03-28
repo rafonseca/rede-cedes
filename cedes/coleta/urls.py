@@ -10,6 +10,11 @@ urlpatterns = [
     path('<centro>/estrutura/update/', EstruturaFisicaUpdate.as_view(), name='estrutura-fisica-update'),
     path('<centro>/centromemoria/update/', CentroMemoriaUpdate.as_view(), name='centro-memoria-update'),
 
+    path('<centro>/pesquisador/add/', PesquisadorCreate.as_view(), name='pesquisador-add'),
+    path('<centro>/pesquisador/<pk>/update/', PesquisadorUpdate.as_view(), name='pesquisador-update'),
+    path('<centro>/pesquisador/<pk>/delete/', PesquisadorDelete.as_view(), name='pesquisador-delete'),
+    path('<centro>/pesquisador/list/', PesquisadorList.as_view(), name='pesquisador-list'),
+    path('<centro>/pesquisador/<pk>/', PesquisadorDetail.as_view(), name='pesquisador-detail'),
 
     #objetivo pesquisa
     path('<centro>/pesquisa/add/', PesquisaCreate.as_view(), name='pesquisa-add'),

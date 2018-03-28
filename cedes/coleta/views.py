@@ -176,6 +176,36 @@ class PesquisaDelete(DeleteView):
         return reverse_lazy('pesquisa-list', kwargs=dict(centro=self.object.centro))
 
 
+class PesquisadorCreate(ColetaCreateView):
+    model = Pesquisador
+    form_class = PesquisadorForm
+
+    def get_success_url(self):
+        return reverse_lazy('pesquisador-list', kwargs=dict(centro=self.object.centro))
+
+
+class PesquisadorUpdate(ColetaUpdateView):
+    model = Pesquisador
+    form_class = PesquisadorForm
+
+    def get_success_url(self):
+        return reverse_lazy('pesquisador-list', kwargs=dict(centro=self.object.centro))
+
+class PesquisadorList(ColetaListView):
+    model = Pesquisador
+
+
+class PesquisadorDetail(DetailView):
+    model = Pesquisador
+
+
+class PesquisadorDelete(DeleteView):
+    model = Pesquisador
+
+    def get_success_url(self):
+        return reverse_lazy('pesquisador-list', kwargs=dict(centro=self.object.centro))
+
+
 
 class EventoCreate(ColetaCreateView):
     model = Evento
