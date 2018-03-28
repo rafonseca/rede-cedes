@@ -119,6 +119,7 @@ LOGGING = {
             'filename': 'cedes-debug.log',
         },
     },
+    
     'loggers': {
         'django': {
             'handlers': ['file'],
