@@ -10,17 +10,17 @@ labels_CentroMemoria = {
 }
 
 labels_EstruturaFisica = {
-    'tem_sede': 'tem_sede',
-    'tem_banner': 'tem_banner',
-    'tem_internet': 'tem_internet',
-    'equip_inf': 'equip_inf',
-    'moveis': 'moveis',
-    'coordenador': 'coordenador',
-    'coord_adj': 'coord_adj',
-    'apoio_tecnico': 'apoio_tecnico',
-    'bolsistas': 'bolsistas',
-    'repr_pesquisadores': 'repr_pesquisadores',
-    'repr_social': 'repr_social',
+    'tem_sede': 'Sede própria do CDPPEL',
+    'tem_banner': 'Banner de identificação do CDPPEL',
+    'tem_internet': 'Acesso à internet própria no CDPPEL',
+    'equip_inf': 'Disponibilidade de equipamentos de informática (3 computadores e 1 impressora)',
+    'moveis': 'Dsiponibilidade de mobiliário (mesa 6 lugares, mesa com gavetas e armário ou estante)',
+    'coordenador': 'Coordenador do CDPPEL',
+    'coord_adj': 'Coordenador adjunto do CDPPEL',
+    'apoio_tecnico': 'Apoio técnico do CDPPEL',
+    'bolsistas': 'Bolsista do CDPPEL',
+    'repr_pesquisadores': 'Representante dos pesquisadores',
+    'repr_social': 'Representante social',
 }
 
 labels_Pesquisa = {
