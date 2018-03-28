@@ -1,0 +1,32 @@
+{% extends 'coleta/base-coleta-2.html' %}
+{% block title %}Rede CEDES - Pesquisadores{% endblock %}
+{% block metadescription %}Política de gestão, publicização, monitoramento e avaliação da Rede CEDES{% endblock %}
+{% block palavraschaves %}Rede CEDES, Esporte Recreativo, Lazer, Ministério do Esporte{% endblock %}
+{% load static %}
+{% block title-coleta %}LISTA DE PESQUISADORES{% endblock %}
+
+
+{% block content %}
+
+<div class="col-lg-8">
+
+{% for pesquisador in object_list %}
+
+  <div class="card mb-3">
+    <div class="card-block">
+      <a href="/coleta/{{ centro }}/pesquisador/{{ pesquisador.pk }}/update/"><h4 class="card-title">{{ pesquisador.nome }}</h4></a>
+      <p>{{ pesquisador.linha_human_readable }}</p>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/pesquisador/{{ pesquisador.pk }}/update/">[ Editar ]</a>
+      <a class="texto-pequeno" href="/coleta/{{ centro }}/pesquisador/{{ pesquisador.pk }}/delete/">[ Excluir ]</a>
+    </div>
+  </div>
+
+{% empty %}
+
+  <p>Não há pesquisadors cadastradas. Deseja <a href="/coleta/{{centro}}/pesquisador/add/">adicionar</a> uma?</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
